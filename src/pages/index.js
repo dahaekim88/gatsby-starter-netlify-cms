@@ -4,7 +4,7 @@ import { Header, Container, Button } from "semantic-ui-react"
 import { getUser, isLoggedIn } from "../services/auth"
 import Helmet from "react-helmet"
 
-import Layout from "../components/layout"
+import Layout from "../components/Layout"
 
 export default () => {
   const handleIMPSubmit = async () => {
@@ -55,14 +55,14 @@ export default () => {
           {isLoggedIn() ? (
             <>
               You are logged in, so check your{" "}
-              <Link to="/app/profile">profile</Link>
+              <Link to="/profile">profile</Link>
               <br />
               <br />
               <Button onClick={handleIMPSubmit}>Spend your money</Button>
             </>
           ) : (
             <>
-              You should <Link to="/app/login">log in</Link> to see restricted
+              You should <Link to="/login">log in</Link> to see restricted
               content
             </>
           )}
