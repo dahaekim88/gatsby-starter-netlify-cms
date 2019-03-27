@@ -1,8 +1,6 @@
 import React from "react"
 import styled from "styled-components"
 
-import { logoColor } from "../../constants"
-
 const Container = styled.span`
   font-family: Lovelo;
   font-size: 2rem;
@@ -10,6 +8,6 @@ const Container = styled.span`
   cursor: pointer;
 `
 
-const Logo = () => <Container color={logoColor}>STUDY | STATES</Container>
+const Logo = color => <Container color={color}>STUDY | STATES</Container>
 
 export default Logo
