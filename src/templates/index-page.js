@@ -8,6 +8,7 @@ import OurStory from "../components/index-page/OurStory"
 import CoursesIntro from "../components/index-page/CoursesIntro"
 import HiringPartners from "../components/index-page/HiringPartners"
 import PromotionMessage from "../components/index-page/PromotionMessage"
+import NewStudy from "../components/index-page/NewStudy"
 
 export const IndexPageTemplate = ({ carousel }) => {
   const carouselData = [
@@ -36,6 +37,7 @@ export const IndexPageTemplate = ({ carousel }) => {
       <CoursesIntro />
       <HiringPartners />
       <PromotionMessage />
+      <NewStudy />
     </>
   )
 }
