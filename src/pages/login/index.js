@@ -4,7 +4,15 @@ import {
   FacebookLoginButton,
   GoogleLoginButton,
 } from "react-social-login-buttons"
-import { Form, Icon, Input, Button, Message } from "antd"
+import {
+  Form,
+  FormGroup,
+  InputGroup,
+  InputGroupAddon,
+  InputGroupText,
+  Input,
+  Button,
+} from "reactstrap"
 import { Container } from "reactstrap"
 
 import Layout from "../../components/Layout"
@@ -33,20 +41,20 @@ const LoginPage = () => {
     validate
   )
 
-  const handleErrors = errors => {
-    if (!Array.isArray(errors) && !errors.length > 0) {
-      return (
-        <Message
-          error
-          header="Sorry"
-          content="Please check your login details and try again."
-        />
-      )
-    }
-    return errors.map(e => (
-      <Message error header={e.title} content={e.detail} key={e.status} />
-    ))
-  }
+  // const handleErrors = errors => {
+  //   if (!Array.isArray(errors) && !errors.length > 0) {
+  //     return (
+  //       <Message
+  //         error
+  //         header="Sorry"
+  //         content="Please check your login details and try again."
+  //       />
+  //     )
+  //   }
+  //   return errors.map(e => (
+  //     <Message error header={e.title} content={e.detail} key={e.status} />
+  //   ))
+  // }
 
   if (isLoggedIn()) {
     navigate(`/profile`)
@@ -66,44 +74,46 @@ const LoginPage = () => {
             error={apiError.length !== 0 || Object.entries(errors).length !== 0}
             className="login-form"
           >
-            {apiError.length !== 0 ? handleErrors(errors) : null}
-            <Form.Item>
-              <Input
-                id="email"
-                fluid
-                name="email"
-                type="email"
-                autoFocus
-                onChange={handleChange}
-                value={values.email || ""}
-                prefix={
-                  <Icon type="email" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
-                placeholder="Email"
-              />
-            </Form.Item>
-            {errors.email && (
-              <p data-testid="error" style={{ color: "red" }}>
-                {errors.email}
-              </p>
-            )}
-            <Form.Item>
-              <Input
-                id="password"
-                fluid
-                name="password"
-                type="password"
-                value={values.password || ""}
-                onChange={handleChange}
-                prefix={
-                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
-                }
-                placeholder="Password"
-              />
-            </Form.Item>
-            {errors.password && (
-              <p style={{ color: "red" }}>{errors.password}</p>
-            )}
+            {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
+            <FormGroup>
+              <InputGroup>
+                <InputGroupAddon addonType="prepend">@</InputGroupAddon>
+                <Input
+                  id="email"
+                  fluid
+                  name="email"
+                  type="email"
+                  autoFocus
+                  onChange={handleChange}
+                  value={values.email || ""}
+                  placeholder="Email"
+                />
+              </InputGroup>
+              {errors.email && (
+                <p data-testid="error" style={{ color: "red" }}>
+                  {errors.email}
+                </p>
+              )}
+            </FormGroup>
+            <FormGroup>
+              <InputGroup>
+                <InputGroupText addonType="prepend">
+                  <i className="fa fa-lock" />
+                </InputGroupText>
+                <Input
+                  id="password"
+                  fluid
+                  name="password"
+                  type="password"
+                  value={values.password || ""}
+                  onChange={handleChange}
+                  placeholder="Password"
+                />
+              </InputGroup>
+              {errors.password && (
+                <p style={{ color: "red" }}>{errors.password}</p>
+              )}
+            </FormGroup>
             <Button
               type="primary"
               htmlType="submit"
