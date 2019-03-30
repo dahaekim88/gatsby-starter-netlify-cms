@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="362px" height="189px" viewBox="0 0 362 189" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Background Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <linearGradient x1="50%" y1="0%" x2="50%" y2="100%" id="linearGradient-1">
+            <stop stop-color="#FDFDFD" offset="0%"></stop>
+            <stop stop-color="#FAFAFA" offset="100%"></stop>
+        </linearGradient>
+        <rect id="path-2" x="0" y="0" width="360" height="187" rx="6"></rect>
+    </defs>
+    <g id="study" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MAIN---study" transform="translate(-539.000000, -904.000000)">
+            <g id="Group-11" transform="translate(0.000000, 689.000000)">
+                <g id="Background-Copy" transform="translate(540.000000, 216.000000)">
+                    <mask id="mask-3" fill="white">
+                        <use xlink:href="#path-2"></use>
+                    </mask>
+                    <use id="Mask" stroke="#E6E6E6" fill="url(#linearGradient-1)" xlink:href="#path-2"></use>
+                    <g id="05-team-efforts" mask="url(#mask-3)">
+                        <g transform="translate(115.000000, 29.000000)">
+                            <circle id="Oval" fill="#FFEC40" fill-rule="nonzero" cx="86.6666667" cy="43.3333333" r="43.3333333"></circle>
+                            <g id="Group" stroke-width="1" fill="none" fill-rule="evenodd" transform="translate(0.000000, 2.063492)">
+                                <path d="M127.936508,22.6984127 L127.936508,84.6031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <polyline id="Shape" stroke="#222829" stroke-width="2" points="113.492063 0 127.936508 0 127.936508 14.4444444"></polyline>
+                                <polyline id="Shape" stroke="#222829" stroke-width="2" points="0 28.8888889 0 0 105.238095 0"></polyline>
+                                <path d="M6.19047619,74.2857143 L121.746032,74.2857143" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <polyline id="Shape" stroke="#222829" stroke-width="2" points="0 84.6031746 0 41.2698413 16.5079365 24.7619048 39.2063492 47.4603175 68.0952381 18.5714286 88.7301587 39.2063492 127.936508 0"></polyline>
+                                <g transform="translate(0.000000, 86.666667)" id="Shape" stroke-width="2" stroke="#222829">
+                                    <polyline points="26.8253968 22.6984127 41.2698413 30.952381 41.2698413 30.952381 57.7777778 22.6984127"></polyline>
+                                    <path d="M113.492063,22.6984127 L127.936508,30.952381 C127.936508,30.952381 127.936508,31.6622222 127.936508,35.0793651 C127.936508,38.4985714 125.873016,41.2698413 123.809524,41.2698413 L4.12698413,41.2698413 C2.06349206,41.2698413 0,38.4985714 0,35.0793651 C0,31.6622222 0,30.952381 0,30.952381 L14.4444444,22.6984127"></path>
+                                    <polyline points="70.1587302 22.6984127 86.6666667 30.952381 86.6666667 30.952381 101.111111 22.6984127"></polyline>
+                                    <path d="M30.952381,11.3492063 C30.952381,18.5714286 26.901746,24.7619048 20.6349206,24.7619048 C14.3680952,24.7619048 10.3174603,18.5714286 10.3174603,11.3492063 C10.3174603,4.12698413 12.3809524,0 20.6349206,0 C28.8888889,0 30.952381,4.12698413 30.952381,11.3492063 Z"></path>
+                                    <path d="M74.2857143,11.3492063 C74.2857143,18.5714286 70.2350794,24.7619048 63.968254,24.7619048 C57.7014286,24.7619048 53.6507937,18.5714286 53.6507937,11.3492063 C53.6507937,4.12698413 55.7142857,0 63.968254,0 C72.2222222,0 74.2857143,4.12698413 74.2857143,11.3492063 Z"></path>
+                                    <path d="M117.619048,11.3492063 C117.619048,18.5714286 113.568413,24.7619048 107.301587,24.7619048 C101.034762,24.7619048 96.984127,18.5714286 96.984127,11.3492063 C96.984127,4.12698413 99.047619,0 107.301587,0 C115.555556,0 117.619048,4.12698413 117.619048,11.3492063 Z"></path>
+                                    <path d="M41.2698413,30.952381 L41.2698413,37.1428571"></path>
+                                    <path d="M86.6666667,30.952381 L86.6666667,37.1428571"></path>
+                                </g>
+                                <path d="M14.4444444,66.031746 L30.952381,66.031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M14.4444444,57.7777778 L30.952381,57.7777778" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M35.0793651,66.031746 L51.5873016,66.031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M35.0793651,57.7777778 L51.5873016,57.7777778" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M55.7142857,66.031746 L72.2222222,66.031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M55.7142857,57.7777778 L72.2222222,57.7777778" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M55.7142857,49.5238095 L72.2222222,49.5238095" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M55.7142857,41.2698413 L72.2222222,41.2698413" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M76.3492063,66.031746 L92.8571429,66.031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M76.3492063,57.7777778 L92.8571429,57.7777778" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M76.3492063,49.5238095 L92.8571429,49.5238095" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M96.984127,66.031746 L113.492063,66.031746" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M96.984127,57.7777778 L113.492063,57.7777778" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M96.984127,49.5238095 L113.492063,49.5238095" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M96.984127,41.2698413 L113.492063,41.2698413" id="Shape" stroke="#222829" stroke-width="2"></path>
+                                <path d="M14.4444444,49.5238095 L30.952381,49.5238095" id="Shape" stroke="#222829" stroke-width="2"></path>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

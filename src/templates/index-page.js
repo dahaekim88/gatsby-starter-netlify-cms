@@ -4,6 +4,7 @@ import { graphql } from "gatsby"
 import { UncontrolledCarousel } from "reactstrap"
 
 import Layout from "../components/Layout"
+import OurStory from "../components/index-page/OurStory"
 
 export const IndexPageTemplate = ({ carousel }) => {
   const carouselData = [
@@ -28,6 +29,7 @@ export const IndexPageTemplate = ({ carousel }) => {
   return (
     <>
       <UncontrolledCarousel items={carouselData} indicators={false} />
+      <OurStory />
     </>
   )
 }
