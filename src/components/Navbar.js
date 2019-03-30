@@ -72,7 +72,10 @@ export default () => {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  <i className="fa fa-user-circle" />
+                  <i
+                    className="fa fa-user-circle"
+                    style={{ fontSize: "1.8rem" }}
+                  />
                 </DropdownToggle>
                 {isLoggedIn() ? (
                   <DropdownMenu right>
