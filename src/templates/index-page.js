@@ -5,6 +5,7 @@ import { UncontrolledCarousel } from "reactstrap"
 
 import Layout from "../components/Layout"
 import OurStory from "../components/index-page/OurStory"
+import CoursesIntro from "../components/index-page/CoursesIntro"
 
 export const IndexPageTemplate = ({ carousel }) => {
   const carouselData = [
@@ -44,6 +45,7 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate carousel={frontmatter.carousel} />
+      <CoursesIntro />
     </Layout>
   )
 }
