@@ -7,6 +7,7 @@ import Layout from "../components/Layout"
 import OurStory from "../components/index-page/OurStory"
 import CoursesIntro from "../components/index-page/CoursesIntro"
 import HiringPartners from "../components/index-page/HiringPartners"
+import PromotionMessage from "../components/index-page/PromotionMessage"
 
 export const IndexPageTemplate = ({ carousel }) => {
   const carouselData = [
@@ -32,6 +33,9 @@ export const IndexPageTemplate = ({ carousel }) => {
     <>
       <UncontrolledCarousel items={carouselData} indicators={false} />
       <OurStory />
+      <CoursesIntro />
+      <HiringPartners />
+      <PromotionMessage />
     </>
   )
 }
@@ -46,8 +50,6 @@ const IndexPage = ({ data }) => {
   return (
     <Layout>
       <IndexPageTemplate carousel={frontmatter.carousel} />
-      <CoursesIntro />
-      <HiringPartners />
     </Layout>
   )
 }
