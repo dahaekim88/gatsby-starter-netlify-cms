@@ -1,86 +1,76 @@
 import React from "react"
-import { Link } from "gatsby"
+import styled from "styled-components"
+import { Col, Container } from "reactstrap"
 
-import Logo from "./reusable/Logo"
-import facebook from "../img/social/facebook.svg"
+import SSDetails from "./layout/footer/SSDetails"
+import Menu from "./layout/footer/Menu"
+import Contact from "./layout/footer/Contact"
+import Copyright from "./layout/footer/Copyright"
+import { sizes } from "../constants"
 
-import { white } from "../constants"
+const FooterContainer = styled.div`
+  background: #242526;
+  color: #fff;
+  font-weight: 100;
+`
 
-const Footer = class extends React.Component {
-  render() {
-    return (
-      <footer className="footer has-background-black has-text-white-ter">
-        <div className="content has-text-centered">
-          <Logo color={white} />
-        </div>
-        <div className="content has-text-centered has-background-black has-text-white-ter">
-          <div className="container has-background-black has-text-white-ter">
-            <div className="columns">
-              <div className="column is-4">
-                <section className="menu">
-                  <ul className="menu-list">
-                    <li>
-                      <Link to="/" className="navbar-item">
-                        Home
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="navbar-item" to="/about">
-                        About
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="navbar-item" to="/products">
-                        Products
-                      </Link>
-                    </li>
-                    <li>
-                      <a
-                        className="navbar-item"
-                        href="/admin/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Admin
-                      </a>
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div className="column is-4">
-                <section>
-                  <ul className="menu-list">
-                    <li>
-                      <Link className="navbar-item" to="/blog">
-                        Latest Stories
-                      </Link>
-                    </li>
-                    <li>
-                      <Link className="navbar-item" to="/contact">
-                        Contact
-                      </Link>
-                    </li>
-                  </ul>
-                </section>
-              </div>
-              <div className="column is-4 social">
-                <a
-                  title="facebook"
-                  href="https://www.facebook.com/studystateswith/"
-                >
-                  <img
-                    src={facebook}
-                    alt="Facebook"
-                    style={{ width: "1em", height: "1em" }}
-                  />
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-    )
+const PaddingGrid = styled(Container)`
+  padding: 3rem 0;
+  display: flex;
+
+  @media screen and (max-width: ${sizes.mobile}px) {
+    flex-direction: column;
   }
-}
+`
+
+const ResponsiveHr = styled.hr`
+  color: white;
+  opacity: 0;
+  width: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    opacity: 1;
+    width: 80%;
+    margin-bottom: 2rem;
+  }
+`
+
+const MarginTopResponsiveHr = styled(ResponsiveHr)`
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    margin-top: 2rem;
+  }
+`
+
+const Footer = () => (
+  <FooterContainer>
+    <PaddingGrid>
+      <Col sm={4}>
+        <SSDetails />
+      </Col>
+
+      <MarginTopResponsiveHr />
+
+      <Col sm={4}>
+        <Menu />
+      </Col>
+
+      <ResponsiveHr />
+
+      <Col sm={4}>
+        <Contact />
+      </Col>
+    </PaddingGrid>
+
+    <hr />
+
+    <PaddingGrid>
+      <Col sm={12}>
+        <Copyright />
+      </Col>
+    </PaddingGrid>
+  </FooterContainer>
+)
 
 export default Footer

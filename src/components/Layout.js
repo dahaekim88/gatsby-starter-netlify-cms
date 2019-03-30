@@ -6,11 +6,8 @@ import { createGlobalStyle } from "styled-components"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
 
-import lovelo from "../fonts/Lovelo_Black.ttf"
+import lovelo from "../assets/fonts/Lovelo_Black.ttf"
 import { sizes } from "../constants"
-
-import "./all.sass"
-import "bootstrap/dist/css/bootstrap.min.css"
 
 const GlobalStyle = createGlobalStyle`
   @font-face {

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="131px" height="131px" viewBox="0 0 131 131" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>17-brand-book</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="study" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="MAIN---study" transform="translate(-265.000000, -934.000000)">
+            <g id="Group-11" transform="translate(0.000000, 689.000000)">
+                <g id="Background" transform="translate(150.000000, 217.000000)">
+                    <g id="17-brand-book" transform="translate(115.000000, 29.000000)">
+                        <circle id="Oval" fill="#FFEC40" fill-rule="nonzero" cx="43.3333333" cy="86.6666667" r="43.3333333"></circle>
+                        <g id="Group" transform="translate(2.063492, 0.000000)" stroke="#222829" stroke-width="2" stroke-linejoin="round">
+                            <g transform="translate(4.126984, 105.238095)" id="Shape">
+                                <polyline points="72.2222222 8.25396825 119.68254 8.25396825 119.68254 0"></polyline>
+                                <polyline points="0 0 0 8.25396825 43.3333333 8.25396825"></polyline>
+                            </g>
+                            <polyline id="Shape" points="47.4603175 105.238095 0 105.238095 0 16.5079365 47.4603175 16.5079365"></polyline>
+                            <polyline id="Shape" points="119.68254 16.5079365 127.936508 16.5079365 127.936508 105.238095 76.3492063 105.238095"></polyline>
+                            <path d="M76.3492063,16.5079365 L103.174603,16.5079365" id="Shape"></path>
+                            <path d="M6.19047619,33.015873 L47.4603175,33.015873" id="Shape"></path>
+                            <path d="M6.19047619,92.8571429 L47.4603175,92.8571429" id="Shape"></path>
+                            <path d="M6.19047619,84.6031746 L47.4603175,84.6031746" id="Shape"></path>
+                            <path d="M6.19047619,76.3492063 L47.4603175,76.3492063" id="Shape"></path>
+                            <path d="M76.3492063,68.0952381 L121.746032,68.0952381" id="Shape"></path>
+                            <path d="M76.3492063,76.3492063 L121.746032,76.3492063" id="Shape"></path>
+                            <path d="M76.3492063,84.6031746 L121.746032,84.6031746" id="Shape"></path>
+                            <path d="M76.3492063,92.8571429 L121.746032,92.8571429" id="Shape"></path>
+                            <g transform="translate(53.650794, 0.000000)" id="Shape">
+                                <polyline points="0 109.365079 0 16.5079365 16.5079365 16.5079365 16.5079365 109.365079"></polyline>
+                                <path d="M8.25396825,16.5079365 L8.25396825,109.365079"></path>
+                                <polygon points="8.25396825 127.936508 0 109.365079 16.5079365 109.365079"></polygon>
+                                <path d="M0,6.19047619 L0,16.5079365 L16.5079365,16.5079365 L16.5079365,6.19047619 C16.5079365,2.77333333 13.7346032,0 10.3174603,0 L6.19047619,0 C2.77333333,0 0,2.77333333 0,6.19047619 Z"></path>
+                            </g>
+                            <polygon id="Shape" points="119.68254 53.6507937 111.428571 45.3968254 103.174603 53.6507937 103.174603 12.3809524 119.68254 12.3809524"></polygon>
+                            <rect id="Rectangle-path" x="8.25396825" y="41.2698413" width="37.1428571" height="26.8253968"></rect>
+                            <path d="M76.3492063,28.8888889 L96.984127,28.8888889" id="Shape"></path>
+                            <path d="M76.3492063,37.1428571 L96.984127,37.1428571" id="Shape"></path>
+                            <path d="M76.3492063,45.3968254 L96.984127,45.3968254" id="Shape"></path>
+                            <path d="M76.3492063,59.8412698 L80.4761905,59.8412698" id="Shape"></path>
+                            <path d="M84.6031746,59.8412698 L88.7301587,59.8412698" id="Shape"></path>
+                            <path d="M92.8571429,59.8412698 L96.984127,59.8412698" id="Shape"></path>
+                            <path d="M6.19047619,24.7619048 L10.3174603,24.7619048" id="Shape"></path>
+                            <path d="M14.4444444,24.7619048 L18.5714286,24.7619048" id="Shape"></path>
+                            <path d="M22.6984127,24.7619048 L26.8253968,24.7619048" id="Shape"></path>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
