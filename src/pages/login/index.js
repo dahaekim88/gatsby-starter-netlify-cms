@@ -96,7 +96,7 @@ const LoginPage = () => {
                 />
                 {errors.password && <Message>{errors.password}</Message>}
                 <FormButton type="submit" background={blue} color="#fff">
-                  Log in
+                  로그인
                 </FormButton>
 
                 <div style={{ margin: "1.5rem 0" }}>
@@ -130,7 +130,7 @@ const validate = values => {
   if (!values.email) {
     errors.email = "이메일 입력이 반드시 필요합니다"
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = "Email address is invalid"
+    errors.email = "이메일 형식에 맞게 입력해주세요"
   }
   if (!values.password) {
     errors.password = "패스워드 입력이 반드시 필요합니다"
