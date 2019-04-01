@@ -38,7 +38,7 @@ export const handleSignup = async ({
     name,
     email,
   })
-  console.log("TCL: handleSignup -> data", data)
+  // console.log("TCL: handleSignup -> data", data)
   return data
 }
 
@@ -48,13 +48,13 @@ export const handleLogin = async ({ email, password }) => {
     email,
     password,
   })
-  console.log("TCL: handleLogin -> response", response)
+  // console.log("TCL: handleLogin -> response", response)
 
   const token = response.headers["x-auth-token"]
-  console.log("TCL: [+] RegistrationForm -> token", token)
+  // console.log("TCL: [+] RegistrationForm -> token", token)
   auth.saveJwt(token)
 
-  console.log("TCL: [+] move to ")
+  // console.log("TCL: [+] move to ")
   navigate("/")
 }
 
