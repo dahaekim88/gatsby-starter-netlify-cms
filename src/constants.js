@@ -15,4 +15,9 @@ module.exports = {
   whitegray: "#D1D1D1",
   almostWhite: "#E1E1E1",
   bluegray: "#5E6977",
+  facebook: "#4267b2",
+  google: "#db3236",
+  kakao: "#f7e317",
+  kakaoFont: "#3c1e1e",
+  naver: "#1ec800",
 }

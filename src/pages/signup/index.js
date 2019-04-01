@@ -21,9 +21,9 @@ import { blue } from "../../constants"
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false)
-  const [apiError, setApiError] = useState([])
 
-  const formLogin = () => {
+  const formSignup = () => {
+    // update 필요!!!
     setLoading(true)
     handleLogin({ email: values.email, password: values.password })
       .then(() => {
@@ -31,29 +31,13 @@ const LoginPage = () => {
       })
       .catch(e => {
         setLoading(false)
-        setApiError(e.errors || e)
       })
   }
 
   const { values, handleChange, handleSubmit, errors } = useForm(
-    formLogin,
+    formSignup,
     validate
   )
-
-  // const handleErrors = errors => {
-  //   if (!Array.isArray(errors) && !errors.length > 0) {
-  //     return (
-  //       <Message
-  //         error
-  //         header="Sorry"
-  //         content="Please check your login details and try again."
-  //       />
-  //     )
-  //   }
-  //   return errors.map(e => (
-  //     <Message error header={e.title} content={e.detail} key={e.status} />
-  //   ))
-  // }
 
   if (isLoggedIn()) {
     navigate(`/profile`)
@@ -64,16 +48,23 @@ const LoginPage = () => {
       <Layout>
         <Container>
           <ContentContainer>
-            <Title size="3rem">Log in</Title>
+            <Title size="3rem">Sign up</Title>
             <FormContainer>
               <StyledForm
                 onSubmit={event => handleSubmit(event)}
                 loading={loading}
-                error={
-                  apiError.length !== 0 || Object.entries(errors).length !== 0
-                }
               >
-                {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
+                <FormInput
+                  id="name"
+                  fluid
+                  name="name"
+                  type="text"
+                  autoFocus
+                  onChange={handleChange}
+                  value={values.name || ""}
+                  placeholder="이름을 입력하세요"
+                />
+                {errors.name && <Message>{errors.name}</Message>}
                 <FormInput
                   id="email"
                   fluid
@@ -86,6 +77,17 @@ const LoginPage = () => {
                 />
                 {errors.email && <Message>{errors.email}</Message>}
                 <FormInput
+                  id="phone"
+                  fluid
+                  name="phone"
+                  type="text"
+                  autoFocus
+                  onChange={handleChange}
+                  value={values.phone || ""}
+                  placeholder="휴대폰 번호를 입력하세요"
+                />
+                {errors.phone && <Message>{errors.phone}</Message>}
+                <FormInput
                   id="password"
                   fluid
                   name="password"
@@ -95,8 +97,17 @@ const LoginPage = () => {
                   placeholder="패스워드를 입력하세요"
                 />
                 {errors.password && <Message>{errors.password}</Message>}
+                <FormInput
+                  fluid
+                  name="password"
+                  type="password"
+                  value={values.password || ""}
+                  onChange={handleChange}
+                  placeholder="패스워드를 한 번 더 입력하세요"
+                />
+                {errors.password && <Message>{errors.password}</Message>}
                 <FormButton type="submit" background={blue} color="#fff">
-                  로그인
+                  회원가입
                 </FormButton>
 
                 <div style={{ margin: "1.5rem 0" }}>
@@ -127,13 +138,24 @@ export default LoginPage
 
 const validate = values => {
   const errors = {}
+  const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
+  const phoneRegex = /^01(?:0|1|[6-9]) - (?:\\d{3}|\\d{4}) - \\d{4}$/
+
+  if (!values.name) {
+    errors.name = "이름을 반드시 입력해주세요"
+  }
   if (!values.email) {
-    errors.email = "이메일 입력이 반드시 필요합니다"
-  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
+    errors.email = "이메일을 반드시 입력해주세요"
+  } else if (!emailRegex.test(values.email)) {
     errors.email = "이메일 형식에 맞게 입력해주세요"
   }
+  if (!values.phone) {
+    errors.phone = "휴대폰 번호를 반드시 입력해주세요"
+  } else if (!phoneRegex.test(values.phone)) {
+    errors.phone = "휴대폰 형식에 맞게 입력해주세요"
+  }
   if (!values.password) {
-    errors.password = "패스워드 입력이 반드시 필요합니다"
+    errors.password = "패스워드를 반드시 입력해주세요"
   }
   return errors
 }

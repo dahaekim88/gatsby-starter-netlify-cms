@@ -101,7 +101,7 @@ export default () => {
                   </DropdownMenu>
                 ) : (
                   <DropdownMenu right>
-                    <StyledDropdown tag={Link} to="login">
+                    <StyledDropdown tag={Link} to="signup">
                       회원가입
                     </StyledDropdown>
                     <DropdownItem divider />

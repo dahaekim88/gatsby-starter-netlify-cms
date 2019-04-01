@@ -1,7 +1,15 @@
-import styled from "styled-components"
-import { Row, Col } from "reactstrap"
+import styled, { css } from "styled-components"
+import { Row, Col, Container } from "reactstrap"
 import { Link } from "gatsby"
-import { blue, white, darkwhite, darkgray, black, sizes } from "../../constants"
+import {
+  blue,
+  white,
+  darkwhite,
+  darkgray,
+  grayBorder,
+  black,
+  sizes,
+} from "../../constants"
 
 export const Background = styled.div`
   padding: 5rem 0;
@@ -128,7 +136,7 @@ export const BorderedButton = styled.a`
   align-items: center;
 `
 
-export const HoveredButton = styled.a`
+export const HoveredButton = styled.button`
   display: inline-block;
   width: ${({ width }) => width};
   padding: 1.2rem 0;
@@ -188,4 +196,85 @@ export const CardContainer = styled.div`
 export const MarginBottomContainer = styled.div`
   margin-bottom: 2rem;
   font-size: 1.4rem;
+`
+
+export const ContentContainer = styled(Container)`
+  margin: 8rem 0 12rem 0;
+`
+
+export const FormContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  margin: 3rem auto;
+  padding: 5rem 0;
+  border: 1px solid ${grayBorder};
+  border-radius: 4px;
+  width: 60%;
+
+  @media screen and (max-width: ${sizes.b_desktop_s}px) {
+    width: 75%;
+  }
+
+  @media screen and (max-width: ${sizes.mobile}px) {
+    width: 90%;
+  }
+`
+
+export const StyledForm = styled.form`
+  width: 50%;
+
+  @media screen and (max-width: ${sizes.b_desktop_s}px) {
+    width: 80%;
+  }
+`
+
+export const FormInput = styled.input`
+  font-size: 1.3rem;
+  font-weight: 300;
+  display: block;
+  width: 100%;
+  margin: 1rem auto;
+  padding: 1rem 1.3rem;
+  border: solid 1px #cccccc;
+  border-radius: 4px;
+  background-color: #ffffff;
+
+  &:focus {
+    border: 1px solid rgba(81, 203, 238, 1);
+    box-shadow: 0 0 3px rgba(81, 203, 238, 1);
+  }
+`
+
+export const FormButton = styled.button(
+  props => css`
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 1.3rem;
+    color: ${props.color};
+    width: 100%;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    overflow: hidden;
+    user-select: none;
+    background: ${props.background};
+    text-align: center;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  `
+)
+
+export const BorderLine = styled.div`
+  display: inline-block;
+  width: calc((100% - 45px) / 2);
+  height: 1px;
+  vertical-align: middle;
+  background: rgba(52, 52, 52, 0.2);
+`
+
+export const Message = styled.p`
+  color: red;
+  font-size: 1.2rem;
 `
