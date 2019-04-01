@@ -293,6 +293,7 @@ export const SmallTitle = styled.p`
   margin-top: 3rem;
   font-size: 2.4rem;
   font-weight: bold;
+  text-align: center;
 `
 
 export const Paragraph = styled.p`

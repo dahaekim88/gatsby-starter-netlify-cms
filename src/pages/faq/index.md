@@ -1,101 +1,45 @@
 ---
 templateKey: "faq-page"
 path: /faq
-title: Our Coffee
-image: /img/jumbotron.jpg
-heading: Great coffee with a conscience
-description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
-intro:
-  blurbs:
-    - image: /img/coffee.png
-      text: >
-        We sell green and roasted coffee beans that are sourced directly from
-        independent farmers and farm cooperatives. We’re proud to offer a
-        variety of coffee beans grown with great care for the environment and
-        local communities. Check our post or contact us directly for current
-        availability.
-    - image: /img/coffee-gear.png
-      text: >
-        We offer a small, but carefully curated selection of brewing gear and
-        tools for every taste and experience level. No matter if you roast your
-        own beans or just bought your first french press, you’ll find a gadget
-        to fall in love with in our shop.
-    - image: /img/tutorials.png
-      text: >
-        Love a great cup of coffee, but never knew how to make one? Bought a
-        fancy new Chemex but have no clue how to use it? Don't worry, we’re here
-        to help. You can schedule a custom 1-on-1 consultation with our baristas
-        to learn anything you want to know about coffee roasting and brewing.
-        Email us or call the store for details.
-    - image: /img/meeting-space.png
-      text: >
-        We believe that good coffee has the power to bring people together.
-        That’s why we decided to turn a corner of our shop into a cozy meeting
-        space where you can hang out with fellow coffee lovers and learn about
-        coffee making techniques. All of the artwork on display there is for
-        sale. The full price you pay goes to the artist.
-  heading: What we offer
-  description: >
-    Kaldi is the ultimate spot for coffee lovers who want to learn about their
-    java’s origin and support the farmers that grew it. We take coffee
-    production, roasting and brewing seriously and we’re glad to pass that
-    knowledge to anyone. This is an edit via identity...
-main:
-  heading: Great coffee with no compromises
-  description: >
-    We hold our coffee to the highest standards from the shrub to the cup.
-    That’s why we’re meticulous and transparent about each step of the coffee’s
-    journey. We personally visit each farm to make sure the conditions are
-    optimal for the plants, farmers and the local environment.
-  image1:
-    alt: A close-up of a paper filter filled with ground coffee
-    image: /img/products-grid3.jpg
-  image2:
-    alt: A green cup of a coffee on a wooden table
-    image: /img/products-grid2.jpg
-  image3:
-    alt: Coffee beans
-    image: /img/products-grid1.jpg
-testimonials:
-  - author: Elisabeth Kaurismäki
-    quote: >-
-      The first time I tried Kaldi’s coffee, I couldn’t even believe that was
-      the same thing I’ve been drinking every morning.
-  - author: Philipp Trommler
-    quote: >-
-      Kaldi is the place to go if you want the best quality coffee. I love their
-      stance on empowering farmers and transparency.
-full_image: /img/products-full-width.jpg
-pricing:
-  heading: Monthly subscriptions
-  description: >-
-    We make it easy to make great coffee a part of your life. Choose one of our
-    monthly subscription plans to receive great coffee at your doorstep each
-    month. Contact us about more details and payment info.
-  plans:
-    - description: Perfect for the drinker who likes to enjoy 1-2 cups per day.
-      items:
-        - 3 lbs of coffee per month
-        - Green or roasted beans"
-        - One or two varieties of beans"
-      plan: Small
-      price: "50"
-    - description: "Great for avid drinkers, java-loving couples and bigger crowds"
-      items:
-        - 6 lbs of coffee per month
-        - Green or roasted beans
-        - Up to 4 different varieties of beans
-      plan: Big
-      price: "80"
-    - description: Want a few tiny batches from different varieties? Try our custom plan
-      items:
-        - Whatever you need
-        - Green or roasted beans
-        - Unlimited varieties
-      plan: Custom
-      price: "??"
+title: FAQ
+image: /img/faq_bg.jpg
+heading: Frequently Asked Questions
 ---
+
+## 스터디는 어떤 방식으로 진행되나요?
+
+스터디는 일반적으로 온라인에서 모이며 스터디에 따라 달라질 수 있습니다. 대부분 스터디는 학습하기, 공유하기, 적용하기로 이루어지고 이론학습뿐만 아니라 실제로 적용하는 프로젝트까지 진행하는 것을 목표로 합니다.
+
+<br />
+
+## 영어실력을 요하는 스터디가 많은데 영어실력은 어느정도 되어야 하나요?
+
+스터디의 컨텐츠마다 다르겠지만, 다음과 같은 수준을 이해하실 수 있는 정도면 됩니다. In this lesson, you'll learn to analyze data in a spreadsheet: answer questions about the data using aggregation functions, logical functions, pivot tables, and lookup tables. 영어 자체가 어렵다기 보다는 영어로 배우기 때문에 단어가 생소해서, 즉 익숙하지 않아서 어렵게 느끼시는 경우가 많습니다. 하지만, 공부하다보면 익숙해지고 영어는 큰 걸림돌이 되지 않는다고 스터디스테이츠 베타 참가자분들이 이야기 해주셨습니다.
+
+<br />
+
+## 스터디 파트너는 어떻게 신청하나요?
+
+[여기](http://bit.ly/2FDY2ld)에서 스터디 파트너 신청서를 작성해주시면 됩니다.
+
+<br />
+
+## 새로운 스터디 주제는 어떻게 제안하나요?
+
+[여기](http://bit.ly/2CzEPhN)에서 새로운 스터디 주제를 제안해주시면 됩니다. 새로운 스터디는 스터디스테이츠가 적합성을 고려해서 개설 여부를 결정합니다. 스터디가 개설되면 제안해주신 분들에게 가장 먼저 알려드립니다.
+
+<br />
+
+## 페어 발표는 무엇인가요?
+
+스터디마다 다르겠지만 일반적으로 다른 한 분과 조가 되어서 발표하는 페어 발표를 진행하고 있습니다. 페어 발표는 페어가 함께 맡은 부분에 대한 내용을 요약하고 발표하는 것입니다.
+
+<br />
+
+## 환불정책은 어떻게 되나요?
+
+환불규정  
+스터디 시작 1일 전까지 -> 서비스 대금 전액 환불  
+스터디 진행 1/3 경과 전 -> 서비스 대금 2/3 해당액 환불  
+스터디 진행 1/2 경과 전 -> 서비스 대금 1/2 해당액 환불  
+스터디 진행 1/2 경과 후 -> 환불하지 않음
