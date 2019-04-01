@@ -10,10 +10,10 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding-bottom: 2rem;
+  padding: 2rem 0;
 `
 
-const Title = styled.h3`
+const Title = styled.h1`
   letter-spacing: 0.3rem;
   color: ${white};
   text-align: center;
