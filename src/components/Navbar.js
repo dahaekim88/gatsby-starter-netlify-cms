@@ -19,7 +19,7 @@ import {
 
 import { StyledLink } from "./reusable/styledComponents"
 import Logo from "./reusable/Logo"
-import { isLoggedIn, logout } from "../services/auth"
+import { isLoggedIn, logout, getUser } from "../services/auth"
 import { logoColor } from "../constants"
 
 const StyledNavLink = styled(NavLink)`
@@ -76,7 +76,9 @@ export default () => {
                     className="fa fa-user-circle"
                     style={{ fontSize: "1.8rem" }}
                   />
+                  {isLoggedIn() && getUser()}
                 </DropdownToggle>
+
                 {isLoggedIn() ? (
                   <DropdownMenu right>
                     <StyledDropdown tag={Link} to="profile">

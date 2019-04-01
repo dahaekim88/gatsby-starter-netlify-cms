@@ -15,7 +15,8 @@ import {
   Message,
 } from "../../components/reusable/styledComponents"
 
-import { handleLogin, isLoggedIn } from "../../services/auth"
+// import { handleLogin, isLoggedIn } from "../../services/auth"
+import * as auth from "../../services/auth"
 import useForm from "../../components/reusable/useForm"
 import { blue } from "../../constants"
 
@@ -23,8 +24,21 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
 
-  const formLogin = () => {
+  const formLogin = async () => {
     setLoading(true)
+
+    try {
+      const response = await auth.handleLogin({
+        email: values.email,
+        password: values.password,
+      })
+      const token = response.headers["x-auth-token"]
+      console.log("TCL: [+] RegistrationForm -> token", token)
+      auth.saveJwt(token)
+
+      console.log("TCL: [+] move to ")
+      navigate("/")
+      /*
     handleLogin({ email: values.email, password: values.password })
       .then(() => {
         navigate("/profile")
@@ -33,6 +47,14 @@ const LoginPage = () => {
         setLoading(false)
         setApiError(e.errors || e)
       })
+      */
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        console.log("TCL: formLogin -> ex.response", ex.response)
+        const { data } = ex.response
+        setApiError(data)
+      }
+    }
   }
 
   const { values, handleChange, handleSubmit, errors } = useForm(
@@ -55,7 +77,7 @@ const LoginPage = () => {
   //   ))
   // }
 
-  if (isLoggedIn()) {
+  if (auth.isLoggedIn()) {
     navigate(`/profile`)
   }
 
@@ -74,6 +96,7 @@ const LoginPage = () => {
                 }
               >
                 {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
+                {apiError && <Message>{apiError}</Message>}
                 <FormInput
                   id="email"
                   fluid
