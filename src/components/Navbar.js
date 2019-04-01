@@ -61,7 +61,7 @@ export default () => {
                 </StyledNavLink>
               </NavItem>
               <NavItem>
-                <StyledNavLink tag={Link} to="/blog">
+                <StyledNavLink tag={Link} to="/faq">
                   FAQ
                 </StyledNavLink>
               </NavItem>

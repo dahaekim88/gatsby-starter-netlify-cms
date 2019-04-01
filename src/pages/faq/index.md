@@ -1,6 +1,6 @@
 ---
-templateKey: "product-page"
-path: /topics
+templateKey: "faq-page"
+path: /faq
 title: Our Coffee
 image: /img/jumbotron.jpg
 heading: Great coffee with a conscience

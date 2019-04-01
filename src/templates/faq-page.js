@@ -1,13 +1,13 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Features from '../components/Features'
-import Testimonials from '../components/Testimonials'
-import Pricing from '../components/Pricing'
-import PreviewCompatibleImage from '../components/PreviewCompatibleImage'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
+import Layout from "../components/Layout"
+import Features from "../components/Features"
+import Testimonials from "../components/Testimonials"
+import Pricing from "../components/Pricing"
+import PreviewCompatibleImage from "../components/PreviewCompatibleImage"
 
-export const ProductPageTemplate = ({
+export const FaqPageTemplate = ({
   image,
   title,
   heading,
@@ -37,10 +37,10 @@ export const ProductPageTemplate = ({
                 <h2
                   className="has-text-weight-bold is-size-1"
                   style={{
-                    boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-                    backgroundColor: '#f40',
-                    color: 'white',
-                    padding: '1rem',
+                    boxShadow: "0.5rem 0 0 #f40, -0.5rem 0 0 #f40",
+                    backgroundColor: "#f40",
+                    color: "white",
+                    padding: "1rem",
                   }}
                 >
                   {title}
@@ -108,7 +108,7 @@ export const ProductPageTemplate = ({
   </section>
 )
 
-ProductPageTemplate.propTypes = {
+FaqPageTemplate.propTypes = {
   image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
   title: PropTypes.string,
   heading: PropTypes.string,
@@ -132,12 +132,12 @@ ProductPageTemplate.propTypes = {
   }),
 }
 
-const ProductPage = ({ data }) => {
+const FaqPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
 
   return (
     <Layout>
-      <ProductPageTemplate
+      <FaqPageTemplate
         image={frontmatter.image}
         title={frontmatter.title}
         heading={frontmatter.heading}
@@ -152,7 +152,7 @@ const ProductPage = ({ data }) => {
   )
 }
 
-ProductPage.propTypes = {
+FaqPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
       frontmatter: PropTypes.object,
@@ -160,10 +160,10 @@ ProductPage.propTypes = {
   }),
 }
 
-export default ProductPage
+export default FaqPage
 
-export const productPageQuery = graphql`
-  query ProductPage($id: String!) {
+export const FaqPageQuery = graphql`
+  query FaqPage($id: String!) {
     markdownRemark(id: { eq: $id }) {
       frontmatter {
         title

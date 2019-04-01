@@ -2,8 +2,8 @@ import React from "react"
 import CMS from "netlify-cms"
 
 import AboutPagePreview from "./preview-templates/AboutPagePreview"
-import BlogPostPreview from "./preview-templates/BlogPostPreview"
-import ProductPagePreview from "./preview-templates/ProductPagePreview"
+import DetailPagePreview from "./preview-templates/DetailPagePreview"
+import FaqPagePreview from "./preview-templates/FaqPagePreview"
 import IndexPagePreview from "./preview-templates/IndexPagePreview"
 
 import { StyleSheetManager } from "styled-components"
@@ -43,10 +43,10 @@ CMS.registerPreviewTemplate("index", props => (
     <IndexPagePreview {...props} />
   </CSSInjector>
 ))
-CMS.registerPreviewTemplate("about", "index", props => (
+CMS.registerPreviewTemplate("about", props => (
   <CSSInjector>
     <AboutPagePreview {...props} />
   </CSSInjector>
 ))
-CMS.registerPreviewTemplate("products", ProductPagePreview)
-CMS.registerPreviewTemplate("blog", BlogPostPreview)
+CMS.registerPreviewTemplate("faqs", FaqPagePreview)
+CMS.registerPreviewTemplate("topics", DetailPagePreview)
