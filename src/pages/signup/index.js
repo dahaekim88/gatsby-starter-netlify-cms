@@ -24,7 +24,7 @@ const LoginPage = () => {
 
   const formSignup = async () => {
     setLoading(true)
-    console.log("TCL: formSignup -> values", values)
+    // console.log("TCL: formSignup -> values", values)
 
     try {
       const response = await auth.handleSignup({
@@ -35,10 +35,10 @@ const LoginPage = () => {
         email: values.email,
       })
       const token = response.headers["x-auth-token"]
-      console.log("TCL: [+] RegistrationForm -> token", token)
+      // console.log("TCL: [+] RegistrationForm -> token", token)
       auth.saveJwt(token)
 
-      console.log("TCL: [+] move to ")
+      // console.log("TCL: [+] move to ")
       navigate("/")
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {

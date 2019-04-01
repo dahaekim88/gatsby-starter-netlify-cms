@@ -33,10 +33,10 @@ const LoginPage = () => {
         password: values.password,
       })
       const token = response.headers["x-auth-token"]
-      console.log("TCL: [+] RegistrationForm -> token", token)
+      // console.log("TCL: [+] RegistrationForm -> token", token)
       auth.saveJwt(token)
 
-      console.log("TCL: [+] move to ")
+      // console.log("TCL: [+] move to ")
       navigate("/")
       /*
     handleLogin({ email: values.email, password: values.password })
@@ -50,7 +50,7 @@ const LoginPage = () => {
       */
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
-        console.log("TCL: formLogin -> ex.response", ex.response)
+        // console.log("TCL: formLogin -> ex.response", ex.response)
         const { data } = ex.response
         setApiError(data)
       }
