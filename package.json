@@ -47,6 +47,7 @@
   "main": "n/a",
   "scripts": {
     "start": "npm run develop",
+    "start:staging": "NODE_ENV=\"staging\" npm run develop",
     "clean": "rimraf .cache public",
     "build": "npm run clean && gatsby build",
     "develop": "npm run clean && gatsby develop",
