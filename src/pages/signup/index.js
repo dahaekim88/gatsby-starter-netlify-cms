@@ -15,23 +15,37 @@ import {
   Message,
 } from "../../components/reusable/styledComponents"
 
-import { handleLogin, isLoggedIn } from "../../services/auth"
+import * as auth from "../../services/auth"
 import useForm from "../../components/reusable/useForm"
 import { blue } from "../../constants"
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false)
 
-  const formSignup = () => {
-    // update 필요!!!
+  const formSignup = async () => {
     setLoading(true)
-    handleLogin({ email: values.email, password: values.password })
-      .then(() => {
-        navigate("/profile")
+    console.log("TCL: formSignup -> values", values)
+
+    try {
+      const response = await auth.handleSignup({
+        username: values.username,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
+        name: values.name,
+        email: values.email,
       })
-      .catch(e => {
-        setLoading(false)
-      })
+      const token = response.headers["x-auth-token"]
+      console.log("TCL: [+] RegistrationForm -> token", token)
+      auth.saveJwt(token)
+
+      console.log("TCL: [+] move to ")
+      navigate("/")
+    } catch (ex) {
+      if (ex.response && ex.response.status === 400) {
+        // const errors = { ...this.state.errors }
+        errors.username = ex.response.data
+      }
+    }
   }
 
   const { values, handleChange, handleSubmit, errors } = useForm(
@@ -39,7 +53,7 @@ const LoginPage = () => {
     validate
   )
 
-  if (isLoggedIn()) {
+  if (auth.isLoggedIn()) {
     navigate(`/profile`)
   }
 
@@ -97,13 +111,15 @@ const LoginPage = () => {
                 {errors.password && <Message>{errors.password}</Message>}
                 <FormInput
                   fluid
-                  name="password"
+                  name="confirmPassword"
                   type="password"
-                  value={values.password || ""}
+                  value={values.confirmPassword || ""}
                   onChange={handleChange}
                   placeholder="패스워드를 한 번 더 입력하세요"
                 />
-                {errors.password && <Message>{errors.password}</Message>}
+                {errors.confirmPassword && (
+                  <Message>{errors.confirmPassword}</Message>
+                )}
                 <FormButton type="submit" background={blue} color="#fff">
                   회원가입
                 </FormButton>
@@ -149,9 +165,9 @@ const validate = values => {
   }
   if (!values.phone) {
     errors.phone = "휴대폰 번호를 반드시 입력해주세요"
-  } else if (!phoneRegex.test(values.phone)) {
+  } /* else if (!phoneRegex.test(values.phone)) {
     errors.phone = "휴대폰 형식에 맞게 입력해주세요"
-  }
+  }*/
   if (!values.password) {
     errors.password = "패스워드를 반드시 입력해주세요"
   }
