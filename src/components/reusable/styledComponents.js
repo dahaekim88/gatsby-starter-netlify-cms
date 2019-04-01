@@ -278,3 +278,26 @@ export const Message = styled.p`
   color: red;
   font-size: 1.2rem;
 `
+
+export const ContentsBox = styled(Col)`
+  background: ${white};
+  border: solid 0.1rem ${grayBorder};
+  border-radius: 0.5rem;
+`
+
+export const PagePart = styled(ContentsBox)`
+  margin: 1rem 0;
+`
+
+export const SmallTitle = styled.p`
+  margin-top: 3rem;
+  font-size: 2.4rem;
+  font-weight: bold;
+`
+
+export const Paragraph = styled.p`
+  margin-top: 3rem;
+  font-size: 1.7rem;
+  line-height: 2;
+  text-align: center;
+`
