@@ -1,24 +1,23 @@
 import React, { useState } from "react"
 import { navigate } from "gatsby"
-import {
-  FacebookLoginButton,
-  GoogleLoginButton,
-} from "react-social-login-buttons"
-import {
-  Form,
-  FormGroup,
-  InputGroup,
-  InputGroupAddon,
-  InputGroupText,
-  Input,
-  Button,
-} from "reactstrap"
 import { Container } from "reactstrap"
 
 import Layout from "../../components/Layout"
+import SocialLogin from "../../components/SocialLogin"
+import {
+  ContentContainer,
+  Title,
+  FormContainer,
+  StyledForm,
+  FormInput,
+  FormButton,
+  BorderLine,
+  Message,
+} from "../../components/reusable/styledComponents"
+
 import { handleLogin, isLoggedIn } from "../../services/auth"
 import useForm from "../../components/reusable/useForm"
-import config from "../../../.config"
+import { blue } from "../../constants"
 
 const LoginPage = () => {
   const [loading, setLoading] = useState(false)
@@ -60,74 +59,64 @@ const LoginPage = () => {
     navigate(`/profile`)
   }
 
-  const urlForFacebookLogin = `${config.SERVER_URL}/auth/facebook`
-  const urlForGoogleLogin = `${config.SERVER_URL}/auth/google`
-
   return (
     <>
       <Layout>
         <Container>
-          <h1>Log in</h1>
-          <Form
-            onSubmit={event => handleSubmit(event)}
-            loading={loading}
-            error={apiError.length !== 0 || Object.entries(errors).length !== 0}
-            className="login-form"
-          >
-            {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
-            <FormGroup>
-              <InputGroup>
-                <InputGroupAddon addonType="prepend">@</InputGroupAddon>
-                <Input
+          <ContentContainer>
+            <Title size="3rem">Log in</Title>
+            <FormContainer>
+              <StyledForm
+                onSubmit={event => handleSubmit(event)}
+                loading={loading}
+                error={
+                  apiError.length !== 0 || Object.entries(errors).length !== 0
+                }
+              >
+                {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
+                <FormInput
                   id="email"
                   fluid
                   name="email"
-                  type="email"
+                  type="text"
                   autoFocus
                   onChange={handleChange}
                   value={values.email || ""}
-                  placeholder="Email"
+                  placeholder="이메일을 입력하세요"
                 />
-              </InputGroup>
-              {errors.email && (
-                <p data-testid="error" style={{ color: "red" }}>
-                  {errors.email}
-                </p>
-              )}
-            </FormGroup>
-            <FormGroup>
-              <InputGroup>
-                <InputGroupText addonType="prepend">
-                  <i className="fa fa-lock" />
-                </InputGroupText>
-                <Input
+                {errors.email && <Message>{errors.email}</Message>}
+                <FormInput
                   id="password"
                   fluid
                   name="password"
                   type="password"
                   value={values.password || ""}
                   onChange={handleChange}
-                  placeholder="Password"
+                  placeholder="패스워드를 입력하세요"
                 />
-              </InputGroup>
-              {errors.password && (
-                <p style={{ color: "red" }}>{errors.password}</p>
-              )}
-            </FormGroup>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-            >
-              Log in
-            </Button>
-            <a href={urlForFacebookLogin}>
-              <FacebookLoginButton />
-            </a>
-            <a href={urlForGoogleLogin}>
-              <GoogleLoginButton />
-            </a>
-          </Form>
+                {errors.password && <Message>{errors.password}</Message>}
+                <FormButton type="submit" background={blue} color="#fff">
+                  Log in
+                </FormButton>
+
+                <div style={{ margin: "1.5rem 0" }}>
+                  <BorderLine />
+                  <span
+                    style={{
+                      margin: "0 15px",
+                      verticalAlign: "middle",
+                      fontSize: "1.3rem",
+                    }}
+                  >
+                    or
+                  </span>
+                  <BorderLine />
+                </div>
+
+                <SocialLogin />
+              </StyledForm>
+            </FormContainer>
+          </ContentContainer>
         </Container>
       </Layout>
     </>
@@ -139,12 +128,12 @@ export default LoginPage
 const validate = values => {
   const errors = {}
   if (!values.email) {
-    errors.email = "Email address is required"
+    errors.email = "이메일 입력이 반드시 필요합니다"
   } else if (!/\S+@\S+\.\S+/.test(values.email)) {
     errors.email = "Email address is invalid"
   }
   if (!values.password) {
-    errors.password = "Password is required"
+    errors.password = "패스워드 입력이 반드시 필요합니다"
   }
   return errors
 }
