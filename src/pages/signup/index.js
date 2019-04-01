@@ -70,7 +70,6 @@ const LoginPage = () => {
                   fluid
                   name="email"
                   type="text"
-                  autoFocus
                   onChange={handleChange}
                   value={values.email || ""}
                   placeholder="이메일을 입력하세요"
@@ -81,7 +80,6 @@ const LoginPage = () => {
                   fluid
                   name="phone"
                   type="text"
-                  autoFocus
                   onChange={handleChange}
                   value={values.phone || ""}
                   placeholder="휴대폰 번호를 입력하세요"
