@@ -1,34 +1,49 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { graphql } from 'gatsby'
-import Layout from '../components/Layout'
-import Content, { HTMLContent } from '../components/Content'
+import React from "react"
+import PropTypes from "prop-types"
+import { graphql } from "gatsby"
+import { Container } from "reactstrap"
 
-export const AboutPageTemplate = ({ title, content, contentComponent }) => {
-  const PageContent = contentComponent || Content
+import Layout from "../components/Layout"
+import PageHeader from "../components/reusable/PageHeader"
+import AboutPart from "../components/about-page/AboutPart"
+import WhyUsPart from "../components/about-page/WhyUsPart"
+import { DarkBackground } from "../components/reusable/styledComponents"
 
-  return (
-    <section className="section section--gradient">
-      <div className="container">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <div className="section">
-              <h2 className="title is-size-3 has-text-weight-bold is-bold-light">
-                {title}
-              </h2>
-              <PageContent className="content" content={content} />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
-}
+export const AboutPageTemplate = ({ title, image, intro, main }) => (
+  <>
+    <PageHeader
+      title={title}
+      bgUrl={!!image.childImageSharp ? image.childImageSharp.fluid.src : image}
+    />
+    <DarkBackground>
+      <Container>
+        <AboutPart
+          heading={intro.heading}
+          image={
+            !!intro.image.childImageSharp
+              ? intro.image.childImageSharp.fluid.src
+              : intro.image
+          }
+          description={intro.description}
+        />
+        <WhyUsPart title={main.heading} whyUsData={main.content} />
+      </Container>
+    </DarkBackground>
+  </>
+)
 
 AboutPageTemplate.propTypes = {
   title: PropTypes.string.isRequired,
-  content: PropTypes.string,
-  contentComponent: PropTypes.func,
+  image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+  intro: PropTypes.shape({
+    heading: PropTypes.string,
+    image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
+    description: PropTypes.string,
+  }),
+  main: PropTypes.shape({
+    heading: PropTypes.string,
+    content: PropTypes.array,
+  }),
 }
 
 const AboutPage = ({ data }) => {
@@ -37,9 +52,10 @@ const AboutPage = ({ data }) => {
   return (
     <Layout>
       <AboutPageTemplate
-        contentComponent={HTMLContent}
         title={post.frontmatter.title}
-        content={post.html}
+        image={post.frontmatter.image}
+        intro={post.frontmatter.intro}
+        main={post.frontmatter.main}
       />
     </Layout>
   )
@@ -57,6 +73,38 @@ export const aboutPageQuery = graphql`
       html
       frontmatter {
         title
+        image {
+          childImageSharp {
+            fluid(maxWidth: 2048, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        intro {
+          heading
+          image {
+            childImageSharp {
+              fluid(maxWidth: 680, quality: 100) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          description
+        }
+        main {
+          heading
+          content {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 240, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            title
+            text
+          }
+        }
       }
     }
   }
