@@ -251,7 +251,7 @@ export const FormButton = styled.button(
     border-radius: 4px;
     cursor: pointer;
     font-size: 1.3rem;
-    color: ${props.color}
+    color: ${props.color};
     width: 100%;
     margin: 0.5rem 0;
     padding: 1rem;
