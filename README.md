@@ -7,9 +7,9 @@
 
 ## Gatsby Environment Variables
 
-| Command                        | Env         | `.env`             | `SERVER_URL`                |
-| ------------------------------ | ----------- | ------------------ | --------------------------- |
-| `gatsby develop`               | development | `.env.development` | `http://localhost:5000`     |
+| Command                        | Env         | `.env`             | `SERVER_URL`                            |
+| ------------------------------ | ----------- | ------------------ | --------------------------------------- |
+| `gatsby develop`               | development | `.env.development` | `http://localhost:5000`                 |
 | `gatsby build`, `gatsby serve` | production  | `.env.production`  | `https://api-dev.studystates.net/:9000` |
 
 ### Command
