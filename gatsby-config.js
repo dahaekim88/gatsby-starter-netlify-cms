@@ -2,6 +2,8 @@ module.exports = {
   siteMetadata: {
     title: "스터디스테이츠",
     description: "스터디 스테이츠 | 스터디 그룹 | Study States | 스터디 모임",
+    url: "https://dev.studystates.net",
+    image: "/img/og-image.jpg",
   },
   plugins: [
     "gatsby-plugin-react-helmet",
