@@ -10,32 +10,28 @@ import HiringPartners from "../components/index-page/HiringPartners"
 import PromotionMessage from "../components/index-page/PromotionMessage"
 import NewStudy from "../components/index-page/NewStudy"
 
-export const IndexPageTemplate = ({ carousel }) => {
-  const carouselData = [
-    {
-      src: !!carousel.image1.image.childImageSharp
-        ? carousel.image1.image.childImageSharp.fluid.src
-        : carousel.image1.image,
-      altText: carousel.image1.altText,
-      caption: carousel.image1.caption,
-      header: carousel.image1.header,
-    },
-    {
-      src: !!carousel.image2.image.childImageSharp
-        ? carousel.image2.image.childImageSharp.fluid.src
-        : carousel.image2.image,
-      altText: carousel.image2.altText,
-      caption: carousel.image2.caption,
-      header: carousel.image2.header,
-    },
-  ]
+export const IndexPageTemplate = ({ carousel, partners }) => {
+  const carouselData = carousel.map(item => ({
+    src: item.image.childImageSharp.fluid.src,
+    altText: item.altText,
+    caption: item.caption,
+    header: item.header,
+  }))
+
+  const partnersLogo = partners.logo.map(
+    item => item.image.childImageSharp.fluid.src
+  )
 
   return (
     <>
       <UncontrolledCarousel items={carouselData} indicators={false} />
       <OurStory />
       <CoursesIntro />
-      <HiringPartners />
+      <HiringPartners
+        heading={partners.heading}
+        subheading={partners.subheading}
+        partnersLogo={partnersLogo}
+      />
       <PromotionMessage />
       <NewStudy />
     </>
@@ -43,7 +39,8 @@ export const IndexPageTemplate = ({ carousel }) => {
 }
 
 IndexPageTemplate.propTypes = {
-  carousel: PropTypes.object,
+  carousel: PropTypes.array,
+  partners: PropTypes.object,
 }
 
 const IndexPage = ({ data }) => {
@@ -51,7 +48,10 @@ const IndexPage = ({ data }) => {
 
   return (
     <Layout>
-      <IndexPageTemplate carousel={frontmatter.carousel} />
+      <IndexPageTemplate
+        carousel={frontmatter.carousel}
+        partners={frontmatter.partners}
+      />
     </Layout>
   )
 }
@@ -71,29 +71,28 @@ export const pageQuery = graphql`
     markdownRemark(frontmatter: { templateKey: { eq: "index-page" } }) {
       frontmatter {
         carousel {
-          image1 {
-            image {
-              childImageSharp {
-                fluid(maxWidth: 2048, quality: 100) {
-                  ...GatsbyImageSharpFluid
-                }
+          image {
+            childImageSharp {
+              fluid(maxWidth: 2048, quality: 100) {
+                ...GatsbyImageSharpFluid
               }
             }
-            header
-            caption
-            altText
           }
-          image2 {
+          header
+          caption
+          altText
+        }
+        partners {
+          heading
+          subheading
+          logo {
             image {
               childImageSharp {
-                fluid(maxWidth: 2048, quality: 100) {
+                fluid(maxWidth: 180, quality: 100) {
                   ...GatsbyImageSharpFluid
                 }
               }
             }
-            header
-            caption
-            altText
           }
         }
       }

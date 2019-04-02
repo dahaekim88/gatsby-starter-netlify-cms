@@ -1,118 +1,32 @@
 ---
 templateKey: "index-page"
 carousel:
-  image1:
-    image: /img/main_slide_bg_1.jpg
+  - image: /img/main_slide_bg_1.jpg
     header: 스타트업, 창업, 사업에 관심있는 분들을 위한 스터디 모집
     caption: 스타트업을 시작하고, 운영하고 싶은 분들을 위한 스터디입니다.
     altText: 스타트업 스쿨
-  image2:
-    image: /img/main_slide_bg_2.jpg
+  - image: /img/main_slide_bg_2.jpg
     header: 함께 학습하면 할 수 있습니다.
     caption: 관심있는 주제를 함께 모여 학습하면 목표를 달성할 수 있습니다.
     altText: 스터디 모임, 스터디 그룹
-heading: STUDY | STATES
-subheading: “스터디스테이츠는 학습하기, 공유하기, 적용하기 세 단계로 스터디를 진행합니다.”
-description: >-
-  Kaldi is the ultimate spot for coffee lovers who want to learn about their
-  java’s origin and support the farmers that grew it. We take coffee production,
-  roasting and brewing seriously and we’re glad to pass that knowledge to
-  anyone.
-mainpitch:
-  title: Why Kaldi
-  description: >
-    Kaldi is the coffee store for everyone who believes that
-    great coffee shouldn't just taste good, it should do good
-    too. We source all of our beans directly from small scale
-    sustainable farmers and make sure part of the profits are
-    reinvested in their communities.
-intro:
-  blurbs:
-    - image: /img/coffee.png
-      text: >
-        We sell green and roasted coffee beans that are sourced directly from
-        independent farmers and farm cooperatives. We’re proud to offer a
-        variety of coffee beans grown with great care for the environment and
-        local communities. Check our post or contact us directly for current
-        availability.
-    - image: /img/coffee-gear.png
-      text: >
-        We offer a small, but carefully curated selection of brewing gear and
-        tools for every taste and experience level. No matter if you roast your
-        own beans or just bought your first french press, you’ll find a gadget
-        to fall in love with in our shop.
-    - image: /img/tutorials.png
-      text: >
-        Love a great cup of coffee, but never knew how to make one? Bought a
-        fancy new Chemex but have no clue how to use it? Don't worry, we’re here
-        to help. You can schedule a custom 1-on-1 consultation with our baristas
-        to learn anything you want to know about coffee roasting and brewing.
-        Email us or call the store for details.
-    - image: /img/meeting-space.png
-      text: >
-        We believe that good coffee has the power to bring people together.
-        That’s why we decided to turn a corner of our shop into a cozy meeting
-        space where you can hang out with fellow coffee lovers and learn about
-        coffee making techniques. All of the artwork on display there is for
-        sale. The full price you pay goes to the artist.
-  heading: What we offer
-  description: >
-    Kaldi is the ultimate spot for coffee lovers who want to learn about their
-    java’s origin and support the farmers that grew it. We take coffee
-    production, roasting and brewing seriously and we’re glad to pass that
-    knowledge to anyone. This is an edit via identity...
-main:
-  heading: Great coffee with no compromises
-  description: >
-    We hold our coffee to the highest standards from the shrub to the cup.
-    That’s why we’re meticulous and transparent about each step of the coffee’s
-    journey. We personally visit each farm to make sure the conditions are
-    optimal for the plants, farmers and the local environment.
-  image1:
-    alt: A close-up of a paper filter filled with ground coffee
-    image: /img/products-grid3.jpg
-  image2:
-    alt: A green cup of a coffee on a wooden table
-    image: /img/products-grid2.jpg
-  image3:
-    alt: Coffee beans
-    image: /img/products-grid1.jpg
-testimonials:
-  - author: Elisabeth Kaurismäki
-    quote: >-
-      The first time I tried Kaldi’s coffee, I couldn’t even believe that was
-      the same thing I’ve been drinking every morning.
-  - author: Philipp Trommler
-    quote: >-
-      Kaldi is the place to go if you want the best quality coffee. I love their
-      stance on empowering farmers and transparency.
-full_image: /img/products-full-width.jpg
-pricing:
-  heading: Monthly subscriptions
-  description: >-
-    We make it easy to make great coffee a part of your life. Choose one of our
-    monthly subscription plans to receive great coffee at your doorstep each
-    month. Contact us about more details and payment info.
-  plans:
-    - description: Perfect for the drinker who likes to enjoy 1-2 cups per day.
-      items:
-        - 3 lbs of coffee per month
-        - Green or roasted beans"
-        - One or two varieties of beans"
-      plan: Small
-      price: "50"
-    - description: "Great for avid drinkers, java-loving couples and bigger crowds"
-      items:
-        - 6 lbs of coffee per month
-        - Green or roasted beans
-        - Up to 4 different varieties of beans
-      plan: Big
-      price: "80"
-    - description: Want a few tiny batches from different varieties? Try our custom plan
-      items:
-        - Whatever you need
-        - Green or roasted beans
-        - Unlimited varieties
-      plan: Custom
-      price: "??"
+partners:
+  heading: Hiring Partners
+  subheading: 소프트웨어 인력 채용을 위해 코드스테이츠와 채용 파트너십을 체결한 기업들입니다.
+  logo:
+    - image: /img/partners-뱅크샐러드.png
+    - image: /img/partners-클래스101.png
+    - image: /img/partners-트레바리.png
+    - image: /img/partners-다노.png
+    - image: /img/partners-호갱노노.png
+    - image: /img/partners-젤라또랩.png
+    - image: /img/partners-퍼블리.png
+    - image: /img/partners-숨고.png
+    - image: /img/partners-코멘토.png
+    - image: /img/partners-모두싸인.png
+    - image: /img/partners-플리토.png
+    - image: /img/partners-럭스로보.png
+    - image: /img/partners-아이콘루프.png
+    - image: /img/partners-핀다.png
+    - image: /img/partners-자버.png
+    - image: /img/partners-옴니어스.png
 ---
