@@ -5,11 +5,11 @@ const development = {
 }
 
 const staging = {
-  SERVER_URL: "https://api-dev.studystates.net/:5000",
+  SERVER_URL: "https://api-dev.studystates.net:5000",
 }
 
 const production = {
-  SERVER_URL: "https://api-dev.studystates.net/:5000",
+  SERVER_URL: "https://api-dev.studystates.net:5000",
 }
 
 const config = {
