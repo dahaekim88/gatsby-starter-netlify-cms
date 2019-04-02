@@ -16,6 +16,7 @@ import {
 } from "../../components/reusable/styledComponents"
 
 import * as auth from "../../services/auth"
+import validate from "../../services/validate"
 import useForm from "../../components/reusable/useForm"
 import { blue } from "../../constants"
 
@@ -149,27 +150,3 @@ const LoginPage = () => {
 }
 
 export default LoginPage
-
-const validate = values => {
-  const errors = {}
-  const emailRegex = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i
-  const phoneRegex = /^01(?:0|1|[6-9]) - (?:\\d{3}|\\d{4}) - \\d{4}$/
-
-  if (!values.name) {
-    errors.name = "이름을 반드시 입력해주세요"
-  }
-  if (!values.email) {
-    errors.email = "이메일을 반드시 입력해주세요"
-  } else if (!emailRegex.test(values.email)) {
-    errors.email = "이메일 형식에 맞게 입력해주세요"
-  }
-  if (!values.phone) {
-    errors.phone = "휴대폰 번호를 반드시 입력해주세요"
-  } /* else if (!phoneRegex.test(values.phone)) {
-    errors.phone = "휴대폰 형식에 맞게 입력해주세요"
-  }*/
-  if (!values.password) {
-    errors.password = "패스워드를 반드시 입력해주세요"
-  }
-  return errors
-}

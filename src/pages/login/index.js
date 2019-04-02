@@ -15,8 +15,8 @@ import {
   Message,
 } from "../../components/reusable/styledComponents"
 
-// import { handleLogin, isLoggedIn } from "../../services/auth"
 import * as auth from "../../services/auth"
+import validate from "../../services/validate"
 import useForm from "../../components/reusable/useForm"
 import { blue } from "../../constants"
 
@@ -147,16 +147,3 @@ const LoginPage = () => {
 }
 
 export default LoginPage
-
-const validate = values => {
-  const errors = {}
-  if (!values.email) {
-    errors.email = "이메일 입력이 반드시 필요합니다"
-  } else if (!/\S+@\S+\.\S+/.test(values.email)) {
-    errors.email = "이메일 형식에 맞게 입력해주세요"
-  }
-  if (!values.password) {
-    errors.password = "패스워드 입력이 반드시 필요합니다"
-  }
-  return errors
-}
