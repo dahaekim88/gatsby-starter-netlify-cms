@@ -1,7 +1,7 @@
-import calendar from "../../../img/index/howto/calendar.png"
-import slack from "../../../img/index/howto/slack.png"
-import homework from "../../../img/index/howto/homework.png"
-import chat from "../../../img/index/howto/chat.png"
+import calendar from "../../../assets/img/index/howto/calendar.png"
+import slack from "../../../assets/img/index/howto/slack.png"
+import homework from "../../../assets/img/index/howto/homework.png"
+import chat from "../../../assets/img/index/howto/chat.png"
 
 export default [
   {

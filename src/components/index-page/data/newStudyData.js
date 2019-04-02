@@ -1,6 +1,6 @@
 import React from "react"
-import newStudyImage from "../../../img/index/newstudy/newStudy.jpg"
-import studyHelperImage from "../../../img/index/newstudy/studyHelper.jpg"
+import newStudyImage from "../../../assets/img/index/newstudy/newStudy.jpg"
+import studyHelperImage from "../../../assets/img/index/newstudy/studyHelper.jpg"
 
 export default [
   {

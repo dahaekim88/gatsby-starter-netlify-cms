@@ -1,9 +1,9 @@
 // 임시용, 추후 삭제 예정
 
 // 이미지 /static/img 로 옮기기
-import dataThumbnail from "../../../img/index/courses/data.png"
-import digitalMarketing from "../../../img/index/courses/digitalMarketing.png"
-import automateWithPython from "../../../img/index/courses/python-main-image.jpg"
+import dataThumbnail from "../../../assets/img/index/courses/data.png"
+import digitalMarketing from "../../../assets/img/index/courses/digitalMarketing.png"
+import automateWithPython from "../../../assets/img/index/courses/python-main-image.jpg"
 
 // data는 각 스터디 상세페이지 markdown 파일의 frontmatter로 입력
 export default [
