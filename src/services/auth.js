@@ -8,19 +8,19 @@ import * as auth from "../services/auth"
 export const KEY_TOKEN = "token"
 
 export const isBrowser = () => typeof window !== "undefined"
-
 export const getUser = () => {
   // isBrowser() && window.localStorage.getItem("gatsbyUser")
   //   ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
   //   : {}
 
-  const token = getJwt()
-  const { email } = jwtDecode(token)
-  return email
+  // const token = getJwt()
+  // const { email } = jwtDecode(token)
+  // return email
+  return null
 }
 
 export const setUser = user => {
-  window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
+  isBrowser() && window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
 }
 
 export const handleSignup = async ({
@@ -38,7 +38,7 @@ export const handleSignup = async ({
     name,
     email,
   })
-  console.log("TCL: handleSignup -> data", data)
+  // console.log("TCL: handleSignup -> data", data)
   return data
 }
 
@@ -48,13 +48,13 @@ export const handleLogin = async ({ email, password }) => {
     email,
     password,
   })
-  console.log("TCL: handleLogin -> response", response)
+  // console.log("TCL: handleLogin -> response", response)
 
   const token = response.headers["x-auth-token"]
-  console.log("TCL: [+] RegistrationForm -> token", token)
+  // console.log("TCL: [+] RegistrationForm -> token", token)
   auth.saveJwt(token)
 
-  console.log("TCL: [+] move to ")
+  // console.log("TCL: [+] move to ")
   navigate("/")
 }
 
@@ -66,20 +66,21 @@ export const isLoggedIn = () => {
 }
 
 export const logout = callback => {
-  localStorage.removeItem(KEY_TOKEN)
+  isBrowser() && window.localStorage.removeItem(KEY_TOKEN)
   setUser({})
   // if (callback) callback()
   navigate("/")
 }
 
 export const loginWithJwt = jwt => {
-  // localStorage.setItem(KEY_TOKEN, jwt);
   saveJwt(jwt)
 }
 export const getJwt = () => {
-  return localStorage.getItem(KEY_TOKEN)
+  return isBrowser() && window.localStorage.getItem(KEY_TOKEN)
 }
 
 export const saveJwt = jwt => {
-  if (jwt) localStorage.setItem(KEY_TOKEN, jwt)
+  if (jwt) {
+    isBrowser() && window.localStorage.setItem(KEY_TOKEN, jwt)
+  }
 }

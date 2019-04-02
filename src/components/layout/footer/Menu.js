@@ -53,7 +53,7 @@ const Menu = () => (
     <Row>
       <Col xs={6}>
         <MenuContainer>
-          <StyledLink to="/contact" color="white">
+          <StyledLink to="/faq" color="white">
             FAQ
           </StyledLink>
         </MenuContainer>

@@ -12,19 +12,19 @@ const SmallPageName = styled.p`
   font-weight: bold;
 `
 
-const PageDetails = ({ title, children, padding, sm }) => {
+const PageDetails = ({ title, children, padding, align, sm, md }) => {
   const Container = styled(Col)`
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
+    text-align: ${align};
     padding: ${padding};
     word-break: keep-all;
   `
 
   return (
     <Container>
-      <Col sm={sm}>
+      <Col sm={sm} md={md}>
         <SmallPageName>{title}</SmallPageName>
         {children}
       </Col>
@@ -38,11 +38,14 @@ PageDetails.propTypes = {
   title: PropTypes.string,
   children: PropTypes.node.isRequired,
   padding: PropTypes.string,
+  align: PropTypes.string,
   sm: PropTypes.number,
 }
 
 PageDetails.defaultProps = {
   title: "",
   padding: "5rem 0",
-  sm: 7,
+  align: "center",
+  sm: 10,
+  md: 7,
 }
