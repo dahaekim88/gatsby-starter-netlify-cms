@@ -36,6 +36,10 @@ const GlobalStyle = createGlobalStyle`
     font-size: 14px;
   }
 
+  input[type=password] {
+    font-family: sans-serif
+  }
+
   .carousel-control {
     display: flex;
     justify-content: center;
