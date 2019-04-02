@@ -1,7 +1,7 @@
 import React from "react"
-import practiceImage from "../../../img/index/stages/practice.svg"
-import shareImage from "../../../img/index/stages/share.svg"
-import applyImage from "../../../img/index/stages/apply.svg"
+import practiceImage from "../../../assets/img/index/stages/practice.svg"
+import shareImage from "../../../assets/img/index/stages/share.svg"
+import applyImage from "../../../assets/img/index/stages/apply.svg"
 
 export default [
   {

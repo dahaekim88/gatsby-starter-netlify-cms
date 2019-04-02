@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { sizes, white } from "../../../constants"
-import chromeIcon from "../../../img/footer/chrome-icon.png"
+import chromeIcon from "../../../assets/img/footer/chrome-icon.png"
 
 const Container = styled.div`
   font-size: 1.4rem;

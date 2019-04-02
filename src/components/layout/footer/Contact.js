@@ -3,7 +3,7 @@ import styled from "styled-components"
 
 import { MarginBottomContainer } from "../../reusable/styledComponents"
 import { sizes } from "../../../constants"
-import fbLogo from "../../../img/footer/fb_logo.png"
+import fbLogo from "../../../assets/img/footer/fb_logo.png"
 
 const Container = styled.div`
   padding-left: 10rem;

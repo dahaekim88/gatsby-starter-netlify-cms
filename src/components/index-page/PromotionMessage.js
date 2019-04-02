@@ -5,7 +5,7 @@ import { Container } from "reactstrap"
 
 import Jumbo from "../reusable/Jumbo"
 import { HoveredButton } from "../reusable/styledComponents"
-import bg from "../../img/index/promotionImage.jpg"
+import bg from "../../assets/img/index/promotionImage.jpg"
 
 const BigText = styled.p`
   margin-top: 3rem;
