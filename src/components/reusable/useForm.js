@@ -6,12 +6,15 @@ const useForm = (callback, validate) => {
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
-    if (Object.keys(errors).length === 0 && isSubmitting) {
+    // console.log("TCL: useForm -> useEffect", errors)
+    // TODO: Temp blocking for local-auth.
+    if (/*Object.keys(errors).length === 0 && */ isSubmitting) {
       callback()
     }
   }, [errors])
 
   const handleSubmit = event => {
+    // console.log("TCL: useForm -> handleSubmit", handleSubmit)
     if (event) event.preventDefault()
     setIsSubmitting(true)
     setErrors(validate(values))
