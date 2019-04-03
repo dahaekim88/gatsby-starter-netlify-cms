@@ -34,20 +34,9 @@ const LoginPage = () => {
       })
       const token = response.headers["x-auth-token"]
       // console.log("TCL: [+] RegistrationForm -> token", token)
-      auth.saveToken(token)
-
-      // console.log("TCL: [+] move to ")
-      navigate("/")
-      /*
-    handleLogin({ email: values.email, password: values.password })
-      .then(() => {
-        navigate("/profile")
-      })
-      .catch(e => {
-        setLoading(false)
-        setApiError(e.errors || e)
-      })
-      */
+      auth.saveTokenAndMoveToRoot(token)
+      // auth.saveToken(token)
+      // navigate("/")
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         // console.log("TCL: formLogin -> ex.response", ex.response)
@@ -61,21 +50,6 @@ const LoginPage = () => {
     formLogin,
     validate
   )
-
-  // const handleErrors = errors => {
-  //   if (!Array.isArray(errors) && !errors.length > 0) {
-  //     return (
-  //       <Message
-  //         error
-  //         header="Sorry"
-  //         content="Please check your login details and try again."
-  //       />
-  //     )
-  //   }
-  //   return errors.map(e => (
-  //     <Message error header={e.title} content={e.detail} key={e.status} />
-  //   ))
-  // }
 
   if (auth.isLoggedIn()) {
     navigate(`/profile`)
