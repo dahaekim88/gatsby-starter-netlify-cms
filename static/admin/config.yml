@@ -88,7 +88,7 @@ collections:
             { label: "Image", name: "image", widget: "image"},
             { label: "Name", name: "name", widget: "string"},
             { label: "Current Job", name: "currentJob", widget: "string"},
-            { label: "Career", name: "career", widget: "list"},
+            { label: "Career", name: "career", widget: "list", hint: "경력사항 3~5개를 콤마로 구분하여 나열해주세요"},
             { 
               label: "QnA", 
               name: "qna", 
@@ -108,13 +108,14 @@ collections:
         fields:
           [
             { label: "Intro", name: "intro", widget: "string"},
-            { label: "Weekly Topics", name: "weeklyTopics", widget: "Text", hint: "여러 문장을 작성 시, \n 을 사용하여 문장 구분을 해주세요."}
+            { label: "Weekly Topics", name: "weeklyTopics", widget: "text", hint: "여러 문장을 작성 시, \n 을 사용하여 문장 구분을 해주세요."}
           ]
       }
       - {
         label: "Keywords",
         name: "keywords",
         widget: "list",
+        hint: "대표 키워드 3~5개를 콤마로 구분하여 나열해주세요"
       }
       - {
         label: "Open",
