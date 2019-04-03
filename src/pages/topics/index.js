@@ -1,39 +1,100 @@
-import React from 'react'
+import React from "react"
+import { graphql } from "gatsby"
 
-import Layout from '../../components/Layout'
-import BlogRoll from '../../components/BlogRoll'
+import Layout from "../../components/Layout"
+import Courses from "../../components/courses/Courses"
 
-export default class BlogIndexPage extends React.Component {
-  render() {
-    
+const BlogIndexPage = ({ data }) => {
+  const courses = data.allMarkdownRemark.edges
+
   return (
-      <Layout>
-        <section className="section">
-          <div className="container">
-            <div className="content">
-            <div
-                className="full-width-image-container margin-top-0"
-                style={{
-                  backgroundImage: `url('/img/blog-index.jpg')`,
-                }}
-              >
-                <h1
-                  className="has-text-weight-bold is-size-1"
-                  style={{
-                    boxShadow: '0.5rem 0 0 #f40, -0.5rem 0 0 #f40',
-                    backgroundColor: '#f40',
-                    color: 'white',
-                    padding: '1rem',
-                  }}
-                >
-                  Latest Stories
-                </h1>
-              </div>
-            </div>
-              <BlogRoll />
-            </div>
-        </section>
-      </Layout>
-    )
-  }
+    <Layout>
+      <Courses courses={courses} />
+    </Layout>
+  )
 }
+
+export default BlogIndexPage
+
+export const pageQuery = graphql`
+  query DetailPage {
+    allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "detail-page" } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MMMM DD, YYYY")
+            title
+            description
+            image {
+              childImageSharp {
+                fluid(maxWidth: 480, quality: 100) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            info {
+              startDate(formatString: "YYYY.MM.DD")
+              endDate(formatString: "YYYY.MM.DD")
+              period
+              totalMeeting
+              schedule
+              studyTimes {
+                frequency
+                dayOfWeek
+                startTime
+                endTime
+              }
+              price
+              details
+            }
+            intro {
+              text
+              objectives {
+                image {
+                  childImageSharp {
+                    fluid(maxWidth: 90, quality: 80) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                text
+              }
+              targets {
+                title
+                content
+              }
+            }
+            partner {
+              image {
+                childImageSharp {
+                  fluid(maxWidth: 110, quality: 80) {
+                    ...GatsbyImageSharpFluid
+                  }
+                }
+              }
+              name
+              currentJob
+              career
+              qna {
+                Q
+                A
+              }
+            }
+            curriculum {
+              intro
+              weeklyTopics
+            }
+            keywords
+            open
+          }
+        }
+      }
+    }
+  }
+`
