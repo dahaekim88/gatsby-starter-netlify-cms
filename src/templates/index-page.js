@@ -11,15 +11,15 @@ import PromotionMessage from "../components/index-page/PromotionMessage"
 import NewStudy from "../components/index-page/NewStudy"
 
 export const IndexPageTemplate = ({ carousel, partners }) => {
-  const carouselData = carousel.map(item => ({
-    src: item.image.childImageSharp.fluid.src,
-    altText: item.altText,
-    caption: item.caption,
-    header: item.header,
+  const carouselData = carousel.map(({ image, altText, caption, header }) => ({
+    src: !!image.childImageSharp ? image.childImageSharp.fluid.src : image,
+    altText,
+    caption,
+    header,
   }))
 
-  const partnersLogo = partners.logo.map(
-    item => item.image.childImageSharp.fluid.src
+  const partnersLogo = partners.logo.map(({ image }) =>
+    !!image.childImageSharp ? image.childImageSharp.fluid.src : image
   )
 
   return (
