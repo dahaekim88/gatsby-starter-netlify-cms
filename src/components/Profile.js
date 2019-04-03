@@ -7,8 +7,7 @@ const Profile = () => (
     <Container>
       <h1>Your profile</h1>
       <ul>
-        <li>Name: </li>
-        <li>E-mail: </li>
+        <li>Name: {getUser()}</li>
       </ul>
     </Container>
   </>

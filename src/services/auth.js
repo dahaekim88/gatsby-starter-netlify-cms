@@ -13,10 +13,13 @@ export const getUser = () => {
   //   ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
   //   : {}
 
-  // const token = getJwt()
-  // const { email } = jwtDecode(token)
-  // return email
-  return null
+  if (isBrowser()){
+  const token = getToken()
+  const { name } = jwtDecode(token)
+  return name;
+  } else {
+    return null;
+  }
 }
 
 export const setUser = user => {
@@ -52,7 +55,7 @@ export const handleLogin = async ({ email, password }) => {
 
   const token = response.headers["x-auth-token"]
   // console.log("TCL: [+] RegistrationForm -> token", token)
-  auth.saveJwt(token)
+  auth.saveToken(token)
 
   // console.log("TCL: [+] move to ")
   navigate("/")
@@ -61,7 +64,7 @@ export const handleLogin = async ({ email, password }) => {
 export const isLoggedIn = () => {
   // const user = getUser()
   // return !!user.username
-  const token = getJwt()
+  const token = getToken()
   return !!token
 }
 
@@ -72,15 +75,20 @@ export const logout = callback => {
   navigate("/")
 }
 
-export const loginWithJwt = jwt => {
-  saveJwt(jwt)
+export const loginWithToken = jwt => {
+  saveToken(jwt)
 }
-export const getJwt = () => {
+export const getToken = () => {
   return isBrowser() && window.localStorage.getItem(KEY_TOKEN)
 }
 
-export const saveJwt = jwt => {
+export const saveToken = jwt => {
   if (jwt) {
     isBrowser() && window.localStorage.setItem(KEY_TOKEN, jwt)
   }
+}
+
+export const saveTokenAndMoveToRoot = jwt => {
+  saveToken(jwt)
+  isBrowser() && navigate("/")
 }
