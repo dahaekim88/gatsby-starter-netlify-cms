@@ -121,9 +121,7 @@ class StudyInfo extends React.Component {
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
                   <p>{`${this.props.info.studyTimes.frequency} ${
                     this.props.info.studyTimes.dayOfWeek
-                  } ${this.props.info.studyTimes.startTime} - ${
-                    this.props.info.studyTimes.endTime
-                  }`}</p>
+                  } ${this.props.info.studyTimes.time}`}</p>
                   <p>{`총 ${
                     this.props.info.totalMeeting
                   }의 온라인 스터디 진행`}</p>

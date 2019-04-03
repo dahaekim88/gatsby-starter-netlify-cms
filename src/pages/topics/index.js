@@ -47,8 +47,7 @@ export const pageQuery = graphql`
               studyTimes {
                 frequency
                 dayOfWeek
-                startTime
-                endTime
+                time
               }
               price
               details

@@ -39,10 +39,8 @@ const Details = ({ info }) => (
       <LeftTitle>세 션</LeftTitle>
       <RightContent>
         {`${info.studyTimes.frequency} ${info.studyTimes.dayOfWeek} ${
-          info.studyTimes.startTime
+          info.studyTimes.time
         }`}
-        {" - "}
-        {`${info.studyTimes.endTime}`}
         <br />
         {`총 ${info.totalMeeting}의 온라인 스터디 진행 - `}
         <BlueText>{info.schedule}</BlueText>

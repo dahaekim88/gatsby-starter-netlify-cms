@@ -11,7 +11,6 @@ collections:
     label: "Topics"
     folder: "src/pages/topics"
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - {
           label: "Template Key",
@@ -20,10 +19,93 @@ collections:
           default: "detail-page",
         }
       - { label: "Title", name: "title", widget: "string" }
-      - { label: "Publish Date", name: "date", widget: "datetime" }
       - { label: "Description", name: "description", widget: "text" }
-      - { label: "Body", name: "body", widget: "markdown" }
-      - { label: "Tags", name: "tags", widget: "list" }
+      - { label: Image, name: image, widget: image }
+      - {
+          label: Info,
+          name: info,
+          widget: object,
+          fields:
+            - { label: "Start Date", name: "startDate", widget: "date" }
+            - { label: "End Date", name: "endDate", widget: "date" }
+            - { label: "Period", name: "period", widget: "string"}
+            - { label: "Total Meeting", name: "totalMeeting", widget: "string"}
+            - { label: "Schedule", name: "schedule", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 4/29, 5/13, 5/27, 6/10"}
+            - { 
+              label: "Study Times", 
+              name: "studyTimes", 
+              widget: "object", 
+              fields:
+                - { label: "Frequency", name: "frequency", widget: "select", options: ["매주", "격주"]}
+                - { label: "Day of Week", name: "dayOfWeek", widget: "select", options: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]}
+                - { label: "Time", name: "time", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 20:00 - 21:00"}
+            }
+            - { label: "Price", name: "price", widget: "number"}
+            - { label: "Note", name: "note", widget: "string", required: "false"}
+            - { label: "Details", name: "details", widget: "text"}
+        }
+      - { 
+          label: "Intro", 
+          name: "intro", 
+          widget: "object", 
+          fields:
+            - { label: "Text", name: "text", widget: "text"}
+            - { 
+              label: "Objectives", 
+              name: "objectives", 
+              widget: "list", 
+              allow_add: false, 
+              fields:
+                - { label: "Image", name: "image", widget: "image"}
+                - { label: "Text", name: "text", widget: "string"}
+            }
+            - {
+              label: "Targets",
+              name: "targets",
+              widget: "list",
+              allow_add: false,
+              fields:
+                - { label: "Title", name: "title", widget: "string"}
+                - { label: "Content", name: "content", widget: "string"}
+            }
+        }
+      - {
+        label: "Parnter",
+        name: "partner",
+        widget: "object",
+        fields:
+          - { label: "Image", name: "image", widget: "image"}
+          - { label: "Name", name: "name", widget: "string"}
+          - { label: "Current Job", name: "currentJob", widget: "string"}
+          - { label: "Career", name: "career", widget: "list"}
+          - { 
+            label: "QnA", 
+            name: "qna", 
+            widget: "list",
+            fields:
+              - { label: "Q", name: "Q", widget: "string"}
+              - { label: "A", name: "A", widget: "string"}
+          }
+      }
+      - {
+        label: "Curriculum",
+        name: "curriculum",
+        widget: "object",
+        fields:
+          - { label: "Intro", name: "intro", widget: "string"}
+          - { label: "Weekly Topics", name: "weeklyTopics", widget: "Text", hint: "여러 문장을 작성 시, \n 을 사용하여 문장 구분을 해주세요."}
+      }
+      - {
+        label: "Keywords",
+        name: "keywords",
+        widget: "list",
+      }
+      - {
+        label: "Open",
+        name: "open",
+        widget: "boolean",
+        default: true
+      }
   - name: "pages"
     label: "Pages"
     files:
