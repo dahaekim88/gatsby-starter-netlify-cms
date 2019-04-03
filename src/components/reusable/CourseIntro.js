@@ -63,7 +63,7 @@ const CourseIntro = ({
       <CourseName>{courseName}</CourseName>
       <Details>{details}</Details>
       <CourseInfoList>
-        <CoursePeriod>기간: {period}주</CoursePeriod>
+        <CoursePeriod>기간: {period}</CoursePeriod>
         <CoursePrice>{price / 10000}만원</CoursePrice>
       </CourseInfoList>
     </CardContainer>

@@ -49,6 +49,18 @@ export const SubStrongTitle = styled.span`
   font-family: Lovelo;
 `
 
+export const Grid = styled.div`
+  @media (min-width: 1200px) .container {
+    width: 1170px;
+  }
+  @media (min-width: 992px) .container {
+    width: 970px;
+  }
+  @media (min-width: 768px) .container {
+    width: 750px;
+  }
+`
+
 export const StyledGrid = styled.div`
   display: flex;
   justify-content: center;
