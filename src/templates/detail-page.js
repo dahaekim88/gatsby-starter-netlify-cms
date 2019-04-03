@@ -1,57 +1,22 @@
 import React from "react"
 import PropTypes from "prop-types"
-import { kebabCase } from "lodash"
-import Helmet from "react-helmet"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
+
 import Layout from "../components/Layout"
-import Content, { HTMLContent } from "../components/Content"
+import Study from "../components/courses/detail-page/Study"
+// import SEO from "../components/reusable/SEO"
 
-export const DetailPageTemplate = ({
-  content,
-  contentComponent,
-  description,
-  tags,
-  title,
-  helmet,
-}) => {
-  const PostContent = contentComponent || Content
-
+export const DetailPageTemplate = ({ data }) => {
   return (
-    <section className="section">
-      {helmet || ""}
-      <div className="container content">
-        <div className="columns">
-          <div className="column is-10 is-offset-1">
-            <h1 className="title is-size-2 has-text-weight-bold is-bold-light">
-              {title}
-            </h1>
-            <p>{description}</p>
-            <PostContent content={content} />
-            {tags && tags.length ? (
-              <div style={{ marginTop: `4rem` }}>
-                <h4>Tags</h4>
-                <ul className="taglist">
-                  {tags.map(tag => (
-                    <li key={tag + `tag`}>
-                      <Link to={`/tags/${kebabCase(tag)}/`}>{tag}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
-          </div>
-        </div>
-      </div>
-    </section>
+    <>
+      {/* <SEO /> */}
+      <Study data={data} />
+    </>
   )
 }
 
 DetailPageTemplate.propTypes = {
-  content: PropTypes.node.isRequired,
-  contentComponent: PropTypes.func,
-  description: PropTypes.string,
-  title: PropTypes.string,
-  helmet: PropTypes.object,
+  data: PropTypes.object,
 }
 
 const DetailPage = ({ data }) => {
@@ -59,22 +24,7 @@ const DetailPage = ({ data }) => {
 
   return (
     <Layout>
-      <DetailPageTemplate
-        content={post.html}
-        contentComponent={HTMLContent}
-        description={post.frontmatter.description}
-        helmet={
-          <Helmet titleTemplate="%s | Blog">
-            <title>{`${post.frontmatter.title}`}</title>
-            <meta
-              name="description"
-              content={`${post.frontmatter.description}`}
-            />
-          </Helmet>
-        }
-        tags={post.frontmatter.tags}
-        title={post.frontmatter.title}
-      />
+      <DetailPageTemplate data={post.frontmatter} />
     </Layout>
   )
 }
@@ -91,12 +41,71 @@ export const pageQuery = graphql`
   query DetailPageByID($id: String!) {
     markdownRemark(id: { eq: $id }) {
       id
-      html
       frontmatter {
         date(formatString: "MMMM DD, YYYY")
         title
         description
-        tags
+        image {
+          childImageSharp {
+            fluid(maxWidth: 480, quality: 100) {
+              ...GatsbyImageSharpFluid
+            }
+          }
+        }
+        info {
+          startDate(formatString: "YYYY.MM.DD")
+          endDate(formatString: "YYYY.MM.DD")
+          period
+          totalMeeting
+          schedule
+          studyTimes {
+            frequency
+            dayOfWeek
+            startTime
+            endTime
+          }
+          price
+          details
+        }
+        intro {
+          text
+          objectives {
+            image {
+              childImageSharp {
+                fluid(maxWidth: 90, quality: 80) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            text
+          }
+          targets {
+            title
+            content
+          }
+        }
+        partner {
+          image {
+            childImageSharp {
+              fluid(maxWidth: 110, quality: 80) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+          name
+          currentJob
+          career
+          qna {
+            Q
+            A
+          }
+        }
+        curriculum {
+          intro
+          weeklyTopics
+        }
+        keywords
+        open
       }
     }
   }
