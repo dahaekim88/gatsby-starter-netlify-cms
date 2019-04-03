@@ -13,8 +13,7 @@ info:
   studyTimes:
     frequency: 격주
     dayOfWeek: 월요일
-    startTime: 22:00
-    endTime: 23:00
+    time: 22:00 - 23:00
   price: 100000
   note: null
   details: >-
