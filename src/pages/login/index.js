@@ -34,7 +34,7 @@ const LoginPage = () => {
       })
       const token = response.headers["x-auth-token"]
       // console.log("TCL: [+] RegistrationForm -> token", token)
-      auth.saveJwt(token)
+      auth.saveToken(token)
 
       // console.log("TCL: [+] move to ")
       navigate("/")
