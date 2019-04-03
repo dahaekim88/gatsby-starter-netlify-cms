@@ -1,4 +1,3 @@
-import React from "react"
 import querystring from "query-string"
 
 import * as auth from "../../services/auth"
@@ -8,7 +7,7 @@ const AuthController = ({ location }) => {
   auth.saveTokenAndMoveToRoot(token)
 
   // *: This component is ONLY used to get token. So that nothing will be rendered.
-  return <div>just bridge for authentication</div>;
+  return null
 }
 
 export default AuthController
