@@ -13,9 +13,13 @@ export const getUser = () => {
   //   ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
   //   : {}
 
+  if (isBrowser()){
   const token = getToken()
   const { name } = jwtDecode(token)
   return name;
+  } else {
+    return null;
+  }
 }
 
 export const setUser = user => {
@@ -86,5 +90,5 @@ export const saveToken = jwt => {
 
 export const saveTokenAndMoveToRoot = jwt => {
   saveToken(jwt)
-  navigate("/")
+  isBrowser() && navigate("/")
 }
