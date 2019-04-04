@@ -78,4 +78,5 @@ keywords:
   - Technology
   - Product Managers
 open: true
+main: true
 ---

@@ -82,4 +82,5 @@ keywords:
   - How to sell
   - Building an Engineering Team
 open: true
+main: true
 ---
