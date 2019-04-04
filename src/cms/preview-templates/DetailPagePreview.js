@@ -2,20 +2,14 @@ import React from "react"
 import PropTypes from "prop-types"
 import { DetailPageTemplate } from "../../templates/detail-page"
 
-const DetailPagePreview = ({ entry, widgetFor }) => (
-  <DetailPageTemplate
-    content={widgetFor("body")}
-    description={entry.getIn(["data", "description"])}
-    tags={entry.getIn(["data", "tags"])}
-    title={entry.getIn(["data", "title"])}
-  />
+const DetailPagePreview = ({ entry }) => (
+  <DetailPageTemplate data={entry.getIn(["data"])} />
 )
 
 DetailPagePreview.propTypes = {
   entry: PropTypes.shape({
     getIn: PropTypes.func,
   }),
-  widgetFor: PropTypes.func,
 }
 
 export default DetailPagePreview

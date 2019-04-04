@@ -53,4 +53,8 @@ CMS.registerPreviewTemplate("faq", props => (
     <FaqPagePreview {...props} />
   </CSSInjector>
 ))
-CMS.registerPreviewTemplate("topics", DetailPagePreview)
+CMS.registerPreviewTemplate("topics", props => (
+  <CSSInjector>
+    <DetailPagePreview {...props} />
+  </CSSInjector>
+))
