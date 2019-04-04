@@ -83,4 +83,5 @@ keywords:
   - Python Introduction
   - Real World Exercise
 open: true
+main: true
 ---

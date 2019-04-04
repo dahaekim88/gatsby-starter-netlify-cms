@@ -10,7 +10,7 @@ import HiringPartners from "../components/index-page/HiringPartners"
 import PromotionMessage from "../components/index-page/PromotionMessage"
 import NewStudy from "../components/index-page/NewStudy"
 
-export const IndexPageTemplate = ({ carousel, partners }) => {
+export const IndexPageTemplate = ({ carousel, partners, studyData }) => {
   const carouselData = carousel.map(({ image, altText, caption, header }) => ({
     src: !!image.childImageSharp ? image.childImageSharp.fluid.src : image,
     altText,
@@ -26,7 +26,7 @@ export const IndexPageTemplate = ({ carousel, partners }) => {
     <>
       <UncontrolledCarousel items={carouselData} indicators={false} />
       <OurStory />
-      <CoursesIntro />
+      <CoursesIntro studyData={studyData} />
       <HiringPartners
         heading={partners.heading}
         subheading={partners.subheading}
@@ -41,16 +41,19 @@ export const IndexPageTemplate = ({ carousel, partners }) => {
 IndexPageTemplate.propTypes = {
   carousel: PropTypes.array,
   partners: PropTypes.object,
+  studyData: PropTypes.array,
 }
 
 const IndexPage = ({ data }) => {
   const { frontmatter } = data.markdownRemark
+  const { edges } = data.allMarkdownRemark
 
   return (
     <Layout>
       <IndexPageTemplate
         carousel={frontmatter.carousel}
         partners={frontmatter.partners}
+        studyData={edges}
       />
     </Layout>
   )
@@ -59,6 +62,10 @@ const IndexPage = ({ data }) => {
 IndexPage.propTypes = {
   data: PropTypes.shape({
     markdownRemark: PropTypes.shape({
+      frontmatter: PropTypes.object,
+    }),
+    allMarkdownRemark: PropTypes.shape({
+      fields: PropTypes.object,
       frontmatter: PropTypes.object,
     }),
   }),
@@ -93,6 +100,38 @@ export const pageQuery = graphql`
                 }
               }
             }
+          }
+        }
+      }
+    }
+    allMarkdownRemark(
+      filter: { frontmatter: { main: { eq: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+    ) {
+      edges {
+        node {
+          fields {
+            slug
+          }
+          frontmatter {
+            date(formatString: "MM.DD.YYYY")
+            title
+            description
+            image {
+              childImageSharp {
+                fluid(maxWidth: 110, quality: 80) {
+                  ...GatsbyImageSharpFluid
+                }
+              }
+            }
+            info {
+              startDate(formatString: "YYYY.MM.DD")
+              endDate(formatString: "YYYY.MM.DD")
+              period
+              price
+            }
+            open
+            main
           }
         }
       }

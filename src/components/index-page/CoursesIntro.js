@@ -11,11 +11,11 @@ import {
   HoveredButton,
 } from "../reusable/styledComponents"
 import CourseIntro from "../reusable/CourseIntro"
-import studyData from "./data/studyData"
+// import studyData from "./data/studyData"
 
 const LinkButton = HoveredButton.withComponent(Link)
 
-const CoursesIntro = () => {
+const CoursesIntro = ({ studyData }) => {
   const [hoveredCourse, setHoveredCourse] = useState(null)
 
   return (
@@ -26,36 +26,39 @@ const CoursesIntro = () => {
       <Container>
         <StyledGrid>
           <StyledRow>
-            {studyData
-              .filter(study => study.main === true)
-              .map(
-                (
-                  { courseImage, courseName, details, price, period },
-                  index
-                ) => (
-                  <StyledCol
-                    lg={4}
-                    md={6}
-                    sm={12}
-                    xs={12}
-                    key={`courses-intro-${index * 10}`}
-                    data-index-number={index}
-                    onMouseEnter={() => setHoveredCourse(index)}
-                    onMouseLeave={() => setHoveredCourse(null)}
+            {studyData.map(({ node }, index) => {
+              const { title, description, image, info } = node.frontmatter
+              return (
+                <StyledCol
+                  lg={4}
+                  md={6}
+                  sm={12}
+                  xs={12}
+                  key={`courses-intro-${index * 10}`}
+                  data-index-number={index}
+                  onMouseEnter={() => setHoveredCourse(index)}
+                  onMouseLeave={() => setHoveredCourse(null)}
+                >
+                  <Link
+                    to={node.fields.slug}
+                    style={{ textDecoration: "none" }}
                   >
-                    {/* <Link to={link} style={{ textDecoration: "none" }}> */}
                     <CourseIntro
-                      courseImage={courseImage}
-                      courseName={courseName}
-                      details={details}
-                      price={price}
-                      period={period}
+                      courseImage={
+                        !!image.childImageSharp
+                          ? image.childImageSharp.fluid.src
+                          : image
+                      }
+                      courseName={title}
+                      details={description}
+                      price={info.price}
+                      period={info.period}
                       highlighted={hoveredCourse === index}
                     />
-                    {/* </Link> */}
-                  </StyledCol>
-                )
-              )}
+                  </Link>
+                </StyledCol>
+              )
+            })}
           </StyledRow>
         </StyledGrid>
         <StyledRow>

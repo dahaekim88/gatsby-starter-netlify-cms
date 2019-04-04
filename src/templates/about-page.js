@@ -9,7 +9,7 @@ import AboutPart from "../components/about-page/AboutPart"
 import WhyUsPart from "../components/about-page/WhyUsPart"
 import { DarkBackground } from "../components/reusable/styledComponents"
 
-export const AboutPageTemplate = ({ title, image, intro, main }) => (
+export const AboutPageTemplate = ({ title, image, intro, mainpitch }) => (
   <>
     <PageHeader
       title={title}
@@ -26,7 +26,7 @@ export const AboutPageTemplate = ({ title, image, intro, main }) => (
           }
           description={intro.description}
         />
-        <WhyUsPart title={main.heading} whyUsData={main.content} />
+        <WhyUsPart title={mainpitch.heading} whyUsData={mainpitch.content} />
       </Container>
     </DarkBackground>
   </>
@@ -40,7 +40,7 @@ AboutPageTemplate.propTypes = {
     image: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
     description: PropTypes.string,
   }),
-  main: PropTypes.shape({
+  mainpitch: PropTypes.shape({
     heading: PropTypes.string,
     content: PropTypes.array,
   }),
@@ -55,7 +55,7 @@ const AboutPage = ({ data }) => {
         title={post.frontmatter.title}
         image={post.frontmatter.image}
         intro={post.frontmatter.intro}
-        main={post.frontmatter.main}
+        mainpitch={post.frontmatter.mainpitch}
       />
     </Layout>
   )
@@ -91,7 +91,7 @@ export const aboutPageQuery = graphql`
           }
           description
         }
-        main {
+        mainpitch {
           heading
           content {
             image {
