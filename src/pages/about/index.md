@@ -12,7 +12,7 @@ intro:
     체계적인 스터디 운영을 통해 스터디원들은 학습에만 집중할 수 있도록 도와드립니다.\n
     스터디스테이츠에서는 공통의 관심사를 가진 스터디원들과 함께\n
     목표를 달성할 수 있습니다.
-main:
+mainpitch:
   heading: 왜 스터디스테이츠 인가요?
   content:
     - image: /img/about-projectBasedLearning.png
