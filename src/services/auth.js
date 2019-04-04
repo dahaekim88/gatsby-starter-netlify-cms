@@ -8,17 +8,18 @@ import * as auth from "../services/auth"
 export const KEY_TOKEN = "token"
 
 export const isBrowser = () => typeof window !== "undefined"
+
 export const getUser = () => {
   // isBrowser() && window.localStorage.getItem("gatsbyUser")
   //   ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
   //   : {}
 
-  if (isBrowser()){
-  const token = getToken()
-  const { name } = jwtDecode(token)
-  return name;
+  if (isBrowser()) {
+    const token = getToken()
+    const { name } = jwtDecode(token)
+    return name
   } else {
-    return null;
+    return null
   }
 }
 
