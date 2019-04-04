@@ -18,79 +18,88 @@ collections:
           widget: "hidden",
           default: "detail-page",
         }
-      - { label: "Title", name: "title", widget: "string" }
-      - { label: "Description", name: "description", widget: "text" }
-      - { label: Image, name: image, widget: image }
+      - { label: "스터디명", name: "title", widget: "string" }
+      - { label: "스터디 소개", name: "description", widget: "string", hint: "1줄 이내 간략하게 핵심만, 유저들의 관심을 끌만한 카피를 작성해주세요"}
+      - { label: "메인 이미지", name: "image", widget: "image" }
       - {
-          label: Info,
-          name: info,
-          widget: object,
+          label: "스터디 기본정보",
+          name: "info",
+          widget: "object",
           fields: 
             [
-              { label: "Start Date", name: "startDate", widget: "date" },
-              { label: "End Date", name: "endDate", widget: "date" },
-              { label: "Period", name: "period", widget: "string"},
-              { label: "Total Meeting", name: "totalMeeting", widget: "string"},
-              { label: "Schedule", name: "schedule", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 4/29, 5/13, 5/27, 6/10"},
+              { label: "스터디 시작일", name: "startDate", widget: "date" },
+              { label: "스터디 종료일", name: "endDate", widget: "date" },
+              { label: "기간 (단위: 주)", name: "period", widget: "string", hint: "주 단위로 작성해주세요. 예시) 4주"},
+              { label: "스터디 미팅 (단위: 회)", name: "totalMeeting", widget: "string", hint: "회 단위로 작성해주세요. 예시) 4회"},
+              { label: "스터디 미팅 일정", name: "schedule", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 4/29, 5/13, 5/27, 6/10"},
               { 
-                label: "Study Times", 
+                label: "스터디 미팅 시간", 
                 name: "studyTimes", 
                 widget: "object", 
                 fields:
                   [
-                    { label: "Frequency", name: "frequency", widget: "select", options: ["매주", "격주"]},
-                    { label: "Day of Week", name: "dayOfWeek", widget: "select", options: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]},
-                    { label: "Time", name: "time", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 20:00 - 21:00"}
+                    { label: "빈도", name: "frequency", widget: "select", options: ["매주", "격주"]},
+                    { label: "요일", name: "dayOfWeek", widget: "select", options: ["월요일", "화요일", "수요일", "목요일", "금요일", "토요일", "일요일"]},
+                    { label: "시간", name: "time", widget: "string", hint: "양식에 맞게 작성해주세요. 예시) 20:00 - 21:00"}
                   ]
               },
-              { label: "Price", name: "price", widget: "number"},
-              { label: "Note", name: "note", widget: "string", required: "false"},
-              { label: "Details", name: "details", widget: "text"}
+              { label: "가격", name: "price", widget: "number", hint: "원 단위로 작성하되 숫자로만 작성해주세요. 예시) 50000"},
+              { label: "특이사항", name: "note", widget: "string", required: "false", hint: "특이사항이 있는 경우에만 작성해주세요."},
+              { 
+                label: "안내사항", 
+                name: "details", 
+                widget: "text", 
+                default: "최소 인원 4명 이상 모집되지 않는 경우, 시작일이 변경될 수 있습니다.\n
+                          스터디 시작 1일 전까지 전액 환불 가능합니다. (자세한 사항은 FAQ 참고)\n   
+                          유료 컨텐츠를 기반으로 진행되는 경우, 스터디 참가자 분들께 제공됩니다.\n
+                          커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.",
+                hint: "추가로 작성할 안내사항이 있는 경우, \n 을 사용하여 문장 구분을 해주세요."
+              }
             ]
         }
       - { 
-          label: "Intro", 
+          label: "인트로", 
           name: "intro", 
           widget: "object", 
           fields:
             [
-              { label: "Text", name: "text", widget: "text"},
+              { label: "스터디 상세소개", name: "text", widget: "text", hint: "스터디 소개 글을 2~3줄로 작성해주세요"},
               { 
-                label: "Objectives", 
+                label: "학습목표", 
                 name: "objectives", 
                 widget: "list", 
-                allow_add: false, 
                 fields:
                   [
-                    { label: "Image", name: "image", widget: "image"},
-                    { label: "Text", name: "text", widget: "string"}
-                  ]
+                    { label: "연관 이미지", name: "image", widget: "image"},
+                    { label: "내용", name: "text", widget: "string"}
+                  ],
+                hint: "반드시 3개까지 작성해주세요"
               },
               {
-                label: "Targets",
+                label: "참여대상",
                 name: "targets",
                 widget: "list",
-                allow_add: false,
                 fields:
                   [
-                    { label: "Title", name: "title", widget: "string"},
-                    { label: "Content", name: "content", widget: "string"}
-                  ]
+                    { label: "대상", name: "title", widget: "string", hint: "핵심 한 줄로 작성해 주세요"},
+                    { label: "상세내용", name: "content", widget: "text", hint: "좀 더 구체적으로 2~3줄 작성해 주세요"}
+                  ],
+                hint: "반드시 3개까지 작성해주세요"
               }
             ]
         }
       - {
-        label: "Parnter",
+        label: "스터디 파트너",
         name: "partner",
         widget: "object",
         fields:
           [
-            { label: "Image", name: "image", widget: "image"},
-            { label: "Name", name: "name", widget: "string"},
-            { label: "Current Job", name: "currentJob", widget: "string"},
-            { label: "Career", name: "career", widget: "list", hint: "경력사항 3~5개를 콤마로 구분하여 나열해주세요"},
+            { label: "프로필 사진", name: "image", widget: "image"},
+            { label: "이름", name: "name", widget: "string"},
+            { label: "현재 직업", name: "currentJob", widget: "string"},
+            { label: "경력사항", name: "career", widget: "list", hint: "경력사항 3~5개를 콤마로 구분하여 나열해주세요"},
             { 
-              label: "QnA", 
+              label: "Q&A", 
               name: "qna", 
               widget: "list",
               fields:
@@ -102,17 +111,17 @@ collections:
           ]
       }
       - {
-        label: "Curriculum",
+        label: "커리큘럼",
         name: "curriculum",
         widget: "object",
         fields:
           [
-            { label: "Intro", name: "intro", widget: "string"},
-            { label: "Weekly Topics", name: "weeklyTopics", widget: "text", hint: "여러 문장을 작성 시, \n 을 사용하여 문장 구분을 해주세요."}
+            { label: "교재 및 컨텐츠", name: "intro", widget: "string", hint: "예시) 본 스터디는 ~~~ 강좌를 중심으로 필요한 자료들을 추가하며 진행합니다."},
+            { label: "주차별 주제", name: "weeklyTopics", widget: "text", hint: "여러 문장을 작성 시, \n 을 사용하여 문장 구분을 해주세요."}
           ]
       }
       - {
-        label: "Keywords",
+        label: "대표 키워드",
         name: "keywords",
         widget: "list",
         hint: "대표 키워드 3~5개를 콤마로 구분하여 나열해주세요"
