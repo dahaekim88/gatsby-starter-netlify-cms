@@ -53,7 +53,7 @@ collections:
                           스터디 시작 1일 전까지 전액 환불 가능합니다. (자세한 사항은 FAQ 참고)\n   
                           유료 컨텐츠를 기반으로 진행되는 경우, 스터디 참가자 분들께 제공됩니다.\n
                           커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.",
-                hint: "추가로 작성할 안내사항이 있는 경우, '\n' 을 사용하여 문장 구분을 해주세요."
+                hint: "추가로 작성할 안내사항이 있는 경우, '\\n' 을 사용하여 문장 구분을 해주세요."
               }
             ]
         }
@@ -105,8 +105,9 @@ collections:
               fields:
                 [
                   { label: "Q", name: "Q", widget: "string"},
-                  { label: "A", name: "A", widget: "string"}
-                ]
+                  { label: "A", name: "A", widget: "text"}
+                ],
+              hint: "다음 기본 질문 3가지를 Q 항목에 입력하시고 A 항목에 답변해 주세요. 기타 질문으로 변경 가능합니다. | Q. 스터디 기획 의도는 무엇인가요? | Q. 이 스터디의 차별화된 특징은 무엇인가요? | Q. 스터디 참여자들에게 한 마디 해주세요!"
             }
           ]
       }
@@ -117,7 +118,7 @@ collections:
         fields:
           [
             { label: "교재 및 컨텐츠", name: "intro", widget: "string", hint: "예시) 본 스터디는 ~~~ 강좌를 중심으로 필요한 자료들을 추가하며 진행합니다."},
-            { label: "주차별 주제", name: "weeklyTopics", widget: "text", hint: "여러 문장을 작성 시, '\n' 을 사용하여 문장 구분을 해주세요."}
+            { label: "주차별 주제", name: "weeklyTopics", widget: "list", hint: "여러 문장을 작성 시, '\\n' 을 사용하여 문장 구분을 해주세요."}
           ]
       }
       - {
