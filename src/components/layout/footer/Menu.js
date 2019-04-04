@@ -73,7 +73,3 @@ const Menu = () => (
 )
 
 export default Menu
-
-Menu.propTypes = {
-  history: PropTypes.object.isRequired,
-}

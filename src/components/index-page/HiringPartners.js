@@ -27,8 +27,8 @@ const HiringPartners = ({ heading, subheading, partnersLogo }) => (
     <Title size="2.5rem">{heading}</Title>
     <SubTitle size="1.7rem">{subheading}</SubTitle>
     <div className="image-wrapper">
-      {partnersLogo.map(logo => (
-        <LogoImg src={logo} />
+      {partnersLogo.map((logo, index) => (
+        <LogoImg src={logo} key={index} />
       ))}
     </div>
   </Container>

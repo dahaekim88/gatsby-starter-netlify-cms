@@ -39,6 +39,7 @@ const Objectives = ({ objectives }) => (
             src={
               !!image.childImageSharp ? image.childImageSharp.fluid.src : image
             }
+            alt={text}
             width="100px"
           />
         </ImageContainer>
