@@ -75,12 +75,10 @@ export default CourseIntro
 CourseIntro.propTypes = {
   courseImage: PropTypes.string.isRequired,
   courseName: PropTypes.string.isRequired,
-  price: PropTypes.string.isRequired,
+  details: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   period: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
   highlighted: PropTypes.bool,
-  link: PropTypes.string.isRequired,
-  history: PropTypes.object.isRequired,
 }
 
 CourseIntro.defaultProps = {

@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 import PageHeader from "../components/reusable/PageHeader"
 import PageDetails from "../components/reusable/PageDetails"
 import { Background, SmallTitle } from "../components/reusable/styledComponents"
-import Content, { HTMLContent } from "../components/Content"
+import Content, { HTMLContent } from "../components/reusable/Content"
 
 export const FaqPageTemplate = ({
   title,

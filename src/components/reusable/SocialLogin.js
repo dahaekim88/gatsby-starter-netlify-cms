@@ -2,9 +2,9 @@ import React, { useState } from "react"
 import { GridLoader } from "react-spinners"
 import { css } from "@emotion/core"
 
-import { FormButton } from "./reusable/styledComponents"
-import config from "../../.config"
-import { facebook, google, kakao, kakaoFont, naver } from "../constants"
+import { FormButton } from "./styledComponents"
+import config from "../../../.config"
+import { facebook, google, kakao, kakaoFont, naver } from "../../constants"
 
 const urlForFacebookLogin = `${config.SERVER_URL}/auth/facebook`
 const urlForGoogleLogin = `${config.SERVER_URL}/auth/google`

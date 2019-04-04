@@ -4,11 +4,11 @@ const useForm = (callback, validate) => {
   const [values, setValues] = useState({})
   const [errors, setErrors] = useState({})
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [clicked, setClicked] = useState("")
 
   useEffect(() => {
     // console.log("TCL: useForm -> useEffect", errors)
-    // TODO: Temp blocking for local-auth.
-    if (/*Object.keys(errors).length === 0 && */ isSubmitting) {
+    if (Object.keys(errors).length === 0 && isSubmitting) {
       callback()
     }
   }, [errors])
@@ -17,7 +17,7 @@ const useForm = (callback, validate) => {
     // console.log("TCL: useForm -> handleSubmit", handleSubmit)
     if (event) event.preventDefault()
     setIsSubmitting(true)
-    setErrors(validate(values))
+    setErrors(validate(values, clicked))
   }
 
   const handleChange = event => {
@@ -28,9 +28,14 @@ const useForm = (callback, validate) => {
     }))
   }
 
+  const handleClick = event => {
+    setClicked(event.target.value)
+  }
+
   return {
     handleChange,
     handleSubmit,
+    handleClick,
     values,
     errors,
   }

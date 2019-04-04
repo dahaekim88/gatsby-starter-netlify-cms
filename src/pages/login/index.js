@@ -3,7 +3,7 @@ import { navigate } from "gatsby"
 import { Container } from "reactstrap"
 
 import Layout from "../../components/Layout"
-import SocialLogin from "../../components/SocialLogin"
+import SocialLogin from "../../components/reusable/SocialLogin"
 import {
   ContentContainer,
   Title,
@@ -46,7 +46,7 @@ const LoginPage = () => {
     }
   }
 
-  const { values, handleChange, handleSubmit, errors } = useForm(
+  const { values, handleChange, handleSubmit, handleClick, errors } = useForm(
     formLogin,
     validate
   )
@@ -92,7 +92,13 @@ const LoginPage = () => {
                   placeholder="패스워드를 입력하세요"
                 />
                 {errors.password && <Message>{errors.password}</Message>}
-                <FormButton type="submit" background={blue} color="#fff">
+                <FormButton
+                  type="submit"
+                  background={blue}
+                  color="#fff"
+                  onClick={handleClick}
+                  value="로그인"
+                >
                   로그인
                 </FormButton>
 
