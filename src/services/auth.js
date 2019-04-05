@@ -46,6 +46,23 @@ export const handleSignup = async ({
   return data
 }
 
+export const handleSubmitAdditionalInfo = async ({
+  id,
+  name,
+  email,
+  phone
+}) => {
+  const urlSubmitAdditionalInfo = `${config.SERVER_URL}/auth/additionalInfo`
+  const data = await http.post(urlSubmitAdditionalInfo, {
+    id,
+    name,
+    email,
+    phone
+  })
+  console.log("TCL: handleSignup -> data", data)
+  return data
+}
+
 export const handleLogin = async ({ email, password }) => {
   const urlLogin = `${config.SERVER_URL}/login`
   const response = await http.post(urlLogin, {
