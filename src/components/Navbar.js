@@ -19,8 +19,9 @@ import {
 
 import { StyledLink } from "./reusable/styledComponents"
 import Logo from "./reusable/Logo"
-import { isLoggedIn, logout, getUser } from "../services/auth"
+import { isLoggedIn, logout } from "../services/auth"
 import { logoColor } from "../constants"
+import AvatarComp from "./AvatarComp"
 
 const StyledNavLink = styled(NavLink)`
   font-size: 1.5rem;
@@ -30,7 +31,6 @@ const StyledNavLink = styled(NavLink)`
 const StyledDropdown = styled(DropdownItem)`
   font-size: 1.2rem;
 `
-
 export default () => {
   const [isOpen, setIsOpen] = useState(false)
 
@@ -72,13 +72,8 @@ export default () => {
               </NavItem>
               <UncontrolledDropdown nav inNavbar>
                 <DropdownToggle nav caret>
-                  <i
-                    className="fa fa-user-circle"
-                    style={{ fontSize: "1.8rem" }}
-                  />
-                  {isLoggedIn() && getUser()}
+                  <AvatarComp isLoggedIn={isLoggedIn} />
                 </DropdownToggle>
-
                 {isLoggedIn() ? (
                   <DropdownMenu right>
                     <StyledDropdown tag={Link} to="profile">
