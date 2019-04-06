@@ -36,6 +36,15 @@ const validate = (values, clicked) => {
         errors.confirmPassword = "패스워드를 한 번 더 입력해주세요"
       }
       return errors
+
+    case "신청하기":
+      // if (values.coupon !== "something") {
+      //   errors.coupon = "유효하지 않은 쿠폰입니다"
+      // }
+      return errors
+
+    default:
+      return errors
   }
 }
 
