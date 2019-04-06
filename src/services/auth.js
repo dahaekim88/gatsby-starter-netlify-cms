@@ -3,7 +3,6 @@ import { navigate } from "gatsby"
 
 import config from "../../.config"
 import http from "../services/httpService"
-import * as auth from "../services/auth"
 
 export const KEY_TOKEN = "token"
 
@@ -46,6 +45,23 @@ export const handleSignup = async ({
   return data
 }
 
+export const handleSubmitAdditionalInfo = async ({
+  id,
+  name,
+  email,
+  phone,
+}) => {
+  const urlSubmitAdditionalInfo = `${config.SERVER_URL}/auth/additionalInfo`
+  const data = await http.post(urlSubmitAdditionalInfo, {
+    id,
+    name,
+    email,
+    phone,
+  })
+  console.log("TCL: handleSignup -> data", data)
+  return data
+}
+
 export const handleLogin = async ({ email, password }) => {
   const urlLogin = `${config.SERVER_URL}/login`
   const response = await http.post(urlLogin, {
@@ -56,7 +72,7 @@ export const handleLogin = async ({ email, password }) => {
 
   const token = response.headers["x-auth-token"]
   // console.log("TCL: [+] RegistrationForm -> token", token)
-  auth.saveToken(token)
+  saveToken(token)
 
   // console.log("TCL: [+] move to ")
   navigate("/")

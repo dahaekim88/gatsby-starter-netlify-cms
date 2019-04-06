@@ -7,7 +7,7 @@ const useForm = (callback, validate) => {
   const [clicked, setClicked] = useState("")
 
   useEffect(() => {
-    // console.log("TCL: useForm -> useEffect", errors)
+    // console.log("TCL: useForm -> useEffect errors = ", errors)
     if (Object.keys(errors).length === 0 && isSubmitting) {
       callback()
     }
