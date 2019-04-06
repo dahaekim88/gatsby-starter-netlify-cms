@@ -1,5 +1,5 @@
 import styled, { css } from "styled-components"
-import { Row, Col, Container } from "reactstrap"
+import { Row, Col, Container, Label, Input } from "reactstrap"
 import { Link } from "gatsby"
 import {
   blue,
@@ -232,6 +232,18 @@ export const FormContainer = styled.div`
   }
 `
 
+export const StyledLabel = styled(Label)`
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  font-weight: normal;
+`
+
+export const StyledInput = styled(Input)`
+  font-size: 1.3rem;
+  font-weight: 300;
+  padding: 1rem 1.3rem;
+`
+
 export const StyledForm = styled.form`
   width: 50%;
 
@@ -278,6 +290,10 @@ export const FormButton = styled.button(
   `
 )
 
+export const ButtonContainer = styled.div`
+  margin: 5rem 0;
+`
+
 export const BorderLine = styled.div`
   display: inline-block;
   width: calc((100% - 45px) / 2);
@@ -313,4 +329,64 @@ export const Paragraph = styled.p`
   font-size: 1.7rem;
   line-height: 2;
   text-align: center;
+`
+
+export const FormQuestionLabel = styled.div`
+  font-size: 1.5rem;
+  margin-top: 2rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  font-weight: bold;
+`
+
+export const StyledSpan = styled.span`
+  margin-left: 1rem;
+  font-size: 1.2rem;
+  color: darkBlue;
+
+  &:hover {
+    color: blue;
+  }
+`
+
+export const ModalContainer = styled.div`
+  position: fixed;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+`
+
+export const Modal = styled.div`
+  height: 90%;
+  width: 50rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+
+  @media (max-width: 40rem) {
+    width: 70%;
+  }
+`
+
+export const PrivateTermsAndConditionsContainer = styled.div`
+  height: 40%;
+  width: 90%;
+  margin-bottom: 5%;
+  overflow-y: scroll;
+  border: 1px solid lightGrey;
+`
+
+export const RefundPolicyContainer = styled.div`
+  height: 40%;
+  width: 90%;
+  overflow-y: scroll;
+  border: 1px solid lightGrey;
 `
