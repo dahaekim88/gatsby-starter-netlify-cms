@@ -106,7 +106,7 @@ class StudyInfo extends React.Component {
                   일정
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{`${info.startDate} - ${info.endDate.slice(-5)} (총 ${
+                  <p>{`${info.startDate} - ${info.endDate} (총 ${
                     info.period
                   })`}</p>
                   {!!info.note ? <RedText>{info.note}</RedText> : null}

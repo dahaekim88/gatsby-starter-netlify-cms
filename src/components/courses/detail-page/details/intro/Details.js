@@ -31,7 +31,7 @@ const Details = ({ info }) => (
     <Line>
       <LeftTitle>일 정</LeftTitle>
       <RightContent>
-        {`${info.startDate} - ${info.endDate.slice(-5)} (총 ${info.period})`}
+        {`${info.startDate} - ${info.endDate} (총 ${info.period})`}
         {/* {!!note ? ` - ${note}` : null} */}
       </RightContent>
     </Line>
