@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: codestates/studystates-client
+  name: git-gateway
   branch: dev
 
 media_folder: static/img
