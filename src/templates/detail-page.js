@@ -93,7 +93,9 @@ export const pageQuery = graphql`
           }
           name
           currentJob
-          career
+          careers {
+            career
+          }
           qna {
             Q
             A
@@ -103,7 +105,9 @@ export const pageQuery = graphql`
           intro
           weeklyTopics
         }
-        keywords
+        keywords {
+          keyword
+        }
         open
       }
     }

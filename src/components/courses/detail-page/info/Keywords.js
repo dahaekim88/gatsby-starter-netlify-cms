@@ -59,6 +59,7 @@ class Keywords extends React.Component {
 
   render() {
     const { keywords } = this.props
+    // console.log("keywords: ", keywords)
 
     return (
       <div ref={element => (this.keyword = element)}>
@@ -66,8 +67,8 @@ class Keywords extends React.Component {
           <StyledCol>
             <SubjectInfoTitleCol>#Keywords</SubjectInfoTitleCol>
             <Col>
-              {keywords.map(keyword => (
-                <TagContainer>{keyword}</TagContainer>
+              {keywords.map(item => (
+                <TagContainer>{item.keyword}</TagContainer>
               ))}
             </Col>
           </StyledCol>

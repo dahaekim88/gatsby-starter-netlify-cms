@@ -17,29 +17,30 @@ const ImageStyledCol = styled(Col)`
   padding: 0;
 `
 
-const StudyLeftDetails = ({ data }) => (
-  <Container>
-    <ImageStyledCol>
-      <img
-        alt={data.title}
-        src={
-          !!data.image.childImageSharp
-            ? data.image.childImageSharp.fluid.src
-            : data.image
-        }
-        style={{ width: "100%", height: "100%" }}
-      />
-    </ImageStyledCol>
-    <StudyIntro data={data} />
-    {/* {data.practice !== null && (
-      <Practice practice={data.practice} />
+const StudyLeftDetails = ({ data }) => {
+  const { title, image, info, intro, partner, curriculum } = data
+  // console.log("image: ", image)
+
+  return (
+    <Container>
+      <ImageStyledCol>
+        <img
+          alt={title}
+          src={
+            !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+          }
+          style={{ width: "100%", height: "100%" }}
+        />
+      </ImageStyledCol>
+      <StudyIntro title={title} intro={intro} info={info} />
+      {/* {practice !== null && (
+      <Practice practice={practice} />
     )} */}
-    <StudyStage />
-    {data.partner.career.length !== 0 && (
-      <StudyPartner partner={data.partner} />
-    )}
-    <Curriculum curriculum={data.curriculum} />
-  </Container>
-)
+      <StudyStage />
+      {partner.careers.length !== 0 && <StudyPartner partner={partner} />}
+      <Curriculum curriculum={curriculum} />
+    </Container>
+  )
+}
 
 export default StudyLeftDetails

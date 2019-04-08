@@ -41,10 +41,10 @@ partner:
   image: /img/partner-chaehwanoh.jpg
   name: 오채환
   currentJob: 프로그래머
-  career:
-    - (전) 두다지 연구개발팀 근무
-    - 두다지 서버개발자 양성과정 참여
-    - 동아대학교 경영학/컴퓨터공학 학사 졸업
+  careers:
+    - career: (전) 두다지 연구개발팀 근무
+    - career: 두다지 서버개발자 양성과정 참여
+    - career: 동아대학교 경영학/컴퓨터공학 학사 졸업
   qna:
     - Q: Q. 스터디 기획 의도는 무엇인가요?
       A: 파이썬 언어를 가장 즐겨 사용하는 주니어 개발자입니다. 제 경험을 바탕으로 프로그래밍 언어로 실생활의 문제를 해결하는, 뿌듯한 경험을 함께 하실 수 있도록 돕고 싶습니다.
@@ -55,33 +55,33 @@ partner:
 curriculum:
   intro: 이 스터디는 '파이썬 프로그래밍으로 지루한 작업 자동화하기' 교재를 기반으로 진행됩니다.
   weeklyTopics:
-    - 파이썬 프로그래밍 기초
-      파이썬 기초
-      흐름 제어
-      함수
-      리스트
-      사전 및 구조화 데이터
-      문자열 조작하기
+    - 파이썬 프로그래밍 기초\n
+      파이썬 기초\n
+      흐름 제어\n
+      함수\n
+      리스트\n
+      사전 및 구조화 데이터\n
+      문자열 조작하기\n
       실습 - 평균 구하기, 정렬하기 등 기본문제 풀어보기
-    - 작업 자동화하기
-      정규표현식으로 패턴 대조하기
-      파일 읽고 쓰기
-      파일 체계화하기
-      디버깅
+    - 작업 자동화하기\n
+      정규표현식으로 패턴 대조하기\n
+      파일 읽고 쓰기\n
+      파일 체계화하기\n
+      디버깅\n
       웹 스크랩
-    - 작업 자동화하기
-      엑셀 스프레드시트로 자동화하기
-      PDF 및 Word 문서 작업하기
-      CSV 파일 및 JSON 데이터로 작업하기
-      시간관리, 작업 예약 그리고 다른 프로그램 실행
-      이메일 및 문자 메세지 보내기
+    - 작업 자동화하기\n
+      엑셀 스프레드시트로 자동화하기\n
+      PDF 및 Word 문서 작업하기\n
+      CSV 파일 및 JSON 데이터로 작업하기\n
+      시간관리, 작업 예약 그리고 다른 프로그램 실행\n
+      이메일 및 문자 메세지 보내기\n
       GUI 자동화를 통한 키보드 및 마우스 제어
     - 개인 프로젝트 진행하기
 keywords:
-  - Python Programming
-  - Automate the boring stuff
-  - Python Introduction
-  - Real World Exercise
+  - keyword: Python Programming
+  - keyword: Automate the boring stuff
+  - keyword: Python Introduction
+  - keyword: Real World Exercise
 open: true
 main: true
 ---

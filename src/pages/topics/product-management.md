@@ -41,12 +41,12 @@ partner:
   image: /img/partner-ingikim.png
   name: 김인기
   currentJob: 코드스테이츠 대표
-  career:
-    - (현) 코드스테이츠 대표
-    - 프라이머 13기 선발
-    - SK창조경제혁신센터 서울캠퍼스 창업팀 대상 프로그래밍 교육 총괄
-    - 충남대 SW 부트캠프 총괄
-    - 미국 샌프란시스코 코딩 부트캠프 졸업(Hack Reactor)
+  careers:
+    - career: (현) 코드스테이츠 대표
+    - career: 프라이머 13기 선발
+    - career: SK창조경제혁신센터 서울캠퍼스 창업팀 대상 프로그래밍 교육 총괄
+    - career: 충남대 SW 부트캠프 총괄
+    - career: 미국 샌프란시스코 코딩 부트캠프 졸업(Hack Reactor)
   qna:
     - Q: Q. 스터디 기획 의도는 무엇인가요?
       A: 프로덕트 매니지먼트에 대해 관심이 생겨도 어떤 것들을 공부해야 하는지, 어떤 일을 하는건지 명확하게 알기 어렵습니다. 프로덕트 매니저의 전반적인 업무에 대해 알아보고, 본인이 담당하는 프로덕트에 적용할 수 있는 실질적인 방안들을 함께 마련해보려고 합니다. 비슷한 고민을 하고 있는 분들과 함께 학습하고 서로 도울 수 있는 스터디를 운영하고 싶습니다.
@@ -57,26 +57,26 @@ partner:
 curriculum:
   intro: 이 스터디는 Product Management Bootcamp 에서 추천하는 자료들을 모아 학습합니다.
   weeklyTopics:
-    - Introduction to Product Management
-      Introduction to Product Development
-      Ideas and User Needs
+    - Introduction to Product Management\n
+      Introduction to Product Development\n
+      Ideas and User Needs\n
       Competitive and Market Analysis
-    - Customer Development
+    - Customer Development\n
       Designing and Running Experiments
-    - Conceptualizing the Solution
-      Metrics for Product Managers - Defining Success and Measuring Results
-      Building the Product - Project Management for PMs
+    - Conceptualizing the Solution\n
+      Metrics for Product Managers - Defining Success and Measuring Results\n
+      Building the Product - Project Management for PMs\n
       Working with People and Stakeholders
-    - Technology for Proudct Managers
-      What You Should Do to Prepare Yourself for the job
-      How to Look for a job in Product Management
+    - Technology for Proudct Managers\n
+      What You Should Do to Prepare Yourself for the job\n
+      How to Look for a job in Product Management\n
       How to Get the job in Product Management
 keywords:
-  - Product Management
-  - Product Development
-  - Customer Development
-  - Technology
-  - Product Managers
+  - keyword: Product Management
+  - keyword: Product Development
+  - keyword: Customer Development
+  - keyword: Technology
+  - keyword: Product Managers
 open: true
 main: true
 ---

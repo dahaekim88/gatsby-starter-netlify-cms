@@ -4,7 +4,7 @@ import { graphql } from "gatsby"
 import Layout from "../../components/Layout"
 import Courses from "../../components/courses/Courses"
 
-const BlogIndexPage = ({ data }) => {
+const TopicsPage = ({ data }) => {
   const courses = data.allMarkdownRemark.edges
 
   return (
@@ -14,10 +14,10 @@ const BlogIndexPage = ({ data }) => {
   )
 }
 
-export default BlogIndexPage
+export default TopicsPage
 
 export const pageQuery = graphql`
-  query DetailPage {
+  query TopicsPage {
     allMarkdownRemark(
       filter: { frontmatter: { templateKey: { eq: "detail-page" } } }
       sort: { fields: [frontmatter___date], order: DESC }
@@ -42,54 +42,13 @@ export const pageQuery = graphql`
               startDate(formatString: "YYYY.MM.DD")
               endDate(formatString: "YYYY.MM.DD")
               period
-              totalMeeting
-              schedule
               studyTimes {
                 frequency
                 dayOfWeek
                 time
               }
               price
-              details
             }
-            intro {
-              text
-              objectives {
-                image {
-                  childImageSharp {
-                    fluid(maxWidth: 90, quality: 80) {
-                      ...GatsbyImageSharpFluid
-                    }
-                  }
-                }
-                text
-              }
-              targets {
-                title
-                content
-              }
-            }
-            partner {
-              image {
-                childImageSharp {
-                  fluid(maxWidth: 110, quality: 80) {
-                    ...GatsbyImageSharpFluid
-                  }
-                }
-              }
-              name
-              currentJob
-              career
-              qna {
-                Q
-                A
-              }
-            }
-            curriculum {
-              intro
-              weeklyTopics
-            }
-            keywords
             open
           }
         }

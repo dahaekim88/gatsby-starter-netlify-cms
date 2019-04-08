@@ -96,7 +96,13 @@ collections:
             { label: "프로필 사진", name: "image", widget: "image"},
             { label: "이름", name: "name", widget: "string"},
             { label: "현재 직업", name: "currentJob", widget: "string"},
-            { label: "경력사항", name: "career", widget: "list", hint: "경력사항 3~5개를 콤마로 구분하여 나열해주세요"},
+            { 
+              label: "경력사항", 
+              name: "careers", 
+              widget: "list", 
+              field: { label: "경력(하나씩)", name: career, widget: "string"},
+              hint: "경력사항 3~5개를 작성해주세요"
+            },
             { 
               label: "Q&A", 
               name: "qna", 
@@ -117,14 +123,26 @@ collections:
         fields:
           [
             { label: "교재 및 컨텐츠", name: "intro", widget: "string", hint: "예시) 본 스터디는 ~~~ 강좌를 중심으로 필요한 자료들을 추가하며 진행합니다."},
-            { label: "주차별 주제", name: "weeklyTopics", widget: "list", hint: "여러 문장을 작성 시, '\\n' 을 사용하여 문장 구분을 해주세요."}
+            { 
+              label: "주차별 주제", 
+              name: "weeklyTopics", 
+              widget: "list", 
+              field: 
+                { 
+                  label: "주차별 주제", 
+                  name: "weeklyTopics", 
+                  widget: "text", 
+                  hint: "여러 문장을 작성 시, '\\n' 을 사용하여 문장 구분을 해주세요." 
+                }
+            }
           ]
       }
       - {
         label: "대표 키워드",
         name: "keywords",
         widget: "list",
-        hint: "대표 키워드 3~5개를 콤마로 구분하여 나열해주세요"
+        field: { label: "키워드(하나씩)", name: "keyword", widget: "string"},
+        hint: "대표 키워드 3~5개를 작성해주세요"
       }
       - {
         label: "스터디 오픈 여부",
