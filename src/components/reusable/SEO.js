@@ -8,17 +8,6 @@ const SEO = ({ metadata, facebook }) => (
     <title>{metadata.title}</title>
     <meta name="description" content={metadata.description} />
 
-    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico" />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-    <link
-      href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"
-      rel="stylesheet"
-      type="text/css"
-    />
-
     <meta name="theme-color" content="#fff" />
     <meta
       property="og:type"
@@ -32,6 +21,26 @@ const SEO = ({ metadata, facebook }) => (
     <meta
       property="og:image"
       content={facebook ? facebook.image : metadata.image}
+    />
+
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      href="https://cdn.rawgit.com/moonspam/NanumSquare/master/nanumsquare.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+
+    <script
+      type="text/javascript"
+      src="https://code.jquery.com/jquery-1.12.4.min.js"
+    />
+    <script
+      type="text/javascript"
+      src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"
     />
   </Helmet>
 )
