@@ -39,23 +39,23 @@ const SubTitle = styled.p`
   margin: 2rem 0;
 `
 
-const StudyIntro = ({ data }) => (
+const StudyIntro = ({ title, intro, info }) => (
   <Container>
-    <Title>{data.title}</Title>
+    <Title>{title}</Title>
     <Intro>
-      {data.intro.text.split("\\n").map(line => (
+      {intro.text.split("\\n").map(line => (
         <p>{line}</p>
       ))}
     </Intro>
     <Content>
       <SubTitle>학습목표</SubTitle>
-      <Objectives objectives={data.intro.objectives} />
+      <Objectives objectives={intro.objectives} />
 
       <SubTitle>참여대상</SubTitle>
-      <Targets targets={data.intro.targets} />
+      <Targets targets={intro.targets} />
 
       <SubTitle>상세정보</SubTitle>
-      <Details info={data.info} />
+      <Details info={info} />
     </Content>
   </Container>
 )

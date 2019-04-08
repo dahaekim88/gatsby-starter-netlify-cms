@@ -36,30 +36,32 @@ const Content = styled.div`
   vertical-align: middle;
 `
 
-const StudyPartner = ({ partner }) => (
-  <Container>
-    <Title>파트너 소개</Title>
-    <ThumbnailContainer>
-      <img
-        src={
-          !!partner.image.childImageSharp
-            ? partner.image.childImageSharp.fluid.src
-            : partner.image
-        }
-        alt={partner.name}
-        style={{ borderRadius: "50%" }}
-      />
-    </ThumbnailContainer>
-    <Name>{partner.name}</Name>
-    <Content>
-      <div>
-        {partner.career.map(line => (
-          <p>{line}</p>
-        ))}
-      </div>
-    </Content>
-    {partner.qna === null ? "" : <QnAs qna={partner.qna} />}
-  </Container>
-)
+const StudyPartner = ({ partner }) => {
+  const { name, image, careers, qna } = partner
+
+  return (
+    <Container>
+      <Title>파트너 소개</Title>
+      <ThumbnailContainer>
+        <img
+          src={
+            !!image.childImageSharp ? image.childImageSharp.fluid.src : image
+          }
+          alt={name}
+          style={{ borderRadius: "50%" }}
+        />
+      </ThumbnailContainer>
+      <Name>{name}</Name>
+      <Content>
+        <div>
+          {careers.map(career => (
+            <p>{career.line}</p>
+          ))}
+        </div>
+      </Content>
+      {qna === null ? "" : <QnAs qna={qna} />}
+    </Container>
+  )
+}
 
 export default StudyPartner

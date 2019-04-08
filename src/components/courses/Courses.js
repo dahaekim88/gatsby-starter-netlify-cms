@@ -42,7 +42,6 @@ const CoursesIntro = ({ courses }) => {
                       sm={12}
                       xs={12}
                       key={`courses-intro-${index * 10}`}
-                      isOpened={open}
                       data-index-number={index}
                       onMouseEnter={() => setHoveredCourse(index)}
                       onMouseLeave={() => setHoveredCourse(null)}

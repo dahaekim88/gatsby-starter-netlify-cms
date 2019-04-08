@@ -92,25 +92,24 @@ class StudyInfo extends React.Component {
   }
 
   render() {
+    const { title, info, partner } = this.props
+    // console.log("info: ", info)
+
     return (
       <div ref={element => (this.apply = element)}>
         <SubjectGrid>
           <TextStyledCol md={9} sm={12} xs={12}>
             <SubjectInfoDetail>
-              <Title>{this.props.title}</Title>
+              <Title>{title}</Title>
               <SubjectInfoGrid>
                 <SubjectInfoTitleCol md={3} sm={3} xs={3}>
                   일정
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{`${
-                    this.props.info.startDate
-                  } - ${this.props.info.endDate.slice(-5)} (총 ${
-                    this.props.info.period
+                  <p>{`${info.startDate} - ${info.endDate.slice(-5)} (총 ${
+                    info.period
                   })`}</p>
-                  {!!this.props.info.note ? (
-                    <RedText>{this.props.info.note}</RedText>
-                  ) : null}
+                  {!!info.note ? <RedText>{info.note}</RedText> : null}
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
 
@@ -119,12 +118,10 @@ class StudyInfo extends React.Component {
                   시간
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{`${this.props.info.studyTimes.frequency} ${
-                    this.props.info.studyTimes.dayOfWeek
-                  } ${this.props.info.studyTimes.time}`}</p>
-                  <p>{`총 ${
-                    this.props.info.totalMeeting
-                  }의 온라인 스터디 진행`}</p>
+                  <p>{`${info.studyTimes.frequency} ${
+                    info.studyTimes.dayOfWeek
+                  } ${info.studyTimes.time}`}</p>
+                  <p>{`총 ${info.totalMeeting}의 온라인 스터디 진행`}</p>
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
 
@@ -133,10 +130,8 @@ class StudyInfo extends React.Component {
                   파트너
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{this.props.partner.name}</p>
-                  {this.props.partner.currentJob !== "" && (
-                    <p>({this.props.partner.currentJob})</p>
-                  )}
+                  <p>{partner.name}</p>
+                  {partner.currentJob !== "" && <p>({partner.currentJob})</p>}
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
 
@@ -145,7 +140,7 @@ class StudyInfo extends React.Component {
                   가격
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{this.props.info.price / 10000}만원</p>
+                  <p>{info.price / 10000}만원</p>
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
             </SubjectInfoDetail>

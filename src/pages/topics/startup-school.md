@@ -41,12 +41,12 @@ partner:
   image: /img/partner-ingikim.png
   name: 김인기
   currentJob: 코드스테이츠 대표
-  career:
-    - (현) 코드스테이츠 대표
-    - 프라이머 13기 선발
-    - SK창조경제혁신센터 서울캠퍼스 창업팀 대상 프로그래밍 교육 총괄
-    - 충남대 SW 부트캠프 총괄
-    - 미국 샌프란시스코 코딩 부트캠프 졸업(Hack Reactor)
+  careers:
+    - career: (현) 코드스테이츠 대표
+    - career: 프라이머 13기 선발
+    - career: SK창조경제혁신센터 서울캠퍼스 창업팀 대상 프로그래밍 교육 총괄
+    - career: 충남대 SW 부트캠프 총괄
+    - career: 미국 샌프란시스코 코딩 부트캠프 졸업(Hack Reactor)
   qna:
     - Q: Q. 스터디 기획 의도는 무엇인가요?
       A: 스타트업을 시작하고 싶은 분들이 많아지고 있습니다. 도움이 되는 자료들이 온라인에 많이 있지만, 혼자서 체계적인 커리큘럼을 만들어 끝까지 학습하기 어렵습니다. 비슷한 고민을 하고 있는 창업가, 예비 창업가분들과 함께 학습하고, 서로 도울 수 있는 스터디를 운영하고 싶습니다.
@@ -76,11 +76,11 @@ curriculum:
       After PMF - People Customers Sales\n
       How to Win
 keywords:
-  - Building Product
-  - Design for Startups
-  - Fundraising Fundamentals
-  - How to sell
-  - Building an Engineering Team
+  - keyword: Building Product
+  - keyword: Design for Startups
+  - keyword: Fundraising Fundamentals
+  - keyword: How to sell
+  - keyword: Building an Engineering Team
 open: true
 main: true
 ---

@@ -89,12 +89,14 @@ class Study extends React.Component {
   }
 
   render() {
+    const { data } = this.props
+
     return (
       <DarkBackground ref={element => (this.container = element)}>
         <Container>
           <StyleGrid>
             <StudyCol md={8} sm={12} xs={12}>
-              <StudyLeftDetails data={this.props.data} />
+              <StudyLeftDetails data={data} />
             </StudyCol>
             <ApplyCol
               style={{ top: this.state.top, bottom: this.state.bottom }}
@@ -103,13 +105,13 @@ class Study extends React.Component {
               xs={12}
             >
               <StudyInfo
-                title={this.props.data.title}
-                info={this.props.data.info}
-                partner={this.props.data.partner}
+                title={data.title}
+                info={data.info}
+                partner={data.partner}
                 getElementHeight={this.getElementHeight}
               />
               <Keywords
-                keywords={this.props.data.keywords}
+                keywords={data.keywords}
                 getElementHeight={this.getElementHeight}
               />
             </ApplyCol>
