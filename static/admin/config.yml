@@ -182,8 +182,8 @@ collections:
                 ],
             }
           - {
-              label: Carousel,
-              name: carousel,
+              label: Partners,
+              name: partners,
               widget: object,
               fields:
                 [
@@ -193,7 +193,7 @@ collections:
                     label: Logo,
                     name: logo,
                     widget: list,
-                    fields: [{ label: Image, name: image, widget: image }],
+                    field: { label: Image, name: image, widget: image },
                   },
                 ],
             }
