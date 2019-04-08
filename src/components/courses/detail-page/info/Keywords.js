@@ -67,8 +67,8 @@ class Keywords extends React.Component {
           <StyledCol>
             <SubjectInfoTitleCol>#Keywords</SubjectInfoTitleCol>
             <Col>
-              {keywords.map(item => (
-                <TagContainer>{item.keyword}</TagContainer>
+              {keywords.map(({ keyword }) => (
+                <TagContainer>{keyword}</TagContainer>
               ))}
             </Col>
           </StyledCol>

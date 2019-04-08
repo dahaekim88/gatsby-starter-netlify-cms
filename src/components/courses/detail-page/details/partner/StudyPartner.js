@@ -38,6 +38,7 @@ const Content = styled.div`
 
 const StudyPartner = ({ partner }) => {
   const { name, image, careers, qna } = partner
+  // console.log("careers: ", careers)
 
   return (
     <Container>
@@ -54,8 +55,8 @@ const StudyPartner = ({ partner }) => {
       <Name>{name}</Name>
       <Content>
         <div>
-          {careers.map(career => (
-            <p>{career.line}</p>
+          {careers.map(({ career }) => (
+            <p>{career}</p>
           ))}
         </div>
       </Content>
