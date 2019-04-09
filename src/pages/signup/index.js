@@ -31,11 +31,11 @@ const LoginPage = () => {
 
     try {
       const response = await auth.handleSignup({
-        username: values.username,
-        password: values.password,
-        confirmPassword: values.confirmPassword,
         name: values.name,
         email: values.email,
+        phone: values.phone,
+        password: values.password,
+        confirmPassword: values.confirmPassword,
       })
       const token = response.headers["x-auth-token"]
       // console.log("TCL: [+] RegistrationForm -> token", token)

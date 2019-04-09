@@ -27,19 +27,19 @@ export const setUser = user => {
 }
 
 export const handleSignup = async ({
-  username,
-  password,
   name,
   email,
+  phone,
+  password,
   confirmPassword,
 }) => {
   const urlSignUp = `${config.SERVER_URL}/signup`
   const data = await http.post(urlSignUp, {
-    username,
-    password,
-    confirmPassword,
     name,
     email,
+    phone,
+    password,
+    confirmPassword,
   })
   // console.log("TCL: handleSignup -> data", data)
   return data
