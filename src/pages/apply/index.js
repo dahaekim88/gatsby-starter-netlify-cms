@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Container, Form, FormGroup } from "reactstrap"
+import jwtDecode from "jwt-decode"
 
 import Layout from "../../components/Layout"
 import PageHeader from "../../components/reusable/PageHeader"
@@ -37,6 +38,12 @@ const ApplyPage = ({ data }) => {
   const formApply = async () => {
     setLoading(true)
 
+    const token = localStorage.getItem("token")
+    if (token) {
+      const { phone } = jwtDecode(token)
+      values.phone = phone
+    }
+
     // console.log("values: ", values)
     const { studyTitle, studyTime, paymentMethod } = values
 
@@ -66,7 +73,7 @@ const ApplyPage = ({ data }) => {
           merchant_uid,
           name: `${studyTitle}_${studyTime}`,
           amount: price,
-          buyer_tel: "010-4242-4242",
+          buyer_tel: values.phone,
           // vbank_due: vbankDue,
           // notice_url: `${API_URL}/payment/notification`,
         },
