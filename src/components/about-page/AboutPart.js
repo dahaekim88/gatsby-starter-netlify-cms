@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { PagePart, SmallTitle, Paragraph } from "../reusable/styledComponents"
+import { PagePart, SmallTitle, Paragraph } from "../styled"
 import PageDetails from "../reusable/PageDetails"
 
 const Image = styled.img`

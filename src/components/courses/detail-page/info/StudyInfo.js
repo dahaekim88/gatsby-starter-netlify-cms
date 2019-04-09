@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { Col } from "reactstrap"
 
-import { Grid } from "../../../reusable/styledComponents"
+import { Grid } from "../../../styled"
 
 import { sizes, blue, grayBorder } from "../../../../constants"
 

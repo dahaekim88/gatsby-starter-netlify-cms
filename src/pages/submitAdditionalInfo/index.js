@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { navigate } from "gatsby"
 import { Container } from "reactstrap"
 import querystring from "query-string"
-  
+
 import Layout from "../../components/Layout"
 import SocialLogin from "../../components/reusable/SocialLogin"
 import {
@@ -14,18 +14,18 @@ import {
   FormButton,
   BorderLine,
   Message,
-} from "../../components/reusable/styledComponents"
+} from "../../components/styled"
 
 import * as auth from "../../services/auth"
 import validate from "../../services/validate"
-import useForm from "../../components/reusable/useForm"
+import useForm from "../../components/hooks/useForm"
 
 import { blue } from "../../constants"
 
-const SubmitAdditionalInfo_Page = (props) => {
+const SubmitAdditionalInfo_Page = props => {
   const [loading, setLoading] = useState(false)
 
-  const  { id }  = querystring.parse(props.location.href)
+  const { id } = querystring.parse(props.location.href)
 
   const formSubmitAdditionalInfo = async () => {
     setLoading(true)
@@ -35,7 +35,7 @@ const SubmitAdditionalInfo_Page = (props) => {
         id: id,
         name: values.name,
         email: values.email,
-        phone: values.phone
+        phone: values.phone,
       })
       const token = response.headers["x-auth-token"]
       // console.log("TCL: [+] 4. formSubmitAdditionalInfo -> token", token)
@@ -111,7 +111,6 @@ const SubmitAdditionalInfo_Page = (props) => {
                 >
                   추가 정보 전송
                 </FormButton>
-
               </StyledForm>
             </FormContainer>
           </ContentContainer>
@@ -121,4 +120,4 @@ const SubmitAdditionalInfo_Page = (props) => {
   )
 }
 
-export default SubmitAdditionalInfo_Page;
+export default SubmitAdditionalInfo_Page

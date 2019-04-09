@@ -16,9 +16,9 @@ import {
   StyledSpan,
   ButtonContainer,
   Message,
-} from "../../components/reusable/styledComponents"
+} from "../../components/styled"
 
-import useForm from "../../components/reusable/useForm"
+import useForm from "../../components/hooks/useForm"
 import validate from "../../services/validate"
 import { blue } from "../../constants"
 import bgUrl from "../../assets/img/apply_bg.jpg"

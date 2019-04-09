@@ -2,7 +2,7 @@ import React from "react"
 import PropTypes from "prop-types"
 import styled from "styled-components"
 
-import { CardContainer } from "./styledComponents"
+import { CardContainer } from "../styled"
 import { sizes } from "../../constants"
 
 const CourseName = styled.p`

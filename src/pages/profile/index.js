@@ -1,7 +1,7 @@
 import React from "react"
 import { Router } from "@reach/router"
 import Layout from "../../components/Layout"
-import PrivateRoute from "../../components/reusable/privateRoute"
+import PrivateRoute from "../../components/route/privateRoute"
 import Profile from "../../components/Profile"
 
 const ProfilePage = () => (

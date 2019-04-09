@@ -2,10 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Col, Row } from "reactstrap"
 
-import {
-  MarginBottomContainer,
-  StyledLink,
-} from "../../reusable/styledComponents"
+import { MarginBottomContainer, StyledLink } from "../../styled"
 import { sizes } from "../../../constants"
 
 const Container = styled.div`

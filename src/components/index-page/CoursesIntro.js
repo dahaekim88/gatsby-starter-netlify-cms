@@ -9,7 +9,7 @@ import {
   StyledRow,
   StyledCol,
   HoveredButton,
-} from "../reusable/styledComponents"
+} from "../styled"
 import CourseIntro from "../reusable/CourseIntro"
 // import studyData from "./data/studyData"
 

@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { MarginBottomContainer } from "../../reusable/styledComponents"
+import { MarginBottomContainer } from "../../styled"
 import { sizes } from "../../../constants"
 import fbLogo from "../../../assets/img/footer/fb_logo.png"
 

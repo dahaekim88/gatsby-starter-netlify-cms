@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Col } from "reactstrap"
 
-import { Grid } from "../../../reusable/styledComponents"
+import { Grid } from "../../../styled"
 
 import { sizes, grayBorder, whitegray } from "../../../../constants"
 
