@@ -5,7 +5,7 @@ import { Col, Container } from "reactstrap"
 import StudyInfo from "./info/StudyInfo"
 import Keywords from "./info/Keywords"
 import StudyLeftDetails from "./details/StudyLeftDetails"
-import { Grid } from "../../reusable/styledComponents"
+import { Grid } from "../../styled"
 
 import { sizes, darkwhite } from "../../../constants"
 

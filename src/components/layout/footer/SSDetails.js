@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { MarginBottomContainer } from "../../reusable/styledComponents"
+import { MarginBottomContainer } from "../../styled"
 import { sizes, white } from "../../../constants"
 import Logo from "../../reusable/Logo"
 

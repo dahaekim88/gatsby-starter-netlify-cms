@@ -9,7 +9,7 @@ import {
   grayBorder,
   black,
   sizes,
-} from "../../constants"
+} from "../constants"
 
 export const Background = styled.div`
   padding: 5rem 0;

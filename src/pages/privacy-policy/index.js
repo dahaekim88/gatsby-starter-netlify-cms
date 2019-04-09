@@ -4,10 +4,7 @@ import { Container } from "reactstrap"
 import Layout from "../../components/Layout"
 import PageHeader from "../../components/reusable/PageHeader"
 import PageDetails from "../../components/reusable/PageDetails"
-import {
-  SmallTitle,
-  Background,
-} from "../../components/reusable/styledComponents"
+import { SmallTitle, Background } from "../../components/styled"
 import PrivateTermsAndConditions from "../../components/reusable/privateTermsAndConditions"
 
 import bgUrl from "../../assets/img/topics_bg.jpg"

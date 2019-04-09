@@ -8,7 +8,7 @@ import {
   StyledGrid,
   StyledRow,
   StyledCol,
-} from "../reusable/styledComponents"
+} from "../styled"
 import CourseIntro from "../reusable/CourseIntro"
 import PageHeader from "../reusable/PageHeader"
 

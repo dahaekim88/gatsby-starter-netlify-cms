@@ -17,7 +17,7 @@ import {
   DropdownItem,
 } from "reactstrap"
 
-import { StyledLink } from "./reusable/styledComponents"
+import { StyledLink } from "./styled"
 import Logo from "./reusable/Logo"
 import { isLoggedIn, logout } from "../services/auth"
 import { logoColor } from "../constants"

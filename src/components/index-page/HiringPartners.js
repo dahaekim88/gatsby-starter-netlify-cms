@@ -1,7 +1,7 @@
 import React from "react"
 import styled from "styled-components"
 
-import { Title, SubTitle } from "../reusable/styledComponents"
+import { Title, SubTitle } from "../styled"
 
 const Container = styled.div`
   margin: 7rem 0;

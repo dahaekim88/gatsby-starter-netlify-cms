@@ -13,11 +13,11 @@ import {
   FormButton,
   BorderLine,
   Message,
-} from "../../components/reusable/styledComponents"
+} from "../../components/styled"
 
 import * as auth from "../../services/auth"
 import validate from "../../services/validate"
-import useForm from "../../components/reusable/useForm"
+import useForm from "../../components/hooks/useForm"
 import { blue } from "../../constants"
 
 const LoginPage = () => {

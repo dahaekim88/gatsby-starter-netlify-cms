@@ -7,7 +7,7 @@ import Layout from "../components/Layout"
 import PageHeader from "../components/reusable/PageHeader"
 import AboutPart from "../components/about-page/AboutPart"
 import WhyUsPart from "../components/about-page/WhyUsPart"
-import { DarkBackground } from "../components/reusable/styledComponents"
+import { DarkBackground } from "../components/styled"
 
 export const AboutPageTemplate = ({ title, image, intro, mainpitch }) => (
   <>

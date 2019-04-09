@@ -9,7 +9,7 @@ import {
   SubStrongTitle,
   StyledGrid,
   StyledCol,
-} from "../reusable/styledComponents"
+} from "../styled"
 
 import HowTo from "./HowTo"
 

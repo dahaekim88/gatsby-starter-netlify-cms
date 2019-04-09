@@ -4,7 +4,7 @@ import styled from "styled-components"
 import { Container } from "reactstrap"
 
 import Jumbo from "../reusable/Jumbo"
-import { HoveredButton } from "../reusable/styledComponents"
+import { HoveredButton } from "../styled"
 import bg from "../../assets/img/index/promotionImage.jpg"
 
 const BigText = styled.p`

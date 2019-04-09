@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 import { Col, Row } from "reactstrap"
 
-import { PagePart, SmallTitle } from "../reusable/styledComponents"
+import { PagePart, SmallTitle } from "../styled"
 import PageDetails from "../reusable/PageDetails"
 import WhyUsDetail from "../reusable/DetailWithImage"
 import { sizes } from "../../constants"

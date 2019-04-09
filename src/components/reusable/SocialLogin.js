@@ -2,7 +2,7 @@ import React, { useState } from "react"
 import { GridLoader } from "react-spinners"
 import { css } from "@emotion/core"
 
-import { FormButton } from "./styledComponents"
+import { FormButton } from "../styled"
 import config from "../../../.config"
 import { facebook, google, kakao, kakaoFont, naver } from "../../constants"
 
