@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Container, Form, FormGroup } from "reactstrap"
+import jwtDecode from "jwt-decode"
 
 import Layout from "../../components/Layout"
 import PageHeader from "../../components/reusable/PageHeader"
@@ -22,8 +23,13 @@ import validate from "../../services/validate"
 import { blue } from "../../constants"
 import bgUrl from "../../assets/img/apply_bg.jpg"
 
+import { IAMPORT_KEY } from "../../keys"
+import { SERVER_URL, IMPORT_PG } from "../../../.config"
+
 const ApplyPage = ({ data }) => {
   const courses = data.allMarkdownRemark.edges
+  // console.log("courses: ", courses)
+  const [status, setStatus] = useState("unpaid")
   const [couponChk, setCouponChk] = useState(false)
   const [couponValidity, setCouponValidity] = useState(false)
   const [loading, setLoading] = useState(false)
@@ -32,26 +38,49 @@ const ApplyPage = ({ data }) => {
   const formApply = async () => {
     setLoading(true)
 
+    const token = localStorage.getItem("token")
+    if (token) {
+      const { phone } = jwtDecode(token)
+      values.phone = phone
+    }
+
+    // console.log("values: ", values)
+    const { studyTitle, studyTime, paymentMethod } = values
+
+    const selectedStudy = courses.filter(
+      ({ node }) => node.frontmatter.title === studyTitle
+    )
+    // console.log("selectedStudy: ", selectedStudy)
+    const { id, frontmatter } = selectedStudy[0].node
+    const { price } = frontmatter.info
+
+    const merchant_uid = `studystates_${new Date().getTime()}`
+
     try {
+      const now = new Date()
+      now.setDate(now.getDate() + 1)
+      const vbankDue = `${now.getFullYear().toString() +
+        `0${now.getMonth() + 1}`.slice(-2) +
+        `0${now.getDate()}`.slice(-2)}2359`
+
       const IMP = window.IMP
-      IMP.init("imp83932662")
+      IMP.init(IAMPORT_KEY)
 
       IMP.request_pay(
         {
-          pg: "html5_inicis",
-          pay_method: "card",
-          merchant_uid: "ORD20180131-0000011",
-          name: "노르웨이 회전 의자",
-          amount: 64900,
-          buyer_email: "gildong@gmail.com",
-          buyer_name: "홍길동",
-          buyer_tel: "010-4242-4242",
-          buyer_addr: "서울특별시 강남구 신사동",
-          buyer_postcode: "01181",
+          pg: IMPORT_PG,
+          pay_method: paymentMethod,
+          merchant_uid,
+          name: `${studyTitle}_${studyTime}`,
+          amount: price,
+          buyer_tel: values.phone,
+          // vbank_due: vbankDue,
+          // notice_url: `${API_URL}/payment/notification`,
         },
         rsp => {
           if (rsp.success) {
             console.log("성공")
+            setStatus("paid")
           } else {
             alert("결제에 실패하였습니다 다시 시도해주세요")
           }
@@ -80,13 +109,13 @@ const ApplyPage = ({ data }) => {
           <Background>
             <Form onSubmit={event => handleSubmit(event)}>
               <FormGroup>
-                <StyledLabel for="studyType">스터디 선택</StyledLabel>
+                <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
                 <StyledInput
-                  id="studyType"
-                  name="studyType"
+                  id="studyTitle"
+                  name="studyTitle"
                   type="select"
                   onChange={handleChange}
-                  value={values.studyType || ""}
+                  value={values.studyTitle || ""}
                 >
                   <option hidden>스터디를 선택해주세요</option>
                   {courses.map((course, index) => {
@@ -99,7 +128,7 @@ const ApplyPage = ({ data }) => {
                   })}
                 </StyledInput>
               </FormGroup>
-              {values.studyType ? (
+              {values.studyTitle ? (
                 <FormGroup>
                   <StyledLabel for="studyTime">시간 선택</StyledLabel>
                   <StyledInput
@@ -113,7 +142,7 @@ const ApplyPage = ({ data }) => {
                     {courses
                       .filter(
                         course =>
-                          course.node.frontmatter.title === values.studyType
+                          course.node.frontmatter.title === values.studyTitle
                       )
                       .map((course, index) => {
                         const { info } = course.node.frontmatter
@@ -150,7 +179,7 @@ const ApplyPage = ({ data }) => {
                 <StyledLabel for="coupon">쿠폰 코드</StyledLabel>
                 <StyledInput
                   id="coupon"
-                  fluid
+                  autoFocus
                   name="coupon"
                   type="text"
                   onChange={handleChange}
@@ -199,6 +228,7 @@ export const pageQuery = graphql`
     ) {
       edges {
         node {
+          id
           frontmatter {
             title
             info {
