@@ -291,7 +291,7 @@ export const FormButton = styled.button(
 )
 
 export const ButtonContainer = styled.div`
-  margin: 5rem 0;
+  margin-top: 5rem;
 `
 
 export const BorderLine = styled.div`
@@ -377,16 +377,20 @@ export const Modal = styled.div`
 `
 
 export const PrivateTermsAndConditionsContainer = styled.div`
-  height: 40%;
+  height: 50%;
   width: 90%;
+  padding-top: 2%;
   margin-bottom: 5%;
   overflow-y: scroll;
   border: 1px solid lightGrey;
 `
 
 export const RefundPolicyContainer = styled.div`
-  height: 40%;
+  height: 30%;
   width: 90%;
   overflow-y: scroll;
   border: 1px solid lightGrey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `

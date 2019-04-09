@@ -1,17 +1,25 @@
 import React, { useState } from "react"
 import { graphql } from "gatsby"
 import { Container, Form, FormGroup } from "reactstrap"
+import styled from "styled-components"
 import jwtDecode from "jwt-decode"
 
 import Layout from "../../components/Layout"
 import PageHeader from "../../components/reusable/PageHeader"
 import PageDetails from "../../components/reusable/PageDetails"
+import PrivateTermsAndConditions from "../../components/reusable/privateTermsAndConditions"
+import RefundPolicy from "../../components/reusable/refundPolicy"
 import {
+  Grid,
   SmallTitle,
   Background,
   StyledLabel,
   StyledInput,
   FormButton,
+  ModalContainer,
+  Modal,
+  PrivateTermsAndConditionsContainer,
+  RefundPolicyContainer,
   FormQuestionLabel,
   StyledSpan,
   ButtonContainer,
@@ -25,6 +33,12 @@ import bgUrl from "../../assets/img/apply_bg.jpg"
 
 import { IAMPORT_KEY } from "../../keys"
 import { SERVER_URL, IMPORT_PG } from "../../../.config"
+
+const StyledGrid = styled(Grid)`
+  .view {
+    display: flex;
+  }
+`
 
 const ApplyPage = ({ data }) => {
   const courses = data.allMarkdownRemark.edges
@@ -42,6 +56,9 @@ const ApplyPage = ({ data }) => {
     if (token) {
       const { phone } = jwtDecode(token)
       values.phone = phone
+    } else {
+      alert("로그인 후 스터디 신청이 가능합니다.")
+      return
     }
 
     // console.log("values: ", values)
@@ -100,6 +117,12 @@ const ApplyPage = ({ data }) => {
     validate
   )
 
+  const handlePrivateTermsAndConditions = () => {
+    document
+      .getElementsByClassName("formapplypreextra-modal")[0]
+      .classList.toggle("view")
+  }
+
   return (
     <Layout>
       <PageHeader title="Apply" bgUrl={bgUrl} />
@@ -107,6 +130,24 @@ const ApplyPage = ({ data }) => {
         <PageDetails align="left">
           <SmallTitle>실무 성장의 첫걸음, Study States</SmallTitle>
           <Background>
+            <StyledGrid>
+              <ModalContainer
+                className="formapplypreextra-modal"
+                onClick={e =>
+                  e.target.classList.contains("view") &&
+                  handlePrivateTermsAndConditions()
+                }
+              >
+                <Modal>
+                  <PrivateTermsAndConditionsContainer>
+                    <PrivateTermsAndConditions />
+                  </PrivateTermsAndConditionsContainer>
+                  <RefundPolicyContainer>
+                    <RefundPolicy />
+                  </RefundPolicyContainer>
+                </Modal>
+              </ModalContainer>
+            </StyledGrid>
             <Form onSubmit={event => handleSubmit(event)}>
               <FormGroup>
                 <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
@@ -192,9 +233,7 @@ const ApplyPage = ({ data }) => {
               </FormGroup>
               <FormQuestionLabel>
                 스터디 신청과 동시에 스터디스테이츠
-                <StyledSpan
-                // onClick={this.handlePrivateTermsAndConditions}
-                >
+                <StyledSpan onClick={handlePrivateTermsAndConditions}>
                   환불약관, 개인정보취급방침 및 이용약관{" "}
                 </StyledSpan>
                 에 동의합니다.
