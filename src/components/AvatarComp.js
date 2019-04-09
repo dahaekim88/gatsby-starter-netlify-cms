@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import jwtDecode from "jwt-decode"
-import { Avatar } from "antd"
+import { Avatar, Tooltip } from "antd"
 import crypto from "crypto"
 import "antd/dist/antd.css"
 
@@ -39,8 +39,13 @@ class AvatarComp extends Component {
 
     return (
       <span>
-        {!isLoggedIn() && <Avatar icon="user" />}
+        <Tooltip
+          placement="topLeft"
+          title="자신의 아바타 이미지가 설정이 안 되어 있다면 Gravatar https://ko.gravatar.com/ 에서 스터디스테이츠 가입 시 이용한 이메일의 아바타를 설정해보세요."
+        >
+          {!isLoggedIn() && <Avatar icon="user" />}
         {isLoggedIn() && <Avatar src={gravatar} />}
+        </Tooltip>
         {message}
       </span>
     )
