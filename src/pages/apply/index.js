@@ -55,9 +55,10 @@ const ApplyPage = ({ data }) => {
 
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
+  const [user, setUser] = useState({})
   const [payment, setPayment] = useState({})
   const [coupon, setCoupon] = useState({})
-  const [status, setStatus] = useState("paid")
+  const [status, setStatus] = useState("unpaid")
 
   const formApply = async () => {
     setLoading(true)
@@ -65,69 +66,97 @@ const ApplyPage = ({ data }) => {
     const token = localStorage.getItem("token")
     if (token) {
       const { id, name, email, phone } = jwtDecode(token)
-      values.id = id
-      values.name = name
-      values.email = email
-      values.phone = phone
+      // TODO: asynchronous
+      setUser(user => ({
+        ...user,
+        id,
+        name,
+        email,
+        phone,
+      }))
     } else {
       alert("로그인 후 스터디 신청이 가능합니다.")
       return
     }
 
     // console.log("values: ", values)
-    const { studyTitle, studyTime, paymentMethod } = values
+    const { study_title, study_time, pay_method } = values
 
     const selectedStudy = courses.filter(
-      ({ node }) => node.frontmatter.title === studyTitle
+      ({ node }) => node.frontmatter.title === study_title
     )
     // console.log("selectedStudy: ", selectedStudy)
 
-    const { id, frontmatter } = selectedStudy[0].node
-    const { price } = frontmatter.info
-    const finalPrice = price - price * coupon.discount
-    // console.log("finalPrice: ", finalPrice)
+    const study_id = selectedStudy[0].node.id
+    const { price } = selectedStudy[0].node.frontmatter.info
+    const amount = price - price * coupon.discount
+    // console.log("amount: ", amount)
 
     const merchant_uid = `studystates_${new Date().getTime()}`
 
     try {
-      const now = new Date()
-      now.setDate(now.getDate() + 1)
-      const vbankDue = `${now.getFullYear().toString() +
-        `0${now.getMonth() + 1}`.slice(-2) +
-        `0${now.getDate()}`.slice(-2)}2359`
-
-      const IMP = window.IMP
-      IMP.init(IAMPORT_KEY)
-
-      IMP.request_pay(
-        {
-          pg: IMPORT_PG,
-          pay_method: paymentMethod,
+      console.log("user_id: ", user.id)
+      console.log("study_id: ", study_id)
+      await axios
+        .post(`${SERVER_URL}/payment`, {
+          user_id: user.id,
+          pay_method,
+          study_id,
           merchant_uid,
-          name: `${studyTitle}_${studyTime}`,
-          amount: finalPrice,
-          buyer_name: values.name,
-          buyer_email: values.email,
-          buyer_tel: values.phone,
-          // vbank_due: vbankDue,
-          // notice_url: `${API_URL}/payment/notification`,
-        },
-        rsp => {
-          console.log("rsp: ", rsp)
-          if (rsp.success) {
-            console.log("성공")
-            setPayment({
-              ...rsp,
-            })
-            setStatus(rsp.status)
+          amount,
+        })
+        .then(res => {
+          console.log("res: ", res)
+          if (res.status === 200) {
+            console.log("res.data: ", res.data)
+            const { mechant_uid } = res.data
+
+            const now = new Date()
+            now.setDate(now.getDate() + 1)
+            const vbankDue = `${now.getFullYear().toString() +
+              `0${now.getMonth() + 1}`.slice(-2) +
+              `0${now.getDate()}`.slice(-2)}2359`
+
+            const IMP = window.IMP
+            IMP.init(IAMPORT_KEY)
+
+            IMP.request_pay(
+              {
+                pg: IMPORT_PG,
+                pay_method,
+                merchant_uid,
+                name: `${study_title}_${study_time}`,
+                amount,
+                buyer_name: user.name,
+                buyer_email: user.email,
+                buyer_tel: user.phone,
+                // vbank_due: vbankDue,
+                // notice_url: `${API_URL}/payment/notification`,
+              },
+              rsp => {
+                console.log("rsp: ", rsp)
+                if (rsp.success) {
+                  console.log("성공")
+                  setPayment({
+                    ...rsp,
+                  })
+                  setStatus(rsp.status)
+                } else {
+                  alert("결제에 실패하였습니다 다시 시도해주세요")
+                }
+              }
+            )
           } else {
-            alert("결제에 실패하였습니다 다시 시도해주세요")
+            // TODO: error handling
+            alert(`${res.status}: ${res.statusText}`)
+            // setApiError()
+            console.log("Not received response!")
           }
-        }
-      )
+        })
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         // console.log("TCL: formApply -> ex.response", ex.response)
+        // TODO: error handling
         const { data } = ex.response
         setApiError(data)
       }
@@ -138,6 +167,13 @@ const ApplyPage = ({ data }) => {
     formApply,
     validate
   )
+
+  const handleErrors = errors => {
+    if (!Array.isArray(errors) && !errors.length > 0) {
+      return <Message>{errors[0]}</Message>
+    }
+    return errors.map(e => <Message>{e}</Message>)
+  }
 
   const handlePrivateTermsAndConditions = () => {
     document
@@ -179,7 +215,8 @@ const ApplyPage = ({ data }) => {
     }
   }
 
-  // console.log("values: ", values)
+  console.log("values: ", values)
+  console.log("user: ", user)
   // console.log("coupon: ", coupon)
   console.log("payment: ", payment)
   console.log("status: ", status)
@@ -202,7 +239,7 @@ const ApplyPage = ({ data }) => {
                   <SmallTitle>스터디 신청이 완료되었습니다.</SmallTitle>
                   <WelcomeMessage>
                     <strong>
-                      {values.name}님, {values.studyTime} {values.studyTitle}{" "}
+                      {user.name}님, {values.study_time} {values.study_title}{" "}
                       스터디 신청이 접수되었습니다.
                     </strong>
                   </WelcomeMessage>
@@ -234,7 +271,7 @@ const ApplyPage = ({ data }) => {
                   )}
                 </PageDetails>
                 <PageFooter>
-                  스터디 시작일이 이메일 ( <strong>{values.email}</strong> ) 로
+                  스터디 시작일이 이메일 ( <strong>{user.email}</strong> ) 로
                   안내사항이 나갈 예정입니다.
                   <br />
                   스터디스테이츠 스터디를 신청해주셔서 감사합니다.
@@ -267,14 +304,15 @@ const ApplyPage = ({ data }) => {
                     apiError.length !== 0 || Object.entries(errors).length !== 0
                   }
                 >
+                  {apiError.length !== 0 ? handleErrors(errors) : null}
                   <FormGroup>
-                    <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
+                    <StyledLabel for="study_title">스터디 선택</StyledLabel>
                     <StyledInput
-                      id="studyTitle"
-                      name="studyTitle"
+                      id="study_title"
+                      name="study_title"
                       type="select"
                       onChange={handleChange}
-                      value={values.studyTitle || ""}
+                      value={values.study_title || ""}
                     >
                       <option hidden>스터디를 선택해주세요</option>
                       {courses.map((course, index) => {
@@ -286,26 +324,26 @@ const ApplyPage = ({ data }) => {
                         )
                       })}
                     </StyledInput>
-                    {errors.studyTitle && (
-                      <Message>{errors.studyTitle}</Message>
+                    {errors.study_title && (
+                      <Message>{errors.study_title}</Message>
                     )}
                   </FormGroup>
-                  {values.studyTitle ? (
+                  {values.study_title ? (
                     <FormGroup>
-                      <StyledLabel for="studyTime">시간 선택</StyledLabel>
+                      <StyledLabel for="study_time">시간 선택</StyledLabel>
                       <StyledInput
-                        id="studyTime"
-                        name="studyTime"
+                        id="study_time"
+                        name="study_time"
                         type="select"
                         onChange={handleChange}
-                        value={values.studyTime || ""}
+                        value={values.study_time || ""}
                       >
                         <option hidden>스터디 시간을 선택해주세요</option>
                         {courses
                           .filter(
                             course =>
                               course.node.frontmatter.title ===
-                              values.studyTitle
+                              values.study_title
                           )
                           .map((course, index) => {
                             const { info } = course.node.frontmatter
@@ -319,29 +357,29 @@ const ApplyPage = ({ data }) => {
                             )
                           })}
                       </StyledInput>
-                      {errors.studyTime && (
-                        <Message>{errors.studyTime}</Message>
+                      {errors.study_time && (
+                        <Message>{errors.study_time}</Message>
                       )}
                     </FormGroup>
                   ) : (
                     ""
                   )}
                   <FormGroup>
-                    <StyledLabel for="paymentMethod">결제 방법</StyledLabel>
+                    <StyledLabel for="pay_method">결제 방법</StyledLabel>
                     <StyledInput
-                      id="paymentMethod"
-                      name="paymentMethod"
+                      id="pay_method"
+                      name="pay_method"
                       type="select"
                       onChange={handleChange}
-                      value={values.paymentMethod || ""}
+                      value={values.pay_method || ""}
                     >
                       <option hidden>결제방법을 선택해주세요</option>
                       <option value="card">BC카드 외 다른 카드</option>
                       <option value="bccard">BC카드</option>
                       <option value="vbank">계좌이체</option>
                     </StyledInput>
-                    {errors.paymentMethod && (
-                      <Message>{errors.paymentMethod}</Message>
+                    {errors.pay_method && (
+                      <Message>{errors.pay_method}</Message>
                     )}
                   </FormGroup>
                   <FormGroup>
