@@ -331,6 +331,17 @@ export const Paragraph = styled.p`
   text-align: center;
 `
 
+export const Emphasis = styled.p`
+  display: inline;
+  font-size: 2rem;
+  color: #0077ff;
+  font-weight: bold;
+`
+
+export const PageFooter = styled(Paragraph)`
+  padding: 3rem 2rem 4rem 1rem;
+`
+
 export const FormQuestionLabel = styled.div`
   font-size: 1.5rem;
   margin-top: 2rem;
