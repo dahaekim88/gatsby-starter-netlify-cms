@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import { Container, Form, FormGroup } from "reactstrap"
 import styled from "styled-components"
 import jwtDecode from "jwt-decode"
+import axios from "axios"
 
 import Layout from "../../components/Layout"
 import PageHeader from "../../components/reusable/PageHeader"
@@ -43,11 +44,14 @@ const StyledGrid = styled(Grid)`
 const ApplyPage = ({ data }) => {
   const courses = data.allMarkdownRemark.edges
   // console.log("courses: ", courses)
-  const [status, setStatus] = useState("unpaid")
-  const [couponChk, setCouponChk] = useState(false)
-  const [couponValidity, setCouponValidity] = useState(false)
+
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
+  const [coupon, setCoupon] = useState("")
+  const [couponChk, setCouponChk] = useState(false)
+  const [couponValidity, setCouponValidity] = useState(false)
+  const [discount, setDiscount] = useState(0)
+  const [status, setStatus] = useState("unpaid")
 
   const formApply = async () => {
     setLoading(true)
@@ -68,8 +72,11 @@ const ApplyPage = ({ data }) => {
       ({ node }) => node.frontmatter.title === studyTitle
     )
     // console.log("selectedStudy: ", selectedStudy)
+
     const { id, frontmatter } = selectedStudy[0].node
     const { price } = frontmatter.info
+    const finalPrice = price - price * discount
+    // console.log("finalPrice: ", finalPrice)
 
     const merchant_uid = `studystates_${new Date().getTime()}`
 
@@ -89,7 +96,7 @@ const ApplyPage = ({ data }) => {
           pay_method: paymentMethod,
           merchant_uid,
           name: `${studyTitle}_${studyTime}`,
-          amount: price,
+          amount: finalPrice,
           buyer_tel: values.phone,
           // vbank_due: vbankDue,
           // notice_url: `${API_URL}/payment/notification`,
@@ -123,6 +130,35 @@ const ApplyPage = ({ data }) => {
       .classList.toggle("view")
   }
 
+  const onCouponChange = async e => {
+    const couponVal = e.target.value
+
+    if (couponVal && couponVal.length > 9) {
+      setCoupon(couponVal)
+      setCouponChk(true)
+      try {
+        const couponData = await axios
+          .get(`${SERVER_URL}/coupon`, { params: { coupon: couponVal } })
+          .then(res => {
+            return res.data
+          })
+
+        const { couponValidity, discount } = couponData
+        setCouponValidity(couponValidity)
+        setDiscount(discount)
+      } catch (ex) {
+        console.log(ex)
+      }
+    } else {
+      setCoupon(couponVal)
+      setCouponChk(false)
+      setCouponValidity(false)
+      setDiscount(0)
+    }
+  }
+
+  console.log("values: ", values)
+
   return (
     <Layout>
       <PageHeader title="Apply" bgUrl={bgUrl} />
@@ -148,7 +184,13 @@ const ApplyPage = ({ data }) => {
                 </Modal>
               </ModalContainer>
             </StyledGrid>
-            <Form onSubmit={event => handleSubmit(event)}>
+            <Form
+              onSubmit={event => handleSubmit(event)}
+              loading={loading}
+              error={
+                apiError.length !== 0 || Object.entries(errors).length !== 0
+              }
+            >
               <FormGroup>
                 <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
                 <StyledInput
@@ -168,6 +210,7 @@ const ApplyPage = ({ data }) => {
                     )
                   })}
                 </StyledInput>
+                {errors.studyTitle && <Message>{errors.studyTitle}</Message>}
               </FormGroup>
               {values.studyTitle ? (
                 <FormGroup>
@@ -197,6 +240,7 @@ const ApplyPage = ({ data }) => {
                         )
                       })}
                   </StyledInput>
+                  {errors.studyTime && <Message>{errors.studyTime}</Message>}
                 </FormGroup>
               ) : (
                 ""
@@ -215,6 +259,9 @@ const ApplyPage = ({ data }) => {
                   <option value="bccard">BC카드</option>
                   <option value="vbank">계좌이체</option>
                 </StyledInput>
+                {errors.paymentMethod && (
+                  <Message>{errors.paymentMethod}</Message>
+                )}
               </FormGroup>
               <FormGroup>
                 <StyledLabel for="coupon">쿠폰 코드</StyledLabel>
@@ -223,13 +270,19 @@ const ApplyPage = ({ data }) => {
                   autoFocus
                   name="coupon"
                   type="text"
-                  onChange={handleChange}
-                  value={values.coupon || ""}
+                  onChange={onCouponChange}
+                  value={coupon || ""}
                   placeholder="가지고 계신 쿠폰코드를 입력해주세요"
-                  // couponValidity={couponInfo.couponValidity}
-                  // couponChk={couponInfo.couponChk}
                 />
-                {errors.coupon && <Message>{errors.coupon}</Message>}
+                {couponChk && !couponValidity ? (
+                  <Message>* 유효하지 않은 쿠폰입니다</Message>
+                ) : couponChk && couponValidity ? (
+                  <Message style={{ color: "#006400" }}>
+                    * 유효한 쿠폰입니다
+                  </Message>
+                ) : (
+                  ""
+                )}
               </FormGroup>
               <FormQuestionLabel>
                 스터디 신청과 동시에 스터디스테이츠
