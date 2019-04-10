@@ -303,7 +303,7 @@ export const BorderLine = styled.div`
 `
 
 export const Message = styled.p`
-  color: red;
+  color: #792a26;
   font-size: 1.2rem;
 `
 

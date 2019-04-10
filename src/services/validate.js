@@ -52,11 +52,17 @@ const validate = (values, clicked) => {
         errors.phone = "휴대폰 형식에 맞게 입력해주세요"
       }
       return errors
-      
+
     case "신청하기":
-      // if (values.coupon !== "something") {
-      //   errors.coupon = "유효하지 않은 쿠폰입니다"
-      // }
+      if (!values.studyTitle) {
+        errors.studyTitle = "스터디를 반드시 선택해주세요"
+      }
+      if (!values.studyTime) {
+        errors.studyTime = "스터디 시간을 반드시 선택해주세요"
+      }
+      if (!values.paymentMethod) {
+        errors.paymentMethod = "결제 방법을 반드시 선택해주세요"
+      }
       return errors
 
     default:
