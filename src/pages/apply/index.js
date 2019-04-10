@@ -25,10 +25,14 @@ import {
   StyledSpan,
   ButtonContainer,
   Message,
+  Paragraph,
+  PageFooter,
+  Emphasis,
 } from "../../components/styled"
 
 import useForm from "../../components/hooks/useForm"
 import validate from "../../services/validate"
+import AddComma from "../../services/addComma"
 import { blue } from "../../constants"
 import bgUrl from "../../assets/img/apply_bg.jpg"
 
@@ -41,24 +45,29 @@ const StyledGrid = styled(Grid)`
   }
 `
 
+const WelcomeMessage = styled(Paragraph)`
+  font-size: 1.8rem;
+`
+
 const ApplyPage = ({ data }) => {
   const courses = data.allMarkdownRemark.edges
   // console.log("courses: ", courses)
 
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
-  const [coupon, setCoupon] = useState("")
-  const [couponChk, setCouponChk] = useState(false)
-  const [couponValidity, setCouponValidity] = useState(false)
-  const [discount, setDiscount] = useState(0)
-  const [status, setStatus] = useState("unpaid")
+  const [payment, setPayment] = useState({})
+  const [coupon, setCoupon] = useState({})
+  const [status, setStatus] = useState("paid")
 
   const formApply = async () => {
     setLoading(true)
 
     const token = localStorage.getItem("token")
     if (token) {
-      const { phone } = jwtDecode(token)
+      const { id, name, email, phone } = jwtDecode(token)
+      values.id = id
+      values.name = name
+      values.email = email
       values.phone = phone
     } else {
       alert("로그인 후 스터디 신청이 가능합니다.")
@@ -75,7 +84,7 @@ const ApplyPage = ({ data }) => {
 
     const { id, frontmatter } = selectedStudy[0].node
     const { price } = frontmatter.info
-    const finalPrice = price - price * discount
+    const finalPrice = price - price * coupon.discount
     // console.log("finalPrice: ", finalPrice)
 
     const merchant_uid = `studystates_${new Date().getTime()}`
@@ -97,14 +106,20 @@ const ApplyPage = ({ data }) => {
           merchant_uid,
           name: `${studyTitle}_${studyTime}`,
           amount: finalPrice,
+          buyer_name: values.name,
+          buyer_email: values.email,
           buyer_tel: values.phone,
           // vbank_due: vbankDue,
           // notice_url: `${API_URL}/payment/notification`,
         },
         rsp => {
+          console.log("rsp: ", rsp)
           if (rsp.success) {
             console.log("성공")
-            setStatus("paid")
+            setPayment({
+              ...rsp,
+            })
+            setStatus(rsp.status)
           } else {
             alert("결제에 실패하였습니다 다시 시도해주세요")
           }
@@ -134,8 +149,10 @@ const ApplyPage = ({ data }) => {
     const couponVal = e.target.value
 
     if (couponVal && couponVal.length > 9) {
-      setCoupon(couponVal)
-      setCouponChk(true)
+      setCoupon({
+        couponVal,
+        couponChk: true,
+      })
       try {
         const couponData = await axios
           .get(`${SERVER_URL}/coupon`, { params: { coupon: couponVal } })
@@ -144,20 +161,28 @@ const ApplyPage = ({ data }) => {
           })
 
         const { couponValidity, discount } = couponData
-        setCouponValidity(couponValidity)
-        setDiscount(discount)
+        setCoupon(coupon => ({
+          ...coupon,
+          couponValidity,
+          discount,
+        }))
       } catch (ex) {
         console.log(ex)
       }
     } else {
-      setCoupon(couponVal)
-      setCouponChk(false)
-      setCouponValidity(false)
-      setDiscount(0)
+      setCoupon({
+        couponVal,
+        couponChk: false,
+        couponValidity: false,
+        discount: 0,
+      })
     }
   }
 
-  console.log("values: ", values)
+  // console.log("values: ", values)
+  // console.log("coupon: ", coupon)
+  console.log("payment: ", payment)
+  console.log("status: ", status)
 
   return (
     <Layout>
@@ -166,143 +191,201 @@ const ApplyPage = ({ data }) => {
         <PageDetails align="left">
           <SmallTitle>실무 성장의 첫걸음, Study States</SmallTitle>
           <Background>
-            <StyledGrid>
-              <ModalContainer
-                className="formapplypreextra-modal"
-                onClick={e =>
-                  e.target.classList.contains("view") &&
-                  handlePrivateTermsAndConditions()
-                }
-              >
-                <Modal>
-                  <PrivateTermsAndConditionsContainer>
-                    <PrivateTermsAndConditions />
-                  </PrivateTermsAndConditionsContainer>
-                  <RefundPolicyContainer>
-                    <RefundPolicy />
-                  </RefundPolicyContainer>
-                </Modal>
-              </ModalContainer>
-            </StyledGrid>
-            <Form
-              onSubmit={event => handleSubmit(event)}
-              loading={loading}
-              error={
-                apiError.length !== 0 || Object.entries(errors).length !== 0
-              }
-            >
-              <FormGroup>
-                <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
-                <StyledInput
-                  id="studyTitle"
-                  name="studyTitle"
-                  type="select"
-                  onChange={handleChange}
-                  value={values.studyTitle || ""}
+            {status === "paid" ? (
+              <>
+                <PageDetails
+                  title="PAYMENT"
+                  padding="2rem 5rem 0 5rem"
+                  md={12}
+                  sm={12}
                 >
-                  <option hidden>스터디를 선택해주세요</option>
-                  {courses.map((course, index) => {
-                    const { title } = course.node.frontmatter
-                    return (
-                      <option value={title} key={index}>
-                        {title}
-                      </option>
-                    )
-                  })}
-                </StyledInput>
-                {errors.studyTitle && <Message>{errors.studyTitle}</Message>}
-              </FormGroup>
-              {values.studyTitle ? (
-                <FormGroup>
-                  <StyledLabel for="studyTime">시간 선택</StyledLabel>
-                  <StyledInput
-                    id="studyTime"
-                    name="studyTime"
-                    type="select"
-                    onChange={handleChange}
-                    value={values.studyTime || ""}
+                  <SmallTitle>스터디 신청이 완료되었습니다.</SmallTitle>
+                  <WelcomeMessage>
+                    <strong>
+                      {values.name}님, {values.studyTime} {values.studyTitle}{" "}
+                      스터디 신청이 접수되었습니다.
+                    </strong>
+                  </WelcomeMessage>
+                  {payment.pay_method === "vbank" ? (
+                    <section>
+                      <div>
+                        (가상)계좌번호:{" "}
+                        <Emphasis>
+                          {`${payment.vbank_name} ${payment.vbank_num}`}
+                        </Emphasis>{" "}
+                      </div>
+                      <div>
+                        결제 필요금액 :{" "}
+                        <Emphasis>{AddComma(payment.paid_amount)}</Emphasis> 원
+                      </div>
+                      <div>
+                        결제 기한 : <Emphasis>{payment.vbank_date}</Emphasis>
+                      </div>
+                    </section>
+                  ) : (
+                    <section>
+                      <WelcomeMessage>
+                        결제금액: {payment.paid_amount} 원 (카드 결제)
+                      </WelcomeMessage>
+                      <WelcomeMessage>
+                        카드승인번호: {payment.apply_num}
+                      </WelcomeMessage>
+                    </section>
+                  )}
+                </PageDetails>
+                <PageFooter>
+                  스터디 시작일이 이메일 ( <strong>{values.email}</strong> ) 로
+                  안내사항이 나갈 예정입니다.
+                  <br />
+                  스터디스테이츠 스터디를 신청해주셔서 감사합니다.
+                </PageFooter>
+              </>
+            ) : (
+              <>
+                <StyledGrid>
+                  <ModalContainer
+                    className="formapplypreextra-modal"
+                    onClick={e =>
+                      e.target.classList.contains("view") &&
+                      handlePrivateTermsAndConditions()
+                    }
                   >
-                    <option hidden>스터디 시간을 선택해주세요</option>
-                    {courses
-                      .filter(
-                        course =>
-                          course.node.frontmatter.title === values.studyTitle
-                      )
-                      .map((course, index) => {
-                        const { info } = course.node.frontmatter
-                        const time = `${info.studyTimes.dayOfWeek}_${
-                          info.studyTimes.time
-                        }`
+                    <Modal>
+                      <PrivateTermsAndConditionsContainer>
+                        <PrivateTermsAndConditions />
+                      </PrivateTermsAndConditionsContainer>
+                      <RefundPolicyContainer>
+                        <RefundPolicy />
+                      </RefundPolicyContainer>
+                    </Modal>
+                  </ModalContainer>
+                </StyledGrid>
+                <Form
+                  onSubmit={event => handleSubmit(event)}
+                  loading={loading}
+                  error={
+                    apiError.length !== 0 || Object.entries(errors).length !== 0
+                  }
+                >
+                  <FormGroup>
+                    <StyledLabel for="studyTitle">스터디 선택</StyledLabel>
+                    <StyledInput
+                      id="studyTitle"
+                      name="studyTitle"
+                      type="select"
+                      onChange={handleChange}
+                      value={values.studyTitle || ""}
+                    >
+                      <option hidden>스터디를 선택해주세요</option>
+                      {courses.map((course, index) => {
+                        const { title } = course.node.frontmatter
                         return (
-                          <option value={time} key={index}>
-                            {time}
+                          <option value={title} key={index}>
+                            {title}
                           </option>
                         )
                       })}
-                  </StyledInput>
-                  {errors.studyTime && <Message>{errors.studyTime}</Message>}
-                </FormGroup>
-              ) : (
-                ""
-              )}
-              <FormGroup>
-                <StyledLabel for="paymentMethod">결제 방법</StyledLabel>
-                <StyledInput
-                  id="paymentMethod"
-                  name="paymentMethod"
-                  type="select"
-                  onChange={handleChange}
-                  value={values.paymentMethod || ""}
-                >
-                  <option hidden>결제방법을 선택해주세요</option>
-                  <option value="card">BC카드 외 다른 카드</option>
-                  <option value="bccard">BC카드</option>
-                  <option value="vbank">계좌이체</option>
-                </StyledInput>
-                {errors.paymentMethod && (
-                  <Message>{errors.paymentMethod}</Message>
-                )}
-              </FormGroup>
-              <FormGroup>
-                <StyledLabel for="coupon">쿠폰 코드</StyledLabel>
-                <StyledInput
-                  id="coupon"
-                  autoFocus
-                  name="coupon"
-                  type="text"
-                  onChange={onCouponChange}
-                  value={coupon || ""}
-                  placeholder="가지고 계신 쿠폰코드를 입력해주세요"
-                />
-                {couponChk && !couponValidity ? (
-                  <Message>* 유효하지 않은 쿠폰입니다</Message>
-                ) : couponChk && couponValidity ? (
-                  <Message style={{ color: "#006400" }}>
-                    * 유효한 쿠폰입니다
-                  </Message>
-                ) : (
-                  ""
-                )}
-              </FormGroup>
-              <FormQuestionLabel>
-                스터디 신청과 동시에 스터디스테이츠
-                <StyledSpan onClick={handlePrivateTermsAndConditions}>
-                  환불약관, 개인정보취급방침 및 이용약관{" "}
-                </StyledSpan>
-                에 동의합니다.
-              </FormQuestionLabel>
-              <ButtonContainer>
-                <FormButton
-                  type="submit"
-                  background={blue}
-                  color="#fff"
-                  onClick={handleClick}
-                  value="신청하기"
-                >
-                  신청하기
-                </FormButton>
-              </ButtonContainer>
-            </Form>
+                    </StyledInput>
+                    {errors.studyTitle && (
+                      <Message>{errors.studyTitle}</Message>
+                    )}
+                  </FormGroup>
+                  {values.studyTitle ? (
+                    <FormGroup>
+                      <StyledLabel for="studyTime">시간 선택</StyledLabel>
+                      <StyledInput
+                        id="studyTime"
+                        name="studyTime"
+                        type="select"
+                        onChange={handleChange}
+                        value={values.studyTime || ""}
+                      >
+                        <option hidden>스터디 시간을 선택해주세요</option>
+                        {courses
+                          .filter(
+                            course =>
+                              course.node.frontmatter.title ===
+                              values.studyTitle
+                          )
+                          .map((course, index) => {
+                            const { info } = course.node.frontmatter
+                            const time = `${info.studyTimes.dayOfWeek}_${
+                              info.studyTimes.time
+                            }`
+                            return (
+                              <option value={time} key={index}>
+                                {time}
+                              </option>
+                            )
+                          })}
+                      </StyledInput>
+                      {errors.studyTime && (
+                        <Message>{errors.studyTime}</Message>
+                      )}
+                    </FormGroup>
+                  ) : (
+                    ""
+                  )}
+                  <FormGroup>
+                    <StyledLabel for="paymentMethod">결제 방법</StyledLabel>
+                    <StyledInput
+                      id="paymentMethod"
+                      name="paymentMethod"
+                      type="select"
+                      onChange={handleChange}
+                      value={values.paymentMethod || ""}
+                    >
+                      <option hidden>결제방법을 선택해주세요</option>
+                      <option value="card">BC카드 외 다른 카드</option>
+                      <option value="bccard">BC카드</option>
+                      <option value="vbank">계좌이체</option>
+                    </StyledInput>
+                    {errors.paymentMethod && (
+                      <Message>{errors.paymentMethod}</Message>
+                    )}
+                  </FormGroup>
+                  <FormGroup>
+                    <StyledLabel for="coupon">쿠폰 코드</StyledLabel>
+                    <StyledInput
+                      id="coupon"
+                      autoFocus
+                      name="coupon"
+                      type="text"
+                      onChange={onCouponChange}
+                      value={coupon.couponVal || ""}
+                      placeholder="가지고 계신 쿠폰코드를 입력해주세요"
+                    />
+                    {coupon.couponChk && !coupon.couponValidity ? (
+                      <Message>* 유효하지 않은 쿠폰입니다</Message>
+                    ) : coupon.couponChk && coupon.couponValidity ? (
+                      <Message style={{ color: "#006400" }}>
+                        * 유효한 쿠폰입니다
+                      </Message>
+                    ) : (
+                      ""
+                    )}
+                  </FormGroup>
+                  <FormQuestionLabel>
+                    스터디 신청과 동시에 스터디스테이츠
+                    <StyledSpan onClick={handlePrivateTermsAndConditions}>
+                      환불약관, 개인정보취급방침 및 이용약관{" "}
+                    </StyledSpan>
+                    에 동의합니다.
+                  </FormQuestionLabel>
+                  <ButtonContainer>
+                    <FormButton
+                      type="submit"
+                      background={blue}
+                      color="#fff"
+                      onClick={handleClick}
+                      value="신청하기"
+                    >
+                      신청하기
+                    </FormButton>
+                  </ButtonContainer>
+                </Form>
+              </>
+            )}
           </Background>
         </PageDetails>
       </Container>
