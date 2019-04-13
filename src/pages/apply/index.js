@@ -51,14 +51,17 @@ const ApplyPage = ({ data }) => {
 
     const study_id = selectedStudy[0].node.id
     const { price } = selectedStudy[0].node.frontmatter.info
-    const amount = price - price * coupon.discount
+    const amount = price - price * coupon.discount // TODO: test
     // console.log("amount: ", amount)
+
+    // const amount = 1004 // TODO: test
 
     const merchant_uid = `studystates_${new Date().getTime()}`
 
     try {
       await axios
         .post(`${SERVER_URL}/payment`, {
+          // TODO: test
           user_id: values.id,
           pay_method,
           study_id,
@@ -67,7 +70,7 @@ const ApplyPage = ({ data }) => {
         })
         .then(res => {
           console.log("res: ", res)
-          if (res.status === 200) {
+          if (res.data.success) {
             console.log("res.data: ", res.data)
             const { merchant_uid } = res.data
 
@@ -80,32 +83,108 @@ const ApplyPage = ({ data }) => {
             const IMP = window.IMP
             IMP.init(IAMPORT_KEY)
 
-            IMP.request_pay(
-              {
-                pg: IMPORT_PG,
-                pay_method,
-                merchant_uid,
-                name: `${study_title}_${study_time}`,
-                amount,
-                buyer_name: values.name,
-                buyer_email: values.email,
-                buyer_tel: values.phone,
-                vbank_due,
-                // notice_url: `${SERVER_URL}/payment/notification`,
-              },
-              rsp => {
-                console.log("rsp: ", rsp)
-                if (rsp.success) {
-                  console.log("성공")
-                  setPayment({
-                    ...rsp,
-                  })
-                  setStatus(rsp.status)
-                } else {
-                  alert("결제에 실패하였습니다 다시 시도해주세요")
-                }
-              }
-            )
+            switch (pay_method) {
+              case "vbank":
+                IMP.request_pay(
+                  {
+                    pg: IMPORT_PG,
+                    pay_method,
+                    merchant_uid,
+                    name: `${study_title}_${study_time}`,
+                    amount,
+                    buyer_name: values.name,
+                    buyer_email: values.email,
+                    buyer_tel: values.phone,
+                    vbank_due,
+                    notice_url: `${SERVER_URL}/payment/notification`, // TODO: test
+                  },
+                  rsp => {
+                    console.log("rsp: ", rsp)
+                    if (rsp.success) {
+                      console.log("***** 성공 *****")
+                      setPayment({
+                        ...rsp,
+                      })
+                      setStatus(rsp.status)
+                    } else {
+                      alert(rsp.error_msg)
+                    }
+                  }
+                )
+                break
+
+              case "bccard":
+                IMP.request_pay(
+                  {
+                    pg: IMPORT_PG,
+                    pay_method: "card",
+                    card: {
+                      detail: [
+                        { card_code: "*", enabled: false },
+                        { card_code: "bc", enabled: true },
+                      ],
+                    },
+                    display: {
+                      card_quota: [2, 3],
+                    },
+                    merchant_uid,
+                    name: `${study_title}_${study_time}`,
+                    amount,
+                    buyer_name: values.name,
+                    buyer_email: values.email,
+                    buyer_tel: values.phone,
+                    notice_url: `${SERVER_URL}/payment/notification`, // TODO: test
+                  },
+                  rsp => {
+                    console.log("rsp: ", rsp)
+                    if (rsp.success) {
+                      console.log("***** 성공 *****")
+                      setPayment({
+                        ...rsp,
+                      })
+                      setStatus(rsp.status)
+                    } else {
+                      alert(rsp.error_msg)
+                    }
+                  }
+                )
+                break
+
+              default:
+                IMP.request_pay(
+                  {
+                    pg: IMPORT_PG,
+                    pay_method,
+                    card: {
+                      detail: [
+                        { card_code: "*", enabled: true },
+                        { card_code: "bc", enabled: false },
+                      ],
+                    },
+                    merchant_uid,
+                    name: `${study_title}_${study_time}`,
+                    amount,
+                    buyer_name: values.name,
+                    buyer_email: values.email,
+                    buyer_tel: values.phone,
+                    vbank_due,
+                    notice_url: `${SERVER_URL}/payment/notification`, // TODO: test
+                  },
+                  rsp => {
+                    console.log("rsp: ", rsp)
+                    if (rsp.success) {
+                      console.log("***** 성공 *****")
+                      setPayment({
+                        ...rsp,
+                      })
+                      setStatus(rsp.status)
+                    } else {
+                      alert(rsp.error_msg)
+                    }
+                  }
+                )
+                break
+            }
           } else {
             // TODO: error handling
             alert(`${res.status}: ${res.statusText}`)
@@ -175,7 +254,9 @@ const ApplyPage = ({ data }) => {
     }
   }
 
-  // console.log("values: ", values)
+  console.log("IMPORT_PG: ", IMPORT_PG)
+
+  console.log("values: ", values)
   // console.log("coupon: ", coupon)
   console.log("payment: ", payment)
   console.log("status: ", status)
