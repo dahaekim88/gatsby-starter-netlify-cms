@@ -22,10 +22,18 @@ const useForm = (callback, validate) => {
 
   const handleChange = event => {
     event.persist()
-    setValues(values => ({
-      ...values,
-      [event.target.name]: event.target.value,
-    }))
+    if (event.target.name === "study_title") {
+      setValues(values => ({
+        ...values,
+        study_time: null,
+        [event.target.name]: event.target.value,
+      }))
+    } else {
+      setValues(values => ({
+        ...values,
+        [event.target.name]: event.target.value,
+      }))
+    }
   }
 
   const handleClick = event => {

@@ -56,6 +56,7 @@ const Apply = ({
   onCouponChange,
   handlePrivateTermsAndConditions,
 }) => {
+  let submitBtn
   return (
     <>
       <PageHeader title="Apply" bgUrl={bgUrl} />
@@ -63,7 +64,7 @@ const Apply = ({
         <PageDetails align="left">
           <SmallTitle>실무 성장의 첫걸음, Study States</SmallTitle>
           <Background>
-            {status === "paid" ? (
+            {status !== "unpaid" ? (
               <>
                 <PageDetails
                   title="PAYMENT"
@@ -106,8 +107,8 @@ const Apply = ({
                   )}
                 </PageDetails>
                 <PageFooter>
-                  스터디 시작일이 이메일 ( <strong>{values.email}</strong> ) 로
-                  안내사항이 나갈 예정입니다.
+                  스터디 안내는 이메일 ( <strong>{values.email}</strong> ) 로
+                  나갈 예정입니다.
                   <br />
                   스터디스테이츠 스터디를 신청해주셔서 감사합니다.
                 </PageFooter>
@@ -252,6 +253,9 @@ const Apply = ({
                       color="#fff"
                       onClick={handleClick}
                       value="신청하기"
+                      ref={btn => {
+                        submitBtn = btn // TODO: submit 후 중복 클릭되지 않도록 처리
+                      }}
                     >
                       신청하기
                     </FormButton>
