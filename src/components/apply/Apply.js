@@ -61,7 +61,7 @@ const Apply = ({
     <>
       <PageHeader title="Apply" bgUrl={bgUrl} />
       <Container>
-        <PageDetails align="left">
+        <PageDetails align="left" md={10} sm={10}>
           <SmallTitle>실무 성장의 첫걸음, Study States</SmallTitle>
           <Background>
             {status !== "unpaid" ? (
@@ -98,7 +98,7 @@ const Apply = ({
                   ) : (
                     <section>
                       <WelcomeMessage>
-                        결제금액: {payment.paid_amount} 원 (카드 결제)
+                        결제금액: {AddComma(payment.paid_amount)} 원 (카드 결제)
                       </WelcomeMessage>
                       <WelcomeMessage>
                         카드승인번호: {payment.apply_num}
