@@ -9,9 +9,7 @@ import PrivateRoute from "../../components/route/privateRoute"
 import Layout from "../../components/Layout"
 import Apply from "../../components/apply/Apply"
 import { Message } from "../../components/styled"
-
 import useForm from "../../components/hooks/useForm"
-import validate from "../../services/validate"
 
 import { IAMPORT_KEY } from "../../keys"
 import { SERVER_URL, IMPORT_PG } from "../../../.config"
@@ -71,7 +69,6 @@ const ApplyPage = ({ data }) => {
         .then(res => {
           console.log("res: ", res)
           if (res.data.success) {
-            console.log("res.data: ", res.data)
             const { merchant_uid } = res.data
 
             const now = new Date()
@@ -101,7 +98,6 @@ const ApplyPage = ({ data }) => {
                   rsp => {
                     console.log("rsp: ", rsp)
                     if (rsp.success) {
-                      console.log("***** 성공 *****")
                       setPayment({
                         ...rsp,
                       })
@@ -138,7 +134,6 @@ const ApplyPage = ({ data }) => {
                   rsp => {
                     console.log("rsp: ", rsp)
                     if (rsp.success) {
-                      console.log("***** 성공 *****")
                       setPayment({
                         ...rsp,
                       })
@@ -173,7 +168,6 @@ const ApplyPage = ({ data }) => {
                   rsp => {
                     console.log("rsp: ", rsp)
                     if (rsp.success) {
-                      console.log("***** 성공 *****")
                       setPayment({
                         ...rsp,
                       })
@@ -188,8 +182,6 @@ const ApplyPage = ({ data }) => {
           } else {
             // TODO: error handling
             alert(`${res.status}: ${res.statusText}`)
-            // setApiError()
-            console.log("Not received response!")
           }
         })
     } catch (ex) {
@@ -202,7 +194,7 @@ const ApplyPage = ({ data }) => {
     }
   }
 
-  const { values, handleChange, handleSubmit, handleClick, errors } = useForm(
+  const { values, handleChange, handleSubmit, errors } = useForm(
     formApply,
     validate
   )
@@ -254,12 +246,10 @@ const ApplyPage = ({ data }) => {
     }
   }
 
-  console.log("IMPORT_PG: ", IMPORT_PG)
-
-  console.log("values: ", values)
+  // console.log("values: ", values)
   // console.log("coupon: ", coupon)
-  console.log("payment: ", payment)
-  console.log("status: ", status)
+  // console.log("payment: ", payment)
+  // console.log("status: ", status)
 
   return (
     <Layout>
@@ -279,7 +269,6 @@ const ApplyPage = ({ data }) => {
               status={status}
               handleChange={handleChange}
               handleSubmit={handleSubmit}
-              handleClick={handleClick}
               handleErrors={handleErrors}
               onCouponChange={onCouponChange}
               handlePrivateTermsAndConditions={handlePrivateTermsAndConditions}
@@ -318,3 +307,17 @@ export const pageQuery = graphql`
     }
   }
 `
+
+const validate = values => {
+  const errors = {}
+  if (!values.study_title) {
+    errors.study_title = "스터디를 반드시 선택해주세요"
+  }
+  if (!values.study_time) {
+    errors.study_time = "스터디 시간을 반드시 선택해주세요"
+  }
+  if (!values.pay_method) {
+    errors.pay_method = "결제 방법을 반드시 선택해주세요"
+  }
+  return errors
+}
