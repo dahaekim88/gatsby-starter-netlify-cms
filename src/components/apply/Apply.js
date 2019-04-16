@@ -51,17 +51,16 @@ const Apply = ({
   status,
   handleChange,
   handleSubmit,
-  handleClick,
   handleErrors,
   onCouponChange,
   handlePrivateTermsAndConditions,
 }) => {
-  let submitBtn
+  // let submitBtn
   return (
     <>
       <PageHeader title="Apply" bgUrl={bgUrl} />
       <Container>
-        <PageDetails align="left" md={10} sm={10}>
+        <PageDetails align="left" md={7} sm={10}>
           <SmallTitle>실무 성장의 첫걸음, Study States</SmallTitle>
           <Background>
             {status !== "unpaid" ? (
@@ -251,11 +250,10 @@ const Apply = ({
                       type="submit"
                       background={blue}
                       color="#fff"
-                      onClick={handleClick}
                       value="신청하기"
-                      ref={btn => {
-                        submitBtn = btn // TODO: submit 후 중복 클릭되지 않도록 처리
-                      }}
+                      // ref={btn => {
+                      //   submitBtn = btn // TODO: submit 후 중복 클릭되지 않도록 처리
+                      // }}
                     >
                       신청하기
                     </FormButton>

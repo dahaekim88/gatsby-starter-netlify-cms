@@ -53,18 +53,6 @@ const validate = (values, clicked) => {
       }
       return errors
 
-    case "신청하기":
-      if (!values.study_title) {
-        errors.study_title = "스터디를 반드시 선택해주세요"
-      }
-      if (!values.study_time) {
-        errors.study_time = "스터디 시간을 반드시 선택해주세요"
-      }
-      if (!values.pay_method) {
-        errors.pay_method = "결제 방법을 반드시 선택해주세요"
-      }
-      return errors
-
     default:
       return errors
   }
