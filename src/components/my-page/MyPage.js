@@ -1,18 +1,30 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { Container } from "reactstrap"
 import { PageHeader, Tag, Tabs, Icon, Row, Col } from "antd"
+import jwtDecode from "jwt-decode"
 
 import StyledPageHeader from "../reusable/PageHeader"
 import PageDetails from "../reusable/PageDetails"
 import { BorderedContainer } from "../styled"
 
-import { getUser } from "../../services/auth"
 import bgUrl from "../../assets/img/apply_bg.jpg"
 
 const TabPane = Tabs.TabPane
 
 const MyPageComp = () => {
-  const user = getUser()
+  const [name, setName] = useState("")
+  const [email, setEmail] = useState("")
+  const [phone, setPhone] = useState("")
+
+  useEffect(() => {
+    const token = localStorage.getItem("token")
+    if (token) {
+      const { name, email, phone } = jwtDecode(token)
+      setName(name)
+      setEmail(email)
+      setPhone(phone)
+    }
+  })
 
   const Description = ({ term, children, span = 12 }) => (
     <Col span={span}>
@@ -51,9 +63,9 @@ const MyPageComp = () => {
             >
               <BorderedContainer>
                 <ul>
-                  <li>Name: {user.name}</li>
-                  <li>Email: {user.email}</li>
-                  <li>Phone: {user.phone}</li>
+                  <li>Name: {name}</li>
+                  <li>Email: {email}</li>
+                  <li>Phone: {phone}</li>
                 </ul>
               </BorderedContainer>
             </TabPane>

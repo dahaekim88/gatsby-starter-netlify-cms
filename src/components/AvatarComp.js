@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react"
 import jwtDecode from "jwt-decode"
 import { Avatar, Tooltip } from "antd"
 
-import * as auth from "../services/auth"
+import { getUser } from "../services/auth"
 import getGravatar from "../services/getGravatar"
 
 const AvatarComp = ({ isLoggedIn }) => {
@@ -17,7 +17,7 @@ const AvatarComp = ({ isLoggedIn }) => {
   })
 
   const gravatar = getGravatar(userEmail)
-  const message = isLoggedIn() ? ` ${auth.getUser().name} ` : " 로그인 "
+  const message = isLoggedIn() ? ` ${getUser()} ` : " 로그인 "
 
   return (
     <span>

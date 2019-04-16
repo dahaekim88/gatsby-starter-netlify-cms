@@ -15,12 +15,8 @@ export const getUser = () => {
 
   if (isBrowser()) {
     const token = getToken()
-    const { name, email, phone } = jwtDecode(token)
-    return {
-      name,
-      email,
-      phone,
-    }
+    const { name } = jwtDecode(token)
+    return name
   } else {
     return null
   }
@@ -99,6 +95,7 @@ export const logout = callback => {
 export const loginWithToken = jwt => {
   saveToken(jwt)
 }
+
 export const getToken = () => {
   return isBrowser() && window.localStorage.getItem(KEY_TOKEN)
 }
