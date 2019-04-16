@@ -2,16 +2,16 @@ import React from "react"
 import { Router } from "@reach/router"
 import Layout from "../../components/Layout"
 import PrivateRoute from "../../components/route/privateRoute"
-import Profile from "../../components/Profile"
+import MyPageComp from "../../components/my-page/MyPage"
 
-const ProfilePage = () => (
+const MyPage = () => (
   <>
     <Layout>
       <Router>
-        <PrivateRoute path="/profile" component={Profile} />
+        <PrivateRoute path="/mypage" component={MyPageComp} />
       </Router>
     </Layout>
   </>
 )
 
-export default ProfilePage
+export default MyPage

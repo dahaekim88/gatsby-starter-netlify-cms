@@ -58,7 +58,7 @@ const SubmitAdditionalInfo_Page = props => {
   // console.log("TCL: [+] formSubmitAdditionalInfo -> values", values)
 
   if (auth.isLoggedIn()) {
-    navigate(`/profile`)
+    navigate(`/mypage`)
   }
 
   return (
