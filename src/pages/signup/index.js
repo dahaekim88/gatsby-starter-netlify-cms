@@ -57,7 +57,7 @@ const LoginPage = () => {
   )
 
   if (auth.isLoggedIn()) {
-    navigate(`/profile`)
+    navigate(`/mypage`)
   }
 
   return (

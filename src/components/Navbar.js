@@ -76,7 +76,7 @@ export default () => {
                 </DropdownToggle>
                 {isLoggedIn() ? (
                   <DropdownMenu right>
-                    <StyledDropdown tag={Link} to="profile">
+                    <StyledDropdown tag={Link} to="mypage">
                       마이페이지
                     </StyledDropdown>
                     <DropdownItem divider />

@@ -95,6 +95,7 @@ export const logout = callback => {
 export const loginWithToken = jwt => {
   saveToken(jwt)
 }
+
 export const getToken = () => {
   return isBrowser() && window.localStorage.getItem(KEY_TOKEN)
 }

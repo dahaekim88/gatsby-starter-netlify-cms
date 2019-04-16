@@ -7,7 +7,7 @@ import { Router } from "@reach/router"
 import PrivateRoute from "../../components/route/privateRoute"
 
 import Layout from "../../components/Layout"
-import Apply from "../../components/apply/Apply"
+import Apply from "../../components/apply-page/Apply"
 import { Message } from "../../components/styled"
 import useForm from "../../components/hooks/useForm"
 
