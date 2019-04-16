@@ -15,8 +15,12 @@ export const getUser = () => {
 
   if (isBrowser()) {
     const token = getToken()
-    const { name } = jwtDecode(token)
-    return name
+    const { name, email, phone } = jwtDecode(token)
+    return {
+      name,
+      email,
+      phone,
+    }
   } else {
     return null
   }

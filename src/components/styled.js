@@ -28,6 +28,12 @@ export const DarkBackground = styled.div`
   }
 `
 
+export const BorderedContainer = styled.div`
+  margin: 2rem 0;
+  padding: 2rem 0;
+  border: 1px solid ${grayBorder};
+`
+
 export const Title = styled.div`
   font-family: Lovelo;
   font-size: ${({ size }) => size};
