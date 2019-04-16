@@ -1,0 +1,60 @@
+:root {
+  --b-desktop: 1199;
+  --b-desktop-s: 991;
+  --b-tablet: 767;
+  --mobile: 425;
+}
+
+@font-face {
+  font-family: "Lovelo";
+  src: url("../fonts/Lovelo_Black.ttf");
+  font-weight: 900;
+}
+
+html {
+  font-size: 10px;
+}
+
+@media screen and (max-width: var(--b-tablet)px) {
+  html {
+    font-size: 8px;
+  }
+
+  .container {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+html,
+body {
+  font-family: "NanumSquare", sans-serif;
+}
+
+h2 {
+  margin: 1rem 0;
+}
+
+p {
+  font-size: 14px;
+}
+
+input[type="password"] {
+  font-family: sans-serif;
+}
+
+.carousel-control {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: none !important;
+}
+
+.navbar-header {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+.nav-item {
+  line-height: 2.5;
+}
