@@ -73,9 +73,7 @@ const ApplyList = ({
             </Tabs>
           }
         >
-          <div className="wrap">
-            <div className="content padding">{intro}</div>
-          </div>
+          {intro}
         </PageHeader>
       </BorderedContainer>
     </>
