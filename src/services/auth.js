@@ -9,21 +9,17 @@ export const KEY_TOKEN = "token"
 export const isBrowser = () => typeof window !== "undefined"
 
 export const getUser = () => {
-  // isBrowser() && window.localStorage.getItem("gatsbyUser")
-  //   ? JSON.parse(window.localStorage.getItem("gatsbyUser"))
-  //   : {}
-
   if (isBrowser()) {
     const token = getToken()
-    const { name } = jwtDecode(token)
-    return name
+    const { name, email, phone } = jwtDecode(token)
+    return {
+      name,
+      email,
+      phone,
+    }
   } else {
-    return null
+    return {}
   }
-}
-
-export const setUser = user => {
-  isBrowser() && window.localStorage.setItem("gatsbyUser", JSON.stringify(user))
 }
 
 export const handleSignup = async ({
@@ -87,7 +83,6 @@ export const isLoggedIn = () => {
 
 export const logout = callback => {
   isBrowser() && window.localStorage.removeItem(KEY_TOKEN)
-  setUser({})
   // if (callback) callback()
   navigate("/")
 }
