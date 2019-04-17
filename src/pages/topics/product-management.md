@@ -22,7 +22,7 @@ info:
     유료 컨텐츠를 기반으로 진행되는 경우, 스터디 참가자 분들께 제공됩니다.\n
     커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.
 intro:
-  text: Product Management 에 전반적인 부분을 이해하고,\n 본인의 상황에 맞는 역량을 더 발전시킬 수 있는 스터디 입니다.
+  text: Product Management 에 전반적인 부분을 이해하고, 본인의 상황에 맞는 역량을 더 발전시킬 수 있는 스터디 입니다.
   objectives:
     - image: /img/intro-manager.png
       text: 프로덕트 매니저의 다양한 역할에 대한 이해
@@ -40,6 +40,7 @@ intro:
 partner:
   image: /img/partner-ingikim.png
   name: 김인기
+  email: ingikim@codestates.com
   currentJob: 코드스테이츠 대표
   careers:
     - career: (현) 코드스테이츠 대표

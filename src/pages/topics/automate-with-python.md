@@ -5,11 +5,11 @@ title: 파이썬으로 업무 자동화하기
 description: 칼퇴를 부르는 업무 자동화 스킬을 배우고 싶은 모든 직장인 분들을 위한 스터디!
 image: /img/course-python.jpg
 info:
-  startDate: 2019-04-08
-  endDate: 2019-05-04
+  startDate: 2019-03-08
+  endDate: 2019-04-04
   period: 4주
-  totalMeeting: 5회
-  schedule: 4/13, 4/20, 4/27, 5/4
+  totalMeeting: 4회
+  schedule: 3/13, 3/20, 3/27, 4/4
   studyTimes:
     frequency: 매주
     dayOfWeek: 토요일
@@ -40,6 +40,7 @@ intro:
 partner:
   image: /img/partner-chaehwanoh.jpg
   name: 오채환
+  email: test@gmail.com
   currentJob: 프로그래머
   careers:
     - career: (전) 두다지 연구개발팀 근무
