@@ -68,13 +68,10 @@ const ApplyList = () => {
 
   return (
     <>
-      {studyData.map(({ node }) => {
+      {studyData.map(({ node }, index) => {
         const data = node.frontmatter
         const month = new Date().getMonth()
-        const formattedMonth =
-          new Date().getMonth() < 10
-            ? `0${new Date().getMonth() + 1}`
-            : new Date().getMonth()
+        const formattedMonth = month < 10 ? `0${month + 1}` : month
         const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
         let done = data.info.endDate < today ? true : false
         return (
@@ -86,6 +83,7 @@ const ApplyList = () => {
             curriculum={data.curriculum}
             partner={data.partner}
             members={members}
+            key={index}
           />
         )
       })}
