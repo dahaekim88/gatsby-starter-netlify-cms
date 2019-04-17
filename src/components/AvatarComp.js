@@ -17,7 +17,7 @@ const AvatarComp = ({ isLoggedIn }) => {
   })
 
   const gravatar = getGravatar(userEmail)
-  const message = isLoggedIn() ? ` ${getUser()} ` : " 로그인 "
+  const message = isLoggedIn() ? ` ${getUser().name} ` : " 로그인 "
 
   return (
     <span>

@@ -411,3 +411,7 @@ export const RefundPolicyContainer = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+export const TabContent = styled.div`
+  padding-top: 2rem;
+`

@@ -22,7 +22,7 @@ info:
     유료 컨텐츠를 기반으로 진행되는 경우, 스터디 참가자 분들께 제공됩니다.\n
     커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.
 intro:
-  text: 스타트업을 시작하고, 운영하고 싶은 분들을 위한 스터디입니다.\n스타트업 운영에 필요한 전반적인 사항을 함께 학습할 수 있습니다.
+  text: 스타트업을 시작하고, 운영하고 싶은 분들을 위한 스터디입니다. 스타트업 운영에 필요한 전반적인 사항을 함께 학습할 수 있습니다.
   objectives:
     - image: /img/intro-idea.png
       text: 스타트업을 시작하기 위해 필요한 부분들에 대한 전반적인 이해
@@ -40,6 +40,7 @@ intro:
 partner:
   image: /img/partner-ingikim.png
   name: 김인기
+  email: ingikim@codestates.com
   currentJob: 코드스테이츠 대표
   careers:
     - career: (현) 코드스테이츠 대표
