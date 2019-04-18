@@ -17,7 +17,6 @@ import {
   DropdownItem,
 } from "reactstrap"
 
-import { StyledLink } from "./styled"
 import Logo from "./reusable/Logo"
 import { isLoggedIn, logout } from "../services/auth"
 import { logoColor } from "../constants"
@@ -42,10 +41,8 @@ export default () => {
     <>
       <Navbar color="white" light expand="md" style={{ height: "72px" }}>
         <Container>
-          <NavbarBrand>
-            <StyledLink to="/" color={logoColor}>
-              <Logo color={logoColor} />
-            </StyledLink>
+          <NavbarBrand tag={Link} to="/" color={logoColor}>
+            <Logo color={logoColor} />
           </NavbarBrand>
           <NavbarToggler onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
@@ -76,33 +73,28 @@ export default () => {
                 </DropdownToggle>
                 {isLoggedIn() ? (
                   <DropdownMenu right>
-                    <StyledDropdown tag={Link} to="mypage">
+                    <StyledDropdown tag={Link} to="/mypage">
                       마이페이지
                     </StyledDropdown>
                     <DropdownItem divider />
-                    <StyledDropdown>
-                      <a
-                        href="/"
-                        onClick={event => {
-                          event.preventDefault()
-                          logout(() => navigate(`/login`))
-                        }}
-                        style={{
-                          color: "#212529",
-                          textDecoration: "none",
-                        }}
-                      >
-                        로그아웃
-                      </a>
+                    <StyledDropdown
+                      tag={Link}
+                      to="/"
+                      onClick={event => {
+                        event.preventDefault()
+                        logout(() => navigate("/"))
+                      }}
+                    >
+                      로그아웃
                     </StyledDropdown>
                   </DropdownMenu>
                 ) : (
                   <DropdownMenu right>
-                    <StyledDropdown tag={Link} to="signup">
+                    <StyledDropdown tag={Link} to="/signup">
                       회원가입
                     </StyledDropdown>
                     <DropdownItem divider />
-                    <StyledDropdown tag={Link} to="login">
+                    <StyledDropdown tag={Link} to="/login">
                       로그인
                     </StyledDropdown>
                   </DropdownMenu>

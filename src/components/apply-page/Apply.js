@@ -134,10 +134,10 @@ const Apply = ({
                 </StyledGrid>
                 <Form
                   onSubmit={event => handleSubmit(event)}
-                  loading={loading}
-                  error={
-                    apiError.length !== 0 || Object.entries(errors).length !== 0
-                  }
+                  // loading={loading}
+                  // error={
+                  //   apiError.length !== 0 || Object.entries(errors).length !== 0
+                  // }
                 >
                   {apiError.length !== 0 ? handleErrors(errors) : null}
                   <FormGroup>

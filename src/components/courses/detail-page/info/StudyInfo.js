@@ -83,10 +83,6 @@ const RedText = styled.p`
 const LinkButton = Button.withComponent(Link)
 
 class StudyInfo extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.getElementHeight("applyHeight", this.apply.clientHeight)
   }

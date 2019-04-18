@@ -1,14 +1,14 @@
-import React, { useState } from "react"
+import React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
 import Study from "./Study"
 
 const ApplyList = () => {
   // TODO: 서버에서 데이터 받기 (user_id + status="paid" => study_id)
-  const [list, setList] = useState([
+  const list = [
     "def45026-af82-514c-b01d-4fa0d5e4032f",
     "f36e4750-a6a5-580e-bfeb-65788a261219",
-  ])
+  ]
 
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query AllStudyQuery {

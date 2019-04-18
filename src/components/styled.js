@@ -138,7 +138,7 @@ export const StyledCol = styled(Col)`
   }
 `
 
-export const BorderedButton = styled.a`
+export const BorderedButton = styled.button`
   height: 4rem;
   width: 11rem;
   background-color: white;

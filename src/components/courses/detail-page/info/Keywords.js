@@ -49,10 +49,6 @@ const TagContainer = styled.div`
 `
 
 class Keywords extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   componentDidMount() {
     this.props.getElementHeight("keywordHeight", this.keyword.clientHeight)
   }

@@ -4,7 +4,6 @@ import { Container } from "reactstrap"
 import querystring from "query-string"
 
 import Layout from "../../components/Layout"
-import SocialLogin from "../../components/reusable/SocialLogin"
 import {
   ContentContainer,
   Title,
@@ -12,7 +11,6 @@ import {
   StyledForm,
   FormInput,
   FormButton,
-  BorderLine,
   Message,
 } from "../../components/styled"
 
