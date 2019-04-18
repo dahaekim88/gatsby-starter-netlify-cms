@@ -28,13 +28,7 @@ const CoursesIntro = ({ courses }) => {
               {courses
                 .filter(({ node }) => node.frontmatter.open === true)
                 .map(({ node }, index) => {
-                  const {
-                    open,
-                    image,
-                    title,
-                    description,
-                    info,
-                  } = node.frontmatter
+                  const { image, title, description, info } = node.frontmatter
                   return (
                     <StyledCol
                       lg={4}
@@ -47,7 +41,7 @@ const CoursesIntro = ({ courses }) => {
                       onMouseLeave={() => setHoveredCourse(null)}
                     >
                       <Link
-                        to={node.fields.slug}
+                        to={`/${node.fields.slug}`}
                         style={{ textDecoration: "none" }}
                       >
                         <CourseIntro

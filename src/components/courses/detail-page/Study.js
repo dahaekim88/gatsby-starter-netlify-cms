@@ -42,10 +42,6 @@ const ApplyCol = styled(Col)`
 `
 
 class Study extends React.Component {
-  constructor(props) {
-    super(props)
-  }
-
   state = {
     position: "fixed",
     top: "72px",

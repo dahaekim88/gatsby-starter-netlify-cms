@@ -14,11 +14,6 @@ const StyledH2 = styled.h2`
   text-align: center;
 `
 
-const StyledH3 = styled.h3`
-  font-size: 1.2rem;
-  font-weight: bold;
-`
-
 const StyledH4 = styled.h4`
   font-size: 1.1rem;
   font-weight: bold;

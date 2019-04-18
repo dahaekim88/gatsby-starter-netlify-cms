@@ -20,7 +20,7 @@ heading: Frequently Asked Questions
 
 ## 스터디 파트너는 어떻게 신청하나요?
 
-[여기](http://bit.ly/2FDY2ld)에서 스터디 파트너 신청서를 작성해주시면 됩니다.
+[여기](http://bit.ly/2ICJPGS)에서 스터디 파트너 신청서를 작성해주시면 됩니다.
 
 <br />
 

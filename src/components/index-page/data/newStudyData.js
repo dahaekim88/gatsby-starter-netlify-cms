@@ -20,7 +20,7 @@ export default [
         <b>스터디에 주도적으로 참여하고, 부가적인 수익을 창출할 수 있습니다.</b>
       </div>
     ),
-    link: "http://bit.ly/2FDY2ld",
+    link: "http://bit.ly/2ICJPGS",
   },
   {
     id: 1,
