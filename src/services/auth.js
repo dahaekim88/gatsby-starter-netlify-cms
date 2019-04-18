@@ -83,8 +83,7 @@ export const isLoggedIn = () => {
 
 export const logout = callback => {
   isBrowser() && window.localStorage.removeItem(KEY_TOKEN)
-  // if (callback) callback()
-  navigate("/")
+  if (callback) callback()
 }
 
 export const loginWithToken = jwt => {
