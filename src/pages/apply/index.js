@@ -49,7 +49,7 @@ const ApplyPage = ({ data }) => {
 
     const study_id = selectedStudy[0].node.id
     const { price } = selectedStudy[0].node.frontmatter.info
-    const amount = price - price * coupon.discount // TODO: test
+    const amount = coupon.discount ? price - price * coupon.discount : price // TODO: test
     // console.log("amount: ", amount)
 
     // const amount = 1004 // TODO: test
@@ -59,7 +59,6 @@ const ApplyPage = ({ data }) => {
     try {
       await axios
         .post(`${SERVER_URL}/payment`, {
-          // TODO: test
           user_id: values.id,
           pay_method,
           study_id,
