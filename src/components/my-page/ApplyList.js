@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import ApplyStudy from "./ApplyStudy"
+import Study from "./Study"
 
 const ApplyList = () => {
   // TODO: 서버에서 데이터 받기 (user_id + status="paid" => study_id)
@@ -37,6 +37,13 @@ const ApplyList = () => {
                 }
               }
               partner {
+                image {
+                  childImageSharp {
+                    fluid(maxWidth: 110, quality: 80) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
                 name
                 email
                 currentJob
@@ -73,9 +80,9 @@ const ApplyList = () => {
         const month = new Date().getMonth()
         const formattedMonth = month < 10 ? `0${month + 1}` : month
         const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
-        let done = data.info.endDate < today ? true : false
+        const done = data.info.endDate < today ? true : false
         return (
-          <ApplyStudy
+          <Study
             title={data.title}
             intro={data.intro.text}
             done={done}

@@ -39,9 +39,7 @@ const ApplyList = ({
                 }
                 key="1"
               >
-                <TabContent>
-                  <StudySchedule info={info} />
-                </TabContent>
+                <StudySchedule info={info} />
               </TabPane>
               <TabPane
                 tab={
@@ -52,9 +50,7 @@ const ApplyList = ({
                 }
                 key="2"
               >
-                <TabContent>
-                  <StudyCurriculum curriculum={curriculum} />
-                </TabContent>
+                <StudyCurriculum curriculum={curriculum} />
               </TabPane>
               <TabPane
                 tab={

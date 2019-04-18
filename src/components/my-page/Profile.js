@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
 import { Avatar, Tag } from "antd"
 
-import { BorderedContainer } from "../styled"
+import { BorderedContainer, ProfileImg } from "../styled"
 
 import getGravatar from "../../services/getGravatar"
 
-const Profile = ({ name, email, phone, currentJob, leader }) => {
+const Profile = ({ image, name, email, phone, currentJob, leader }) => {
   const [gravatar, setGravatar] = useState("")
 
   useEffect(() => {
@@ -16,7 +16,11 @@ const Profile = ({ name, email, phone, currentJob, leader }) => {
     <BorderedContainer>
       <div style={{ display: "flex" }}>
         <div style={{ padding: "0 1rem", margin: "0 1rem" }}>
-          <Avatar src={gravatar} size={80} shape="square" />
+          {image ? (
+            <ProfileImg src={image} alt={name} />
+          ) : (
+            <Avatar src={gravatar} size={80} shape="square" />
+          )}
         </div>
         <ul>
           <li>

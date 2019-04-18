@@ -415,3 +415,9 @@ export const RefundPolicyContainer = styled.div`
 export const TabContent = styled.div`
   padding-top: 2rem;
 `
+
+export const ProfileImg = styled.img`
+  width: 74px;
+  height: 74px;
+  border-radius: 4px;
+`

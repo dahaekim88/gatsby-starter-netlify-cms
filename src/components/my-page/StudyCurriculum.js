@@ -1,10 +1,12 @@
 import React from "react"
 import { Collapse } from "antd"
 
+import { TabContent } from "../styled"
+
 const Panel = Collapse.Panel
 
 const StudyCurriculum = ({ curriculum }) => (
-  <>
+  <TabContent>
     <p>{curriculum.intro}</p>
     <Collapse accordion>
       {curriculum.weeklyTopics.map((week, index) => (
@@ -15,7 +17,7 @@ const StudyCurriculum = ({ curriculum }) => (
         </Panel>
       ))}
     </Collapse>
-  </>
+  </TabContent>
 )
 
 export default StudyCurriculum
