@@ -70,6 +70,7 @@ const ApplyList = () => {
   // TODO: 서버에서 데이터 받기 (study_id + status="paid" => user data)
   const members = [
     { name: "테스트", email: "test@gmail.com", phone: "010-1111-1111" },
+    { name: "test", email: "test1@gmail.com", phone: "010-3333-1111" },
     { name: "홍길동", email: "hong@gmail.com", phone: "010-2222-2222" },
   ]
 
