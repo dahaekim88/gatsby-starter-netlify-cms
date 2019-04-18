@@ -4,7 +4,7 @@ import { Tabs, Icon } from "antd"
 
 import PageHeader from "../reusable/PageHeader"
 import PageDetails from "../reusable/PageDetails"
-import Profile from "../my-page/Profile"
+import MyProfile from "../my-page/MyProfile"
 import ApplyList from "../my-page/ApplyList"
 import ManageList from "../my-page/ManageList"
 
@@ -30,7 +30,11 @@ const MyPageComp = () => {
               }
               key="1"
             >
-              <Profile name={user.name} email={user.email} phone={user.phone} />
+              <MyProfile
+                name={user.name}
+                email={user.email}
+                phone={user.phone}
+              />
             </TabPane>
             <TabPane
               tab={

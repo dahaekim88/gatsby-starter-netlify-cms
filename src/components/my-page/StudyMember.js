@@ -1,11 +1,11 @@
 import React from "react"
 
-import Profile from "./Profile"
+import MemberProfile from "./MemberProfile"
 
 const StudyMember = ({ members }) => (
   <>
     {members.map((member, index) => (
-      <Profile
+      <MemberProfile
         name={member.name}
         email={member.email}
         phone={member.phone}
