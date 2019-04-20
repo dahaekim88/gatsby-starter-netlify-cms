@@ -180,7 +180,7 @@ const ApplyPage = ({ data }) => {
             }
           } else {
             // TODO: error handling
-            alert(`${res.status}: ${res.statusText}`)
+            alert(res.data.error)
           }
         })
     } catch (ex) {

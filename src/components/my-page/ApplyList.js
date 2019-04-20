@@ -1,20 +1,34 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { useStaticQuery, graphql } from "gatsby"
+import axios from "axios"
 
 import Study from "./Study"
 
+// import http from "../../services/httpService"
+import { SERVER_URL } from "../../../.config"
+
 const ApplyList = () => {
-  // TODO: 서버에서 데이터 받기 (user_id + status="paid" => study_id)
-  const list = [
-    "def45026-af82-514c-b01d-4fa0d5e4032f",
-    "f36e4750-a6a5-580e-bfeb-65788a261219",
-  ]
+  const [list, setList] = useState([])
+
+  const config = {
+    headers: { "x-auth-token": localStorage.getItem("token") || "" },
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios(`${SERVER_URL}/mypage/courses`, config)
+      // console.log("result: ", result.data)
+      const courseData = result.data.courses.map(course => course.study_id)
+      setList(courseData)
+    }
+    fetchData()
+  }, [])
 
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query AllStudyQuery {
       allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "detail-page" } } }
-        sort: { fields: [frontmatter___date], order: DESC }
+        sort: { fields: [frontmatter___info___endDate], order: DESC }
       ) {
         edges {
           node {
@@ -76,25 +90,30 @@ const ApplyList = () => {
 
   return (
     <>
-      {studyData.map(({ node }, index) => {
-        const data = node.frontmatter
-        const month = new Date().getMonth()
-        const formattedMonth = month < 10 ? `0${month + 1}` : month
-        const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
-        const done = data.info.endDate < today ? true : false
-        return (
-          <Study
-            title={data.title}
-            intro={data.intro.text}
-            done={done}
-            info={data.info}
-            curriculum={data.curriculum}
-            partner={data.partner}
-            members={members}
-            key={index}
-          />
-        )
-      })}
+      {!!list.length ? (
+        studyData.map(({ node }, index) => {
+          const data = node.frontmatter
+          const month = new Date().getMonth()
+          const formattedMonth = month < 10 ? `0${month + 1}` : month
+          const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
+          const done = data.info.endDate < today ? true : false
+          return (
+            <Study
+              title={data.title}
+              intro={data.intro.text}
+              done={done}
+              info={data.info}
+              curriculum={data.curriculum}
+              partner={data.partner}
+              members={members}
+              key={index}
+            />
+          )
+        })
+      ) : (
+        <center>신청한 스터디가 없습니다.</center>
+        //TODO: loading 처리
+      )}
     </>
   )
 }
