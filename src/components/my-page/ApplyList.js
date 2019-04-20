@@ -90,25 +90,30 @@ const ApplyList = () => {
 
   return (
     <>
-      {studyData.map(({ node }, index) => {
-        const data = node.frontmatter
-        const month = new Date().getMonth()
-        const formattedMonth = month < 10 ? `0${month + 1}` : month
-        const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
-        const done = data.info.endDate < today ? true : false
-        return (
-          <Study
-            title={data.title}
-            intro={data.intro.text}
-            done={done}
-            info={data.info}
-            curriculum={data.curriculum}
-            partner={data.partner}
-            members={members}
-            key={index}
-          />
-        )
-      })}
+      {!!list.length ? (
+        studyData.map(({ node }, index) => {
+          const data = node.frontmatter
+          const month = new Date().getMonth()
+          const formattedMonth = month < 10 ? `0${month + 1}` : month
+          const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
+          const done = data.info.endDate < today ? true : false
+          return (
+            <Study
+              title={data.title}
+              intro={data.intro.text}
+              done={done}
+              info={data.info}
+              curriculum={data.curriculum}
+              partner={data.partner}
+              members={members}
+              key={index}
+            />
+          )
+        })
+      ) : (
+        <center>신청한 스터디가 없습니다.</center>
+        //TODO: loading 처리
+      )}
     </>
   )
 }
