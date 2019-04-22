@@ -11,11 +11,12 @@ export const isBrowser = () => typeof window !== "undefined"
 export const getUser = () => {
   if (isBrowser()) {
     const token = getToken()
-    const { name, email, phone } = jwtDecode(token)
+    const { name, email, phone, isAdmin } = jwtDecode(token)
     return {
       name,
       email,
       phone,
+      isAdmin,
     }
   } else {
     return {}

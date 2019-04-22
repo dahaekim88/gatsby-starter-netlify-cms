@@ -1,4 +1,5 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import { Container } from "reactstrap"
 import { Tabs, Icon } from "antd"
 
@@ -15,6 +16,65 @@ const TabPane = Tabs.TabPane
 
 const MyPageComp = () => {
   const user = getUser()
+  const [isAdmin, setAdmin] = useState(false)
+
+  useEffect(() => {
+    if (user.isAdmin) {
+      setAdmin(true)
+    }
+  })
+
+  const { allMarkdownRemark } = useStaticQuery(graphql`
+    query AllStudyQuery {
+      allMarkdownRemark(
+        filter: { frontmatter: { templateKey: { eq: "detail-page" } } }
+        sort: { fields: [frontmatter___info___endDate], order: DESC }
+      ) {
+        edges {
+          node {
+            id
+            frontmatter {
+              date(formatString: "MMMM DD, YYYY")
+              title
+              intro {
+                text
+              }
+              info {
+                startDate(formatString: "YYYY.MM.DD")
+                endDate(formatString: "YYYY.MM.DD")
+                period
+                schedule
+                studyTimes {
+                  frequency
+                  dayOfWeek
+                  time
+                }
+              }
+              partner {
+                image {
+                  childImageSharp {
+                    fluid(maxWidth: 110, quality: 80) {
+                      ...GatsbyImageSharpFluid
+                    }
+                  }
+                }
+                name
+                email
+                currentJob
+              }
+              curriculum {
+                intro
+                weeklyTopics
+              }
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  const data = allMarkdownRemark.edges
+  // console.log("data @마이페이지: ", data)
 
   return (
     <>
@@ -45,20 +105,23 @@ const MyPageComp = () => {
               }
               key="2"
             >
-              <ApplyList />
+              <ApplyList data={data} />
             </TabPane>
-            {/* TODO: isAdmin 체크!! */}
-            <TabPane
-              tab={
-                <span>
-                  <Icon type="book" />
-                  스터디 관리
-                </span>
-              }
-              key="3"
-            >
-              <ManageList />
-            </TabPane>
+            {isAdmin ? (
+              <TabPane
+                tab={
+                  <span>
+                    <Icon type="book" />
+                    스터디 관리
+                  </span>
+                }
+                key="3"
+              >
+                <ManageList data={data} />
+              </TabPane>
+            ) : (
+              ""
+            )}
           </Tabs>
         </PageDetails>
       </Container>
