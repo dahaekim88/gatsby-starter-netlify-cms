@@ -1,8 +1,7 @@
 import React, { useState } from "react"
-import { GridLoader } from "react-spinners"
-import { css } from "@emotion/core"
+import { Spin } from "antd"
 
-import { FormButton } from "../styled"
+import { FormButton, StyledRow } from "../styled"
 import config from "../../../.config"
 import { facebook, google, kakao, kakaoFont, naver } from "../../constants"
 
@@ -11,22 +10,15 @@ import { facebook, google, kakao, kakaoFont, naver } from "../../constants"
 
 const getSocialLoginUrl = social => `${config.SERVER_URL}/auth/${social}`
 
-const override = css`
-  display: block;
-  text-align: center;
-  margin-left: 200px;
-  border-color: red;
-`
-
 const SocialLogin = () => {
   const [clickFacebook, setClickFacebook] = useState(false)
 
   return (
     <>
       {clickFacebook ? (
-        <div style={{ marginLeft: 150, marginTop: 50 }}>
-          <GridLoader css={override} sizeUnit="px" size={20} color={facebook} />
-        </div>
+        <StyledRow>
+          <Spin tip="Loading..." />
+        </StyledRow>
       ) : (
         <React.Fragment>
           <a href={getSocialLoginUrl("facebook")}>
