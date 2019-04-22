@@ -1,5 +1,6 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { PageHeader, Tag, Tabs, Icon } from "antd"
+import axios from "axios"
 
 import StudySchedule from "./StudySchedule"
 import StudyCurriculum from "./StudyCurriculum"
@@ -7,17 +8,35 @@ import StudyLeader from "./StudyLeader"
 import StudyMember from "./StudyMember"
 import { BorderedContainer, TabContent } from "../styled"
 
+import { getUser } from "../../services/auth"
+import { SERVER_URL } from "../../../.config"
+
 const TabPane = Tabs.TabPane
 
-const ApplyList = ({
-  intro,
-  title,
-  done,
-  info,
-  curriculum,
-  partner,
-  members,
-}) => {
+const ApplyList = ({ id, title, intro, done, info, curriculum, partner }) => {
+  const user = getUser()
+  const [members, setMembers] = useState([])
+
+  const config = {
+    headers: { "x-auth-token": localStorage.getItem("token") || "" },
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios.get(
+        `${SERVER_URL}/mypage/members?study_id=${id}`,
+        config
+      )
+      // console.log("result: ", result.data.members)
+      const memberData = result.data.members.filter(
+        member => member.email !== user.email
+      )
+      setMembers(memberData)
+    }
+
+    fetchData()
+  }, [])
+
   return (
     <>
       <BorderedContainer>

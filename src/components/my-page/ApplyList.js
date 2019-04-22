@@ -19,7 +19,7 @@ const ApplyList = ({ data }) => {
     setLoading(true)
 
     const fetchData = async () => {
-      const result = await axios(`${SERVER_URL}/mypage/courses`, config)
+      const result = await axios.get(`${SERVER_URL}/mypage/courses`, config)
       // console.log("result: ", result.data)
       const courseData = result.data.courses.map(course => course.study_id)
       setList(courseData)
@@ -33,13 +33,6 @@ const ApplyList = ({ data }) => {
     return data.filter(({ node }) => node.id === id)[0]
   })
   // console.log("studyData: ", studyData)
-
-  // TODO: 서버에서 데이터 받기 (study_id + status="paid" => user data)
-  const members = [
-    { name: "테스트", email: "test@gmail.com", phone: "010-1111-1111" },
-    { name: "test", email: "test1@gmail.com", phone: "010-3333-1111" },
-    { name: "홍길동", email: "hong@gmail.com", phone: "010-2222-2222" },
-  ]
 
   return (
     <>
@@ -58,13 +51,13 @@ const ApplyList = ({ data }) => {
               const done = data.info.endDate < today ? true : false
               return (
                 <Study
+                  id={node.id}
                   title={data.title}
                   intro={data.intro.text}
                   done={done}
                   info={data.info}
                   curriculum={data.curriculum}
                   partner={data.partner}
-                  members={members}
                   key={index}
                 />
               )
