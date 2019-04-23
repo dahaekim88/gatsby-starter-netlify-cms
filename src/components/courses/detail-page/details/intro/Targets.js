@@ -16,8 +16,8 @@ const PlainText = styled.p`
 `
 
 const Targets = ({ targets }) =>
-  targets.map(({ title, content }) => (
-    <div>
+  targets.map(({ title, content }, index) => (
+    <div key={index}>
       <BoldText>
         <i className="fa fa-check-square-o" />
         {title}

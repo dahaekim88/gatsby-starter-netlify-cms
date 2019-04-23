@@ -32,8 +32,8 @@ const TextContainer = styled.div`
 
 const Objectives = ({ objectives }) => (
   <ParentContainer>
-    {objectives.map(({ image, text }) => (
-      <ChildContainer>
+    {objectives.map(({ image, text }, index) => (
+      <ChildContainer key={index}>
         <ImageContainer>
           <img
             src={

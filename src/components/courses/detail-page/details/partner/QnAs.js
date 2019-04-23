@@ -26,8 +26,8 @@ const PlainText = styled.p`
 
 const QnAs = ({ qna }) => (
   <GrayBackground>
-    {qna.map(({ Q, A }) => (
-      <div>
+    {qna.map(({ Q, A }, index) => (
+      <div key={index}>
         <BoldText>{Q}</BoldText>
         <PlainText>{A}</PlainText>
       </div>
