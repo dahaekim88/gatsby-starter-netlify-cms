@@ -17,14 +17,18 @@ const Title = styled.p`
   text-align: center;
   font-size: 3rem;
   font-weight: bold;
+
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    font-size: 2.4rem;
+  }
 `
 
-const Intro = styled.p`
+const Intro = styled.div`
   margin: 2rem 0;
   padding: 0 6rem;
   text-align: center;
 
-  @media screen and (max-width: ${sizes.mobile}px) {
+  @media screen and (max-width: ${sizes.b_tablet}px) {
     padding: 0;
   }
 `
@@ -43,8 +47,8 @@ const StudyIntro = ({ title, intro, info }) => (
   <Container>
     <Title>{title}</Title>
     <Intro>
-      {intro.text.split("\\n").map(line => (
-        <p>{line}</p>
+      {intro.text.split("\\n").map((line, index) => (
+        <p key={index}>{line}</p>
       ))}
     </Intro>
     <Content>

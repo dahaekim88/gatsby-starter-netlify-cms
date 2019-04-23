@@ -4,7 +4,6 @@ import { Col } from "reactstrap"
 
 import StudyIntro from "./intro/StudyIntro"
 import StudyStage from "./stage/StudyStage"
-// import Practice from './Practice';
 import StudyPartner from "./partner/StudyPartner"
 import Curriculum from "./curriculum/Curriculum"
 
@@ -19,7 +18,6 @@ const ImageStyledCol = styled(Col)`
 
 const StudyLeftDetails = ({ data }) => {
   const { title, image, info, intro, partner, curriculum } = data
-  // console.log("image: ", image)
 
   return (
     <Container>
@@ -33,9 +31,6 @@ const StudyLeftDetails = ({ data }) => {
         />
       </ImageStyledCol>
       <StudyIntro title={title} intro={intro} info={info} />
-      {/* {practice !== null && (
-      <Practice practice={practice} />
-    )} */}
       <StudyStage />
       {partner.careers.length !== 0 && <StudyPartner partner={partner} />}
       <Curriculum curriculum={curriculum} />

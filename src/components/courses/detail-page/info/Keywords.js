@@ -7,7 +7,6 @@ import { Grid } from "../../../styled"
 import { sizes, grayBorder, whitegray } from "../../../../constants"
 
 const SubjectGrid = styled(Grid)`
-  margin-bottom: 1.5rem;
   @media screen and (max-width: ${sizes.b_desktop_s}px) {
     width: 100%;
     padding: 1rem 0;
@@ -19,12 +18,10 @@ const StyledCol = styled(Col)`
   padding: 1.5rem 0;
   border-top: 1px solid ${whitegray};
   border-bottom: 1px solid ${whitegray};
+
   @media screen and (max-width: ${sizes.b_desktop_s}px) {
     width: 100%;
-  }
-  @media screen and (max-width: ${sizes.b_tablet}px) {
-    width: 90%;
-    margin: 0 auto;
+    margin: 0;
   }
 `
 
@@ -63,8 +60,8 @@ class Keywords extends React.Component {
           <StyledCol>
             <SubjectInfoTitleCol>#Keywords</SubjectInfoTitleCol>
             <Col>
-              {keywords.map(({ keyword }) => (
-                <TagContainer>{keyword}</TagContainer>
+              {keywords.map(({ keyword }, index) => (
+                <TagContainer key={index}>{keyword}</TagContainer>
               ))}
             </Col>
           </StyledCol>

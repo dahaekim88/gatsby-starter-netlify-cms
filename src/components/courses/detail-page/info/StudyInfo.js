@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 import styled from "styled-components"
 import { Col } from "reactstrap"
 
-import { Grid } from "../../../styled"
+import { Grid, RedText } from "../../../styled"
 
 import { sizes, blue, grayBorder } from "../../../../constants"
 
@@ -25,8 +25,10 @@ const Title = styled.p`
 const TextStyledCol = styled(Col)`
   padding: 0;
   border: 1px solid ${grayBorder};
+
   @media screen and (max-width: ${sizes.b_desktop_s}px) {
     border: 0;
+    max-width: 100%;
   }
 `
 
@@ -71,13 +73,10 @@ const Button = styled.span`
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  @media screen and (max-width: ${sizes.mobile}px) {
-    width: 80%;
-  }
-`
 
-const RedText = styled.p`
-  color: #ff3a71;
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    width: 90%;
+  }
 `
 
 const LinkButton = Button.withComponent(Link)
@@ -89,7 +88,15 @@ class StudyInfo extends React.Component {
 
   render() {
     const { title, info, partner } = this.props
-    // console.log("info: ", info)
+    const {
+      startDate,
+      endDate,
+      period,
+      note,
+      studyTimes,
+      totalMeeting,
+      price,
+    } = info
 
     return (
       <div ref={element => (this.apply = element)}>
@@ -102,10 +109,8 @@ class StudyInfo extends React.Component {
                   일정
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{`${info.startDate} - ${info.endDate} (총 ${
-                    info.period
-                  })`}</p>
-                  {!!info.note ? <RedText>{info.note}</RedText> : null}
+                  <p>{`${startDate} - ${endDate.slice(5)} (총 ${period})`}</p>
+                  {!!note ? <RedText>{note}</RedText> : null}
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
 
@@ -114,10 +119,10 @@ class StudyInfo extends React.Component {
                   시간
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{`${info.studyTimes.frequency} ${
-                    info.studyTimes.dayOfWeek
-                  } ${info.studyTimes.time}`}</p>
-                  <p>{`총 ${info.totalMeeting}의 온라인 스터디 진행`}</p>
+                  <p>{`${studyTimes.frequency} ${studyTimes.dayOfWeek} ${
+                    studyTimes.time
+                  }`}</p>
+                  <p>{`총 ${totalMeeting}의 온라인 스터디 진행`}</p>
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
 
@@ -136,7 +141,7 @@ class StudyInfo extends React.Component {
                   가격
                 </SubjectInfoTitleCol>
                 <SubjectInfoDetailCol md={9} sm={9} xs={9}>
-                  <p>{info.price / 10000}만원</p>
+                  <p>{price / 10000}만원</p>
                 </SubjectInfoDetailCol>
               </SubjectInfoGrid>
             </SubjectInfoDetail>

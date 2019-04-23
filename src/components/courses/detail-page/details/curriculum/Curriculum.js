@@ -27,19 +27,18 @@ const Curriculum = ({ curriculum }) => (
   <Container>
     <Title>커리큘럼</Title>
     <SubTitle>
-      <p>{curriculum.intro}</p>
-      <p>
-        커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.
-      </p>
+      {curriculum.intro}
+      <br />
+      커리큘럼은 스터디원의 요구나 학습 진행 속도에 따라 변경될 수 있습니다.
     </SubTitle>
     <br />
     {curriculum.weeklyTopics.map((topic, index) => (
-      <Content>
+      <Content key={index}>
         <p style={{ fontSize: "1.7rem" }}>
           <b># Session {index + 1}</b>
         </p>
-        {topic.split("\\n").map(line => (
-          <p>{line}</p>
+        {topic.split("\\n").map((line, index) => (
+          <p key={index}>{line}</p>
         ))}
       </Content>
     ))}
