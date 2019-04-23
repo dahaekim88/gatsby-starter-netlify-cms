@@ -120,10 +120,12 @@ export const StyledCol = styled(Col)`
   @media screen and (max-width: ${sizes.b_desktop_s}px) {
     padding: ${({ "data-index-number": index }) => {
       switch (index % 2) {
-        case 0:
-          return "0 3rem 3rem 0"
         default:
-          return "0 0 3rem 0"
+          return "0 3rem 3rem 0"
+        // case 0:
+        //   return "0 3rem 3rem 0"
+        // default:
+        //   return "0 0 3rem 0"
       }
     }};
   }
@@ -196,7 +198,7 @@ export const StyledLink = styled(Link)`
 `
 
 export const CardContainer = styled.div`
-    height: 53rem;
+    height: 56rem;
     box-shadow: 1px 2px 3px 0 rgba(0,0,0,0.2);}
     border-radius: 6px;
     color: black;
@@ -313,6 +315,10 @@ export const Message = styled.p`
   font-size: 1.2rem;
 `
 
+export const RedText = styled.p`
+  color: #ff3a71;
+`
+
 export const ContentsBox = styled(Col)`
   background: ${white};
   border: solid 0.1rem ${grayBorder};
@@ -414,4 +420,14 @@ export const RefundPolicyContainer = styled.div`
 
 export const TabContent = styled.div`
   padding-top: 2rem;
+`
+
+export const CarouselCard = styled.div`
+  background: url(${({ image }) => image}) no-repeat center center fixed;
+  width: 100%;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `
