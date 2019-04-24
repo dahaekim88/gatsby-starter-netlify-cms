@@ -22,7 +22,7 @@ const MyPageComp = () => {
     if (user.isAdmin) {
       setAdmin(true)
     }
-  })
+  }, [])
 
   const { allMarkdownRemark } = useStaticQuery(graphql`
     query AllStudyQuery {
@@ -74,7 +74,7 @@ const MyPageComp = () => {
   `)
 
   const data = allMarkdownRemark.edges
-  // console.log("data @마이페이지: ", data)
+  console.log("data @마이페이지: ", data)
 
   return (
     <>

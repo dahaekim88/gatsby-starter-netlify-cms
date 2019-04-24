@@ -5,12 +5,12 @@ import getGravatar from "../../services/getGravatar"
 
 const { Meta } = Card
 
-const MemberProfile = ({ image, name, email, phone, currentJob, leader }) => {
+const MemberProfile = ({ image, name, email, phone, leader }) => {
   const [gravatar, setGravatar] = useState("")
 
   useEffect(() => {
     setGravatar(getGravatar(email))
-  })
+  }, [])
 
   const title = (
     <div>
