@@ -48,13 +48,19 @@ const ApplyList = ({ data }) => {
               const month = new Date().getMonth()
               const formattedMonth = month < 10 ? `0${month + 1}` : month
               const today = `${new Date().getFullYear()}.${formattedMonth}.${new Date().getDate()}`
-              const done = data.info.endDate < today ? true : false
+              const tag =
+                data.info.endDate < today
+                  ? "스터디 완료"
+                  : data.info.startDate > today
+                  ? "대기중"
+                  : "진행중"
+
               return (
                 <Study
                   id={node.id}
                   title={data.title}
                   intro={data.intro.text}
-                  done={done}
+                  tag={tag}
                   info={data.info}
                   curriculum={data.curriculum}
                   partner={data.partner}
