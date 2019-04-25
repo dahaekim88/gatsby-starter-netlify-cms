@@ -22,7 +22,6 @@ const Container = styled.div`
 `
 
 const FollowLogo = styled.img`
-  margin-right: 2rem;
   width: 3rem;
 `
 

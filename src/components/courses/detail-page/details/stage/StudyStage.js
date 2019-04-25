@@ -19,7 +19,7 @@ const Title = styled.p`
   font-weight: bold;
 `
 
-const Content = styled.div`
+const Content = styled.p`
   margin: 3rem 0;
   text-align: center;
 `
@@ -56,8 +56,9 @@ const StudyStage = () => (
   <Container>
     <Title>스터디 진행</Title>
     <Content>
-      <p>자기주도적으로 학습하고, 발표를 통해 공유합니다.</p>
-      <p>학습한 내용을 프로젝트에 적용하며 익힙니다.</p>
+      자기주도적으로 학습하고, 발표를 통해 공유합니다.
+      <br />
+      학습한 내용을 프로젝트에 적용하며 익힙니다.
     </Content>
     <StyledHr />
     <StyledGrid>

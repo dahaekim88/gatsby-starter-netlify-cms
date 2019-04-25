@@ -11,17 +11,17 @@ import { sizes, darkwhite } from "../../../constants"
 
 const DarkBackground = styled.div`
   background: ${darkwhite};
+  padding-bottom: 3rem;
 `
 
 const StyleGrid = styled(Grid)``
 
 const StudyCol = styled(Col)`
   padding: 0;
-  margin-right: 2rem;
   margin-bottom: 2rem;
 
   @media screen and (min-width: ${sizes.b_tablet}px) and (max-width: ${sizes.b_desktop_s}px) {
-    padding: 0;
+    max-width: 100%;
   }
 `
 
@@ -30,10 +30,13 @@ const ApplyCol = styled(Col)`
   top: 72px;
   right: 1px;
   padding: 0;
+
   @media screen and (min-width: ${sizes.b_tablet}px) {
     padding: 0;
   }
+
   @media screen and (max-width: ${sizes.b_desktop_s}px) {
+    max-width: 100%;
     padding: 0;
     position: relative;
     top: unset;
@@ -91,14 +94,13 @@ class Study extends React.Component {
       <DarkBackground ref={element => (this.container = element)}>
         <Container>
           <StyleGrid>
-            <StudyCol md={8} sm={12} xs={12}>
+            <StudyCol md={8} sm={12}>
               <StudyLeftDetails data={data} />
             </StudyCol>
             <ApplyCol
               style={{ top: this.state.top, bottom: this.state.bottom }}
               md={4}
               sm={12}
-              xs={12}
             >
               <StudyInfo
                 title={data.title}

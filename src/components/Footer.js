@@ -18,21 +18,19 @@ const PaddingGrid = styled(Container)`
   padding: 3rem 0;
   display: flex;
 
-  @media screen and (max-width: ${sizes.mobile}px) {
+  @media screen and (max-width: ${sizes.b_tablet}px) {
     flex-direction: column;
+    width: 100%;
   }
 `
 
 const ResponsiveHr = styled.hr`
-  color: white;
-  opacity: 0;
-  width: 0;
+  background-color: #fff;
+  width: 80%;
   margin-top: 0;
   margin-bottom: 0;
 
   @media screen and (max-width: ${sizes.b_tablet}px) {
-    opacity: 1;
-    width: 80%;
     margin-bottom: 2rem;
   }
 `
@@ -46,24 +44,24 @@ const MarginTopResponsiveHr = styled(ResponsiveHr)`
 const Footer = () => (
   <FooterContainer>
     <PaddingGrid>
-      <Col sm={4}>
+      <Col md={4} sm={12}>
         <SSDetails />
       </Col>
 
       <MarginTopResponsiveHr />
 
-      <Col sm={4}>
+      <Col md={4} sm={12}>
         <Menu />
       </Col>
 
       <ResponsiveHr />
 
-      <Col sm={4}>
+      <Col md={4} sm={12}>
         <Contact />
       </Col>
     </PaddingGrid>
 
-    <hr />
+    <ResponsiveHr />
 
     <PaddingGrid>
       <Col sm={12}>

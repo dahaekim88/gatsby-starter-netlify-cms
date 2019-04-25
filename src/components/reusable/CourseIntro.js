@@ -9,10 +9,6 @@ const CourseName = styled.p`
   margin-top: 2.5rem;
   font-size: 2rem;
   font-weight: bold;
-
-  @media screen and (max-width: ${sizes.mobile}px) {
-    font-size: 2.4rem;
-  }
 `
 
 const CourseInfoList = styled.div`
@@ -34,14 +30,14 @@ const CoursePrice = styled.p`
 
 const Details = styled.div`
   width: 100%;
-  margin-top: 1rem;
-  padding: 0 60px;
+  margin: 1rem 0;
+  padding: 0 30px;
   font-size: 1.4rem;
   font-weight: 300;
   word-break: keep-all;
 
-  @media screen and (max-width: ${sizes.mobile}px) {
-    font-size: 1.6rem;
+  @media screen and (min-width: ${sizes.mobile}px) and (max-width: ${sizes.b_tablet}px) {
+    padding: 0 60px;
   }
 `
 

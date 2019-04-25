@@ -55,8 +55,8 @@ const StudyPartner = ({ partner }) => {
       <Name>{name}</Name>
       <Content>
         <div>
-          {careers.map(({ career }) => (
-            <p>{career}</p>
+          {careers.map(({ career }, index) => (
+            <p key={index}>{career}</p>
           ))}
         </div>
       </Content>

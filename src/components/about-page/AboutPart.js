@@ -1,4 +1,4 @@
-import React from "react"
+import React, { Fragment } from "react"
 import styled from "styled-components"
 
 import { PagePart, SmallTitle, Paragraph } from "../styled"
@@ -11,10 +11,10 @@ const Image = styled.img`
 
 const AboutPart = ({ heading, image, description }) => {
   const textWithLineBreak = description.split("\\n").map((line, i) => (
-    <fragment key={i}>
+    <Fragment key={i}>
       {line}
       <br />
-    </fragment>
+    </Fragment>
   ))
 
   return (

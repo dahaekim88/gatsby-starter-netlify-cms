@@ -1,10 +1,10 @@
 import React from "react"
 import styled from "styled-components"
-import { Col } from "reactstrap"
+
 import { sizes } from "../../../../../constants"
 
 const Container = styled.div`
-  padding: 2rem 4rem 2rem 0;
+  padding: 2rem 0;
   display: flex;
 `
 
@@ -14,31 +14,34 @@ const Title = styled.div`
   font-weight: bold;
 `
 
-const ImageContainer = styled(Col)`
+const ImageContainer = styled.div`
+  flex: 1;
   display: flex;
   justify-content: center;
-  vertical-align: middle;
-  width: 40%;
-
-  @media screen and (max-width: ${sizes.b_tablet}px) {
-    width: 100%;
-  }
+  align-items: center;
 `
 
-const InfoContainer = styled(Col)``
+const InfoContainer = styled.div`
+  flex: 2;
+`
 
 const Description = styled.p`
-  margin-top: 2rem;
+  padding-top: 2rem;
+  padding-right: 7rem;
   color: #000000;
   font-size: 14px;
+
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    padding-right: 2rem;
+  }
 `
 
 const Information = ({ title, image, description }) => (
   <Container>
-    <ImageContainer sm={5}>
-      <img alt={`how-to-${title}`} src={image} />
+    <ImageContainer>
+      <img alt={`how-to-${title}`} src={image} width="80px" height="80px" />
     </ImageContainer>
-    <InfoContainer sm={7}>
+    <InfoContainer>
       <Title>| {title}</Title>
       <Description>{description}</Description>
     </InfoContainer>

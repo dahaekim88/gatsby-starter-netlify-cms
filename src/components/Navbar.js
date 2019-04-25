@@ -19,8 +19,17 @@ import {
 
 import Logo from "./reusable/Logo"
 import { isLoggedIn, logout } from "../services/auth"
-import { logoColor } from "../constants"
+import { logoColor, sizes } from "../constants"
 import AvatarComp from "./AvatarComp"
+
+const FixedNavbar = styled(Navbar)`
+  height: 72px;
+
+  @media screen and (max-width: ${sizes.b_tablet}px) {
+    padding: 12px;
+    height: auto;
+  }
+`
 
 const StyledNavLink = styled(NavLink)`
   font-size: 1.5rem;
@@ -34,12 +43,12 @@ export default () => {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggle = () => {
-    setIsOpen(true)
+    setIsOpen(!isOpen)
   }
 
   return (
     <>
-      <Navbar color="white" light expand="md" style={{ height: "72px" }}>
+      <FixedNavbar color="white" light expand="md">
         <Container>
           <NavbarBrand tag={Link} to="/" color={logoColor}>
             <Logo color={logoColor} />
@@ -103,7 +112,7 @@ export default () => {
             </Nav>
           </Collapse>
         </Container>
-      </Navbar>
+      </FixedNavbar>
     </>
   )
 }

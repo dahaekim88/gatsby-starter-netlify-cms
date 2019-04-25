@@ -65,15 +65,6 @@ const Menu = () => (
         </MenuContainer>
       </Col>
     </Row>
-    <Row>
-      <Col xs={6}>
-        <MenuContainer>
-          <StyledLink to="/privacy-policy" color="white">
-            Privacy Policy
-          </StyledLink>
-        </MenuContainer>
-      </Col>
-    </Row>
   </Container>
 )
 

@@ -41,7 +41,7 @@ const CoursesIntro = ({ courses }) => {
                       onMouseLeave={() => setHoveredCourse(null)}
                     >
                       <Link
-                        to={`/${node.fields.slug}`}
+                        to={`${node.fields.slug}`}
                         style={{ textDecoration: "none" }}
                       >
                         <CourseIntro
