@@ -9,17 +9,10 @@ const ManageList = ({ data }) => {
   const user = getUser()
   const { email } = user
 
-  console.log("data @스터디관리: ", data)
-
   const studyData = data.filter(
     ({ node }) => node.frontmatter.partner.email === email
   )
-  console.log("studyData: ", studyData)
-
-  const members = [
-    { name: "테스트", email: "test@gmail.com", phone: "010-1111-1111" },
-    { name: "홍길동", email: "hong@gmail.com", phone: "010-2222-2222" },
-  ]
+  // console.log("studyData: ", studyData)
 
   return (
     <>
@@ -32,12 +25,12 @@ const ManageList = ({ data }) => {
           const done = data.info.endDate < today ? true : false
           return (
             <Study
+              id={node.id}
               title={data.title}
               intro={data.intro.text}
               done={done}
               info={data.info}
               curriculum={data.curriculum}
-              members={members}
               key={index}
             />
           )
