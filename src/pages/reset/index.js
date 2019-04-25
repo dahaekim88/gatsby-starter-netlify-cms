@@ -1,6 +1,8 @@
 import React, { useState } from "react"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
+import { navigate } from "gatsby"
 import { Container } from "reactstrap"
+import querystring from "query-string"
 
 import Layout from "../../components/Layout"
 import SocialLogin from "../../components/reusable/SocialLogin"
@@ -14,29 +16,30 @@ import {
   BorderLine,
   Message,
 } from "../../components/styled"
-
 import * as auth from "../../services/auth"
 import validate from "../../services/validate"
 import useForm from "../../components/hooks/useForm"
 import { blue } from "../../constants"
 
-const LoginPage = () => {
+const ResetPasswordPage = ({ location }) => {
+  const { token } = querystring.parse(location.href)
+  console.log("TCL: ResetPasswordPage -> token", token)
+
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
 
-  const formLogin = async () => {
+  const formResetPassword = async () => {
     setLoading(true)
 
     try {
-      const response = await auth.handleLogin({
-        email: values.email,
+      const response = await auth.handleResetPassword({
+        token,
         password: values.password,
+        confirm: values.confirm,
       })
-      const token = response.headers["x-auth-token"]
-      // console.log("TCL: [+] RegistrationForm -> token", token)
-      auth.saveTokenAndMoveToRoot(token)
-      // auth.saveToken(token)
-      // navigate("/")
+
+      console.log("TCL: formLogin -> response", response)
+      navigate("/login")
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
         // console.log("TCL: formLogin -> ex.response", ex.response)
@@ -47,7 +50,7 @@ const LoginPage = () => {
   }
 
   const { values, handleChange, handleSubmit, handleClick, errors } = useForm(
-    formLogin,
+    formResetPassword,
     validate
   )
 
@@ -60,7 +63,7 @@ const LoginPage = () => {
       <Layout>
         <Container>
           <ContentContainer>
-            <Title size="3rem">Log in</Title>
+            <Title size="3rem">비밀번호 변경</Title>
             <FormContainer>
               <StyledForm
                 onSubmit={event => handleSubmit(event)}
@@ -72,53 +75,36 @@ const LoginPage = () => {
                 {/* {apiError.length !== 0 ? handleErrors(errors) : null} */}
                 {apiError && <Message>{apiError}</Message>}
                 <FormInput
-                  id="email"
-                  fluid
-                  name="email"
-                  type="text"
-                  autoFocus
-                  onChange={handleChange}
-                  value={values.email || ""}
-                  placeholder="이메일을 입력하세요"
-                />
-                {errors.email && <Message>{errors.email}</Message>}
-                <FormInput
                   id="password"
                   fluid
                   name="password"
                   type="password"
-                  value={values.password || ""}
+                  autoFocus
                   onChange={handleChange}
-                  placeholder="패스워드를 입력하세요"
+                  value={values.password || ""}
+                  placeholder="비밀번호를 입력하세요"
                 />
                 {errors.password && <Message>{errors.password}</Message>}
+                <FormInput
+                  id="confirm"
+                  fluid
+                  name="confirm"
+                  type="password"
+                  autoFocus
+                  onChange={handleChange}
+                  value={values.confirm || ""}
+                  placeholder="확인을 위하여 비밀번호를 다시 한 번 입력하세요"
+                />
+                {errors.confirm && <Message>{errors.confirm}</Message>}
                 <FormButton
                   type="submit"
                   background={blue}
                   color="#fff"
                   onClick={handleClick}
-                  value="로그인"
+                  value="비밀번호\_변경"
                 >
-                  로그인
+                  비밀번호 변경
                 </FormButton>
-
-                <Link to="/forgot">비밀번호 찾기 Forgot your password ?</Link>
-
-                <div style={{ margin: "1.5rem 0" }}>
-                  <BorderLine />
-                  <span
-                    style={{
-                      margin: "0 15px",
-                      verticalAlign: "middle",
-                      fontSize: "1.3rem",
-                    }}
-                  >
-                    or
-                  </span>
-                  <BorderLine />
-                </div>
-
-                <SocialLogin />
               </StyledForm>
             </FormContainer>
           </ContentContainer>
@@ -128,4 +114,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default ResetPasswordPage

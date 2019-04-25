@@ -75,6 +75,24 @@ export const handleLogin = async ({ email, password }) => {
   navigate("/")
 }
 
+export const handleForgot = async ({ email }) => {
+  const urlForgot = `${config.SERVER_URL}/forgot`
+  const response = await http.post(urlForgot, {
+    email,
+  })
+  console.log("TCL: handleLogin -> response", response)
+}
+
+export const handleResetPassword = async ({ token, password, confirm }) => {
+  const urlResetPassword = `${config.SERVER_URL}/reset`
+  const response = await http.post(urlResetPassword, {
+    token,
+    password,
+    confirm,
+  })
+  console.log("TCL: handleResetPassword -> response", response)
+}
+
 export const isLoggedIn = () => {
   // const user = getUser()
   // return !!user.username

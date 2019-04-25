@@ -1,5 +1,6 @@
 import React, { useState } from "react"
-import { Link, navigate } from "gatsby"
+import { Link } from "gatsby"
+import { navigate } from "gatsby"
 import { Container } from "reactstrap"
 
 import Layout from "../../components/Layout"
@@ -20,22 +21,19 @@ import validate from "../../services/validate"
 import useForm from "../../components/hooks/useForm"
 import { blue } from "../../constants"
 
-const LoginPage = () => {
+const ForgotPage = () => {
   const [loading, setLoading] = useState(false)
   const [apiError, setApiError] = useState([])
 
-  const formLogin = async () => {
+  const formForgot = async () => {
     setLoading(true)
 
     try {
-      const response = await auth.handleLogin({
+      const response = await auth.handleForgot({
         email: values.email,
-        password: values.password,
       })
-      const token = response.headers["x-auth-token"]
-      // console.log("TCL: [+] RegistrationForm -> token", token)
-      auth.saveTokenAndMoveToRoot(token)
-      // auth.saveToken(token)
+
+      console.log("TCL: formLogin -> response", response)
       // navigate("/")
     } catch (ex) {
       if (ex.response && ex.response.status === 400) {
@@ -47,7 +45,7 @@ const LoginPage = () => {
   }
 
   const { values, handleChange, handleSubmit, handleClick, errors } = useForm(
-    formLogin,
+    formForgot,
     validate
   )
 
@@ -60,7 +58,8 @@ const LoginPage = () => {
       <Layout>
         <Container>
           <ContentContainer>
-            <Title size="3rem">Log in</Title>
+            <Title size="3rem">비밀번호 찾기</Title>
+            비밀번호를 찾고자 하는 이 메일을 입력해 주세요.
             <FormContainer>
               <StyledForm
                 onSubmit={event => handleSubmit(event)}
@@ -82,43 +81,15 @@ const LoginPage = () => {
                   placeholder="이메일을 입력하세요"
                 />
                 {errors.email && <Message>{errors.email}</Message>}
-                <FormInput
-                  id="password"
-                  fluid
-                  name="password"
-                  type="password"
-                  value={values.password || ""}
-                  onChange={handleChange}
-                  placeholder="패스워드를 입력하세요"
-                />
-                {errors.password && <Message>{errors.password}</Message>}
                 <FormButton
                   type="submit"
                   background={blue}
                   color="#fff"
                   onClick={handleClick}
-                  value="로그인"
+                  value="비밀번호\_찾기"
                 >
-                  로그인
+                  비밀번호 찾기
                 </FormButton>
-
-                <Link to="/forgot">비밀번호 찾기 Forgot your password ?</Link>
-
-                <div style={{ margin: "1.5rem 0" }}>
-                  <BorderLine />
-                  <span
-                    style={{
-                      margin: "0 15px",
-                      verticalAlign: "middle",
-                      fontSize: "1.3rem",
-                    }}
-                  >
-                    or
-                  </span>
-                  <BorderLine />
-                </div>
-
-                <SocialLogin />
               </StyledForm>
             </FormContainer>
           </ContentContainer>
@@ -128,4 +99,4 @@ const LoginPage = () => {
   )
 }
 
-export default LoginPage
+export default ForgotPage
