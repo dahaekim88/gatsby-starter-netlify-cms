@@ -8,13 +8,11 @@ import StudyLeader from "./StudyLeader"
 import StudyMember from "./StudyMember"
 import { BorderedContainer, TabContent } from "../styled"
 
-import { getUser } from "../../services/auth"
 import { SERVER_URL } from "../../../.config"
 
 const TabPane = Tabs.TabPane
 
-const ApplyList = ({ id, title, intro, tag, info, curriculum, partner }) => {
-  const user = getUser()
+const Study = ({ id, title, intro, tag, info, curriculum, partner }) => {
   const [members, setMembers] = useState([])
 
   const config = {
@@ -27,11 +25,7 @@ const ApplyList = ({ id, title, intro, tag, info, curriculum, partner }) => {
         `${SERVER_URL}/mypage/members?study_id=${id}`,
         config
       )
-      // console.log("result: ", result.data.members)
-      const memberData = result.data.members.filter(
-        member => member.email !== user.email
-      )
-      setMembers(memberData)
+      setMembers(result.data.members)
     }
 
     fetchData()
@@ -103,4 +97,4 @@ const ApplyList = ({ id, title, intro, tag, info, curriculum, partner }) => {
   )
 }
 
-export default ApplyList
+export default Study
