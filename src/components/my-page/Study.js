@@ -13,7 +13,7 @@ import { SERVER_URL } from "../../../.config"
 
 const TabPane = Tabs.TabPane
 
-const ApplyList = ({ id, title, intro, done, info, curriculum, partner }) => {
+const ApplyList = ({ id, title, intro, tag, info, curriculum, partner }) => {
   const user = getUser()
   const [members, setMembers] = useState([])
 
@@ -43,8 +43,16 @@ const ApplyList = ({ id, title, intro, done, info, curriculum, partner }) => {
         <PageHeader
           title={title}
           tags={
-            <Tag color={done ? "" : "geekblue"}>
-              {done ? "스터디 완료" : "진행중"}
+            <Tag
+              color={
+                tag === "스터디 완료"
+                  ? ""
+                  : tag === "진행중"
+                  ? "geekblue"
+                  : "volcano"
+              }
+            >
+              {tag}
             </Tag>
           }
           footer={

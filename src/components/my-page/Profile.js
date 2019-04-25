@@ -10,7 +10,7 @@ const Profile = ({ image, name, email, phone, currentJob, leader }) => {
 
   useEffect(() => {
     setGravatar(getGravatar(email))
-  })
+  }, [])
 
   return (
     <BorderedContainer>

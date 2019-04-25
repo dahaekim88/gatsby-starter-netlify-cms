@@ -14,7 +14,7 @@ const AvatarComp = ({ isLoggedIn }) => {
       const { email } = jwtDecode(token)
       setEmail(email)
     }
-  })
+  }, [])
 
   const gravatar = getGravatar(userEmail)
   const message = isLoggedIn() ? ` ${getUser().name} ` : " 로그인 "

@@ -10,7 +10,7 @@ const MyProfile = ({ name, email, phone }) => {
 
   useEffect(() => {
     setGravatar(getGravatar(email))
-  })
+  }, [])
 
   const profile = (
     <>
