@@ -31,6 +31,8 @@ const Study = ({ id, title, intro, tag, info, curriculum, partner }) => {
     fetchData()
   }, [])
 
+  console.log("members: ", members)
+
   return (
     <>
       <BorderedContainer>
