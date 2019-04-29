@@ -1,10 +1,8 @@
 import React, { useState } from "react"
-import { Link } from "gatsby"
 import { navigate } from "gatsby"
 import { Container } from "reactstrap"
 
 import Layout from "../../components/Layout"
-import SocialLogin from "../../components/reusable/SocialLogin"
 import {
   ContentContainer,
   Title,
@@ -12,7 +10,6 @@ import {
   StyledForm,
   FormInput,
   FormButton,
-  BorderLine,
   Message,
 } from "../../components/styled"
 

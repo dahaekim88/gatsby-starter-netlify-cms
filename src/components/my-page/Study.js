@@ -86,7 +86,7 @@ const Study = ({ id, title, intro, tag, info, curriculum, partner }) => {
               >
                 <TabContent>
                   {partner ? <StudyLeader partner={partner} /> : ""}
-                  <StudyMember members={members} />
+                  {!!members.length ? <StudyMember members={members} /> : ""}
                 </TabContent>
               </TabPane>
             </Tabs>
