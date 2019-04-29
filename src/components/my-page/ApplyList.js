@@ -32,6 +32,8 @@ const ApplyList = ({ data }) => {
   const studyData = list.map(id => {
     return data.filter(({ node }) => node.id === id)[0]
   })
+  console.log("list: ", list)
+  console.log("data: ", data)
   console.log("studyData: ", studyData)
 
   return (
