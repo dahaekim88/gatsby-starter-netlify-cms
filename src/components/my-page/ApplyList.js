@@ -32,7 +32,7 @@ const ApplyList = ({ data }) => {
   const studyData = list.map(id => {
     return data.filter(({ node }) => node.id === id)[0]
   })
-  // console.log("studyData: ", studyData)
+  console.log("studyData: ", studyData)
 
   return (
     <>
@@ -43,6 +43,7 @@ const ApplyList = ({ data }) => {
       ) : (
         <>
           {!!list.length ? (
+            studyData &&
             studyData.map(({ node }, index) => {
               const data = node.frontmatter
               const month = new Date().getMonth()
